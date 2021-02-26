@@ -7,4 +7,13 @@ public class Salle
         this.largeurSalle = largeurSalle;
         this.longueurSalle = longueurSalle;
     }
+
+    public int getLongueurSalle()
+    {
+        return longueurSalle;
+    }
+    public int getLargeurSalle()
+    {
+        return largeurSalle;
+    }
 }
