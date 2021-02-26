@@ -2,8 +2,8 @@ import java.util.Arrays;
 
 public class Grille
 {
-    private final int LARGEURGRILLE = 40;
-    private final int LONGUEURGRILLE = 20;
+    private final int LARGEURGRILLE = 80;
+    private final int LONGUEURGRILLE = 40;
     private int pointx = 5;
     private int pointy = 4;
     private String[][] grille = new String [LONGUEURGRILLE][LARGEURGRILLE];
