@@ -12,22 +12,12 @@ public class Map {
     public void dessine(Grille grille)
     {
         this.grille = grille;
-
-
-
         String[][] tableauGrille = grille.getGrille();
-
-        for (int i = 0; i< tableauGrille.length;i++)
-        {
-            for (int j = 0 ; j< tableauGrille[0].length;j++)
-            {
-                System.out.print(tableauGrille[i][j]);
+        for (String[] strings : tableauGrille) {
+            for (int j = 0; j < tableauGrille[0].length; j++) {
+                System.out.print(strings[j]);
             }
-            System.out.println("");
+            System.out.println();
         }
-
-
-
     }
-    //test
 }

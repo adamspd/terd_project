@@ -1,19 +1,17 @@
-public class Salle
-{
+public class Salle {
     private int largeurSalle;
     private int longueurSalle;
-    public Salle(int largeurSalle,int longueurSalle)
-    {
+
+    public Salle(int largeurSalle,int longueurSalle) {
         this.largeurSalle = largeurSalle;
         this.longueurSalle = longueurSalle;
     }
 
-    public int getLongueurSalle()
-    {
+    public int getLongueurSalle() {
         return longueurSalle;
     }
-    public int getLargeurSalle()
-    {
+
+    public int getLargeurSalle() {
         return largeurSalle;
     }
 }

@@ -1,16 +1,15 @@
 import java.util.Arrays;
 
-public class Grille
-{
+public class Grille {
     private final int LARGEURGRILLE = 80;
     private final int LONGUEURGRILLE = 40;
     private int pointx = 5;
     private int pointy = 4;
     private String[][] grille = new String [LONGUEURGRILLE][LARGEURGRILLE];
+
+
     public Grille()
     {
-
-
         for (int i = 0 ; i < LONGUEURGRILLE;i++)
         {
             for (int j = 0; j< LARGEURGRILLE;j++)
@@ -23,10 +22,11 @@ public class Grille
 
     private void addPoint(int x,int y)
     {
-         grille[x][y] = "*  ";
-
+        grille[x][y] = "*  ";
     }
-   public void addSalle(Salle salle,int posX,int posY)
+
+
+    public void addSalle(Salle salle,int posX,int posY)
     {
         for (int i = 0; i < salle.getLongueurSalle();i++)
         {
@@ -36,6 +36,7 @@ public class Grille
             }
         }
     }
+
     public boolean isInSalle(int posX,int posY)
     {
         return grille[posY][posX].equals("*  ");
@@ -45,8 +46,5 @@ public class Grille
     {
         return grille;
     }
-
-
-
 
 }
