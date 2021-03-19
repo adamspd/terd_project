@@ -21,6 +21,17 @@ public class Niveau
         initialiseSalle(grille);
         ajouterJoueur(grille);
         ajouterMonstre(grille);
+
+
+
+        return grille;
+    }
+
+    public Grille actualiseSalle(Grille grille)
+    {
+            grille.getListeMonstre().get(0).Se_deplacer_a_droite(grille);
+
+
         return grille;
     }
 
@@ -44,9 +55,6 @@ public class Niveau
 
                 grille.addSalle(salle);
                 tailleTotalSalles += largeurSalle*hauteurSalle;
-
-
-
             }
 
 
@@ -102,6 +110,8 @@ public class Niveau
         Salle salleDuMonstre = grille.getListeSalle().get(choixListeRandom);
         int coordSalleRandomX = salleDuMonstre.getPosX()  + (int)(Math.random() * (  salleDuMonstre.getLargeurSalle()+salleDuMonstre.getPosX() - salleDuMonstre.getPosX()  ));
         int coordSalleRandomY = salleDuMonstre.getPosY() +(int)(Math.random() *( salleDuMonstre.getLongueurSalle()+salleDuMonstre.getPosY()- salleDuMonstre.getPosY()));
-        grille.addEntite(new Monstre(coordSalleRandomX,coordSalleRandomY));
+        Monstre monstre = new Monstre(coordSalleRandomX,coordSalleRandomY);
+        grille.addEntite(monstre);
+        grille.addMonstreList(monstre);
     }
 }

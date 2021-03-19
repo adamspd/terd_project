@@ -16,5 +16,7 @@ public class Principale {
 
 
         map.dessine(grille);
+      //  niveau.actualiseSalle(grille);
+       // map.dessine(grille);
     }
 }

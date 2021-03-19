@@ -10,6 +10,8 @@ public class Grille
     private final String textVide = "   ";
     public String[][] grille = new String [LONGUEURGRILLE][LARGEURGRILLE];
     private ArrayList <Salle> listeSalle = new ArrayList<Salle>();
+    private ArrayList <Entite> listeEntite = new ArrayList<Entite>();
+    private ArrayList <Monstre> listeMonstre = new ArrayList<Monstre>();
 
     public Grille()
     {
@@ -26,6 +28,7 @@ public class Grille
     public void addEntite(Entite entite)
     {
         grille[entite.getPosY()][entite.getPosX()] = entite.getSymbole();
+        listeEntite.add(entite);
 
     }
 
@@ -48,10 +51,12 @@ public class Grille
             }
         }
     }
-    public boolean isInSalle(int posX,int posY)
-    {
-        return grille[posY][posX].equals(textSalle);
-    }
+    public boolean isInSalle(int posX,int posY) { return grille[posY][posX].equals(textSalle); }
+
+    public boolean isInsSalleGauche(int posX,int posY) {return isInSalle(posX-1,posY);}
+    public boolean isInsSalleDroite(int posX,int posY) {return isInSalle(posX+1,posY);}
+    public boolean isInsSalleHaut(int posX,int posY) {return isInSalle(posX,posY-1);}
+    public boolean isInsSalleBas(int posX,int posY) {return isInSalle(posX,posY+1);}
 
     public boolean isEnoughFar(Salle salle,int posX,int posY)
     {
@@ -81,12 +86,35 @@ public class Grille
 
     }
 
+    public boolean isOnEntity(Entite entite)
+    {
+        for (Entite entite1 : listeEntite)
+        {
+            if(entite.getPosX()==entite1.getPosX() && (entite.getPosY() == entite1.getPosY()))
+            {
+                return true;
+            }
+
+        }
+        return false;
+    }
+
 
     public ArrayList<Salle> getListeSalle() { return listeSalle; }
 
     public String[][] getGrille()
     {
         return grille;
+    }
+
+    public ArrayList<Monstre> getListeMonstre()
+    {
+        return listeMonstre;
+    }
+
+    public void addMonstreList(Monstre monstre)
+    {
+        listeMonstre.add(monstre);
     }
 
 

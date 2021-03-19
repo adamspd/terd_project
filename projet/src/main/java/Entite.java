@@ -12,30 +12,45 @@ public abstract class Entite
     }
 
 
-    public void Se_deplacer_en_bas(Entite entite, Grille grille)
+    public void Se_deplacer_en_bas(Grille grille)
     {
-        grille.addPoint(posX, posY);
-        posX += 1;
-        grille.addEntite(entite);
+        if(grille.isInsSalleBas(posX,posY))
+        {
+            grille.addPoint(posX, posY);
+            posY += 1;
+            grille.addEntite(this);
+        }
+
     }
-    public void Se_deplacer_en_haut(Entite entite, Grille grille)
+    public void Se_deplacer_en_haut(Grille grille)
     {
-        grille.addPoint(posX, posY);
-        posX -= 1;
-        grille.addEntite(entite);
+        if(grille.isInsSalleHaut(posX,posY))
+        {
+            grille.addPoint(posX, posY);
+            posY -= 1;
+            grille.addEntite(this);
+        }
     }
 
-    public void Se_deplacer_a_droite(Entite entite, Grille grille)
+    public void Se_deplacer_a_droite(Grille grille)
     {
-        grille.addPoint(posX, posY);
-        posY += 1;
-        grille.addEntite(entite);
+        if(grille.isInsSalleDroite(posX,posY))
+        {
+            grille.addPoint(posX, posY);
+            posX += 1;
+            grille.addEntite(this);
+        }
+
     }
-    public void Se_deplacer_a_gauche(Entite entite, Grille grille)
+    public void Se_deplacer_a_gauche(Grille grille)
     {
-        grille.addPoint(posX, posY);
-        posY -= 1;
-        grille.addEntite(entite);
+        if(grille.isInsSalleGauche(posX,posY))
+        {
+            grille.addPoint(posX, posY);
+            posX -= 1;
+            grille.addEntite(this);
+        }
+
     }
 
     public String getSymbole() { return symbole;}
