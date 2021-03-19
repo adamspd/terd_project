@@ -8,7 +8,7 @@ public class Grille
     private final int ESPACE_MINIMUM_ENTRE_SALLE = 2;
     private final String textSalle = "*  ";
     private final String textVide = "   ";
-    private String[][] grille = new String [LONGUEURGRILLE][LARGEURGRILLE];
+    public String[][] grille = new String [LONGUEURGRILLE][LARGEURGRILLE];
     private ArrayList <Salle> listeSalle = new ArrayList<Salle>();
 
     public Grille()
@@ -77,9 +77,11 @@ public class Grille
         }
 
 
+
        return true;
 
     }
+
 
     public ArrayList<Salle> getListeSalle() { return listeSalle; }
 

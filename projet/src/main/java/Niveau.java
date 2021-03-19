@@ -52,8 +52,9 @@ public class Niveau
 
 
 
-        grille.addMonstre(new Monstre(),coordSalleRandomY,coordSalleRandomX);
-
+       // grille.addMonstre(new Monstre(),coordSalleRandomY,coordSalleRandomX);
+        Monstre monstre =new Monstre(grille, coordSalleRandomY,coordSalleRandomX);
+        monstre.addMonstre(monstre,monstre.pos_x,monstre.pos_y);
 
 
 
