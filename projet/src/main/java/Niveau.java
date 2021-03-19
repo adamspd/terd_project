@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Niveau
 {
     private final int ESPACE_TOTAL = 3600;
@@ -15,10 +17,16 @@ public class Niveau
 
     public Grille genererateSalles()
     {
-        int tailleTotalSalles = 0;
         Grille grille = new Grille();
+        initialiseSalle(grille);
+        ajouterJoueur(grille);
+        ajouterMonstre(grille);
+        return grille;
+    }
 
-
+    private void initialiseSalle(Grille grille)
+    {
+        int tailleTotalSalles = 0;
         while (tailleTotalSalles < ESPACE_ALOUE)
         {
 
@@ -45,25 +53,55 @@ public class Niveau
 
 
         }
+    }
 
+    private void ajouterJoueur(Grille grille)
+    {
+        Salle salleJoueur = getSalleDepart(grille.getListeSalle());
+        int salleJoueurX = salleJoueur.getPosX();
+        int salleJoueurY = salleJoueur.getPosY();
+        grille.addEntite(new Joueur(salleJoueurX,salleJoueurY));
+    }
+
+    private Salle getSalleDepart(ArrayList<Salle>listSalle)
+    {
+        int x = listSalle.get(0).getPosX();
+        int y = listSalle.get(0).getPosY();
+        Salle salleDepart;
+        salleDepart = listSalle.get(0);
+        for (Salle salle : listSalle)
+        {
+
+            if(salle.getPosY()<= y)
+            {
+                if(salle.getPosY() == y)
+                {
+                    if(salle.getPosX()< x)
+                    {
+                        salleDepart = salle;
+                        x = salleDepart.getPosX();
+                        y = salleDepart.getPosY();
+                    }
+
+                }
+                else
+                {
+                    salleDepart = salle;
+                    x = salleDepart.getPosX();
+                    y = salleDepart.getPosY();
+
+                }
+
+            }
+        }
+        return salleDepart;
+    }
+    private void ajouterMonstre(Grille grille)
+    {
         int choixListeRandom = (int) (Math.random() * grille.getListeSalle().size());
         Salle salleDuMonstre = grille.getListeSalle().get(choixListeRandom);
         int coordSalleRandomX = salleDuMonstre.getPosX()  + (int)(Math.random() * (  salleDuMonstre.getLargeurSalle()+salleDuMonstre.getPosX() - salleDuMonstre.getPosX()  ));
         int coordSalleRandomY = salleDuMonstre.getPosY() +(int)(Math.random() *( salleDuMonstre.getLongueurSalle()+salleDuMonstre.getPosY()- salleDuMonstre.getPosY()));
-
-
-
         grille.addEntite(new Monstre(coordSalleRandomX,coordSalleRandomY));
-
-
-        Salle salleJoueur = grille.getListeSalle().get(0);
-        int salleJoueurX = salleJoueur.getPosX();
-        int salleJoueurY = salleJoueur.getPosY();
-        grille.addEntite(new Joueur(salleJoueurX,salleJoueurY));
-
-
-
-
-        return grille;
     }
 }
