@@ -14,11 +14,11 @@ class GrilleTest {
     @Test
     void addSalle() {
         Grille grille = new Grille();
-        Salle salle1 = new Salle(5, 5);
-        Salle salle2 = new Salle(3, 5);
+        Salle salle1 = new Salle(5, 5,0,5);
+        Salle salle2 = new Salle(3, 5,0,5);
 
-        grille.addSalle(salle1,0,5);
-        grille.addSalle(salle2, 0, 5);
+        grille.addSalle(salle1);
+        grille.addSalle(salle2);
         assertTrue(!salle2.equals(salle1));
         assertTrue(salle1 != null);
         assertTrue(salle2 != null);
@@ -28,7 +28,7 @@ class GrilleTest {
     @Test
     void isInSalle() {
         Grille grille = new Grille();
-        Salle salle1 = new Salle(5, 5);
+        Salle salle1 = new Salle(5, 5,0,0);
         //assertFalse(grille.isInSalle(2, 4) && grille.isInSalle(3, 5));
     }
 

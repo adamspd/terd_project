@@ -6,13 +6,14 @@
 
     /*J'ai besoin que l'on mette public pour addPoint(int x,int y)
     parce que je l'utilise dans les fonctions se déplacer */
-/*
-public void addMonstre(Monstre monstre, int posX, int posY) {
+
+/*public void addMonstre(Monstre monstre, int posX, int posY) {
         grille[posX][posY] = monstre.SYMBOLE;
         monstre.pos_x = posX;
         monstre.pos_y = posY;
         }
  */
+
 
 
 public class Monstre {
@@ -23,9 +24,11 @@ public class Monstre {
     public int pos_y;
 
     // La position doit être aléatoire ET dans une salle.
-    public Monstre() {
+    public Monstre()
+    {
         SYMBOLE = "M  ";
     }
+
 
     public void Se_deplacer_en_bas(Monstre monstre, Grille grille) {
         grille.addPoint(pos_x, pos_y);

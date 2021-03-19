@@ -21,32 +21,31 @@ public class Niveau
 
         while (tailleTotalSalles < ESPACE_ALOUE)
         {
+
+
             int largeurSalle = (int) (ESPACE_MINIMUM_SALLE_X + Math.random() * (ESPACE_MAXIMUM_SALLE_X - ESPACE_MINIMUM_SALLE_X));
             int hauteurSalle = (int) (ESPACE_MINIMUM_SALLE_Y + Math.random() * (ESPACE_MAXIMUM_SALLE_Y - ESPACE_MINIMUM_SALLE_Y));
             int coord_randomX = (int) (Math.random() * LARGEURGRILLE);
             int coord_randomY = (int) (Math.random() * LONGUEURGRILLE);
-            System.out.println(largeurSalle);
-            System.out.println(hauteurSalle);
 
-            Salle salle = new Salle(largeurSalle,hauteurSalle);
-            try
+
+            Salle salle = new Salle(largeurSalle,hauteurSalle,coord_randomX,coord_randomY);
+
+            if (grille.isEnoughFar(salle,coord_randomX,coord_randomY))
             {
-                if (grille.isEnoughFar(salle,coord_randomX,coord_randomY))
-                {
 
-                    grille.addSalle(salle,coord_randomX,coord_randomY);
-                    tailleTotalSalles += largeurSalle*hauteurSalle;
+                grille.addSalle(salle);
+                tailleTotalSalles += largeurSalle*hauteurSalle;
 
-
-                }
-
-            } catch (Exception e)
-            {
 
             }
 
 
+
+
         }
+
+
         return grille;
     }
 }
