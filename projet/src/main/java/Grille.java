@@ -31,6 +31,8 @@ public class Grille
     }
 
 
+
+
     public void addPoint(int x,int y)
     {
          grille[y][x] = textSalle;
@@ -43,7 +45,7 @@ public class Grille
         {
             for (int j = 0; j < salle.getLongueurSalle(); j++)
             {
-                addPoint(salle.getPosX() + i, salle.getPosy() + j);
+                addPoint(salle.getPosX() + i, salle.getPosY() + j);
             }
         }
     }
@@ -53,21 +55,7 @@ public class Grille
     }
 
     public boolean isEnoughFar(Salle salle,int posX,int posY)
-    {/*
-       for (int i = posX ; i < salle.getLargeurSalle()+posX;i++)
-       {
-           if(isInSalle(i,posY -2)|| (isInSalle(i,salle.getLongueurSalle()+2+posY)))
-           {
-               return false;
-           }
-       }
-       for(int i = posY ; i < salle.getLongueurSalle()+posY;i++)
-       {
-           if(isInSalle(posX-2+salle.getLargeurSalle(),i)|| (isInSalle(salle.getLargeurSalle()+2+posX,i)))
-           {
-               return false;
-           }
-       }*/
+    {
         try
         {
             for (int i = posX-ESPACE_MINIMUM_ENTRE_SALLE; i < salle.getLargeurSalle()+ESPACE_MINIMUM_ENTRE_SALLE+ posX;i++)
@@ -93,12 +81,14 @@ public class Grille
 
     }
 
-
+    public ArrayList<Salle> getListeSalle() { return listeSalle; }
 
     public String[][] getGrille()
     {
         return grille;
     }
+
+
 
 
 

@@ -45,6 +45,26 @@ public class Niveau
 
         }
 
+        int choixListeRandom = (int) (Math.random() * grille.getListeSalle().size());
+        Salle salleDuMonstre = grille.getListeSalle().get(choixListeRandom);
+        System.out.println("Salle coord x "+salleDuMonstre.getPosX());
+        System.out.println("Salle coord y "+salleDuMonstre.getPosY());
+        System.out.println("Salle largeur  "+salleDuMonstre.getLargeurSalle());
+        System.out.println("Salle longueur "+salleDuMonstre.getLongueurSalle());
+        int coordSalleRandomX = salleDuMonstre.getPosX()  + (int)(Math.random() * (  salleDuMonstre.getLongueurSalle()+salleDuMonstre.getPosX() - salleDuMonstre.getPosX()  ));
+        int coordSalleRandomY = salleDuMonstre.getPosY() +(int)(Math.random() *( salleDuMonstre.getLargeurSalle()+salleDuMonstre.getPosY()- salleDuMonstre.getPosY()));
+
+
+        System.out.println(coordSalleRandomX);
+        System.out.println(coordSalleRandomY);
+        System.out.println("pos x dans salle "+(salleDuMonstre.getLargeurSalle()+salleDuMonstre.getPosX() - coordSalleRandomX));
+        System.out.println("pos y dans salle "+(salleDuMonstre.getLongueurSalle()+salleDuMonstre.getPosY() - coordSalleRandomY));
+        grille.addMonstre(new Monstre(),coordSalleRandomY,coordSalleRandomX);
+
+
+
+
+
 
         return grille;
     }

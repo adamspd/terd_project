@@ -22,5 +22,7 @@ public class Salle {
 
     public int getPosX(){ return posX;}
 
-    public int getPosy(){ return posY;}
+    public int getPosY(){ return posY;}
+
+
 }
