@@ -30,7 +30,11 @@ public class Grille
         monstre.pos_y = posY;
     }
 
-
+    public void afficheJoueur(Joueur joueur, int posX, int posY){
+        grille[posX][posY] = joueur.getSymbol();
+        joueur.setPosY(posY);
+        joueur.setPosX(posX);
+    }
 
 
     public void addPoint(int x,int y)

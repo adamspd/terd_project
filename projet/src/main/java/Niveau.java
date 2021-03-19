@@ -55,6 +55,10 @@ public class Niveau
        // grille.addMonstre(new Monstre(),coordSalleRandomY,coordSalleRandomX);
         new Monstre(grille, coordSalleRandomY,coordSalleRandomX);
 
+        /*Salle salleJoueur = grille.getListeSalle().get(0);
+        int salleJoueurX = salleJoueur.getPosX();
+        int salleJoueurY = salleJoueur.getPosY();
+        grille.afficheJoueur(new Joueur(),salleJoueurX,salleJoueurY);*/
 
 
 
