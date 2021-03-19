@@ -3,14 +3,20 @@ import java.util.Scanner;
 "Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException: Index 43 out of bounds for length 40"
 
  */
-public class Joueur {
+public class Joueur extends Entite
+{
     private String Symbol = "@  ";
     private int posX;
     private int posY;
 
-    Joueur(){ }
+    Joueur(int posX, int posY)
+    {
+        super("@  ", posX, posY);
 
-    public int getPosX (){ return posX;}
+    }
+}
+
+  /*  public int getPosX (){ return posX;}
     public int getPosY (){ return posY;}
     public String getSymbol(){return Symbol;}
     public void setPosX (int newX){ this.posX = newX;}
@@ -37,4 +43,4 @@ public class Joueur {
 
     private void deplacement_avant() { this.setPosX(this.getPosX() + 1);}
 
-}
+}*/

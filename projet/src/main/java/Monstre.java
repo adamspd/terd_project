@@ -16,21 +16,23 @@
 
 
 
-public class Monstre {
-    public String SYMBOLE;
+public class Monstre extends Entite
+{
+    public final String SYMBOLE = "M  ";
     public int PV;
     public int DEGAT;
-    public int pos_x;
-    public int pos_y;
+
 
     // La position doit être aléatoire ET dans une salle.
-    public Monstre()
+    public Monstre(int posX,int posY)
     {
-        SYMBOLE = "M  ";
+        super("M  ",posX,posY);
+
+
     }
 
 
-    public void Se_deplacer_en_bas(Monstre monstre, Grille grille) {
+   /* public void Se_deplacer_en_bas(Monstre monstre, Grille grille) {
         grille.addPoint(pos_x, pos_y);
         pos_x += 1;
         grille.addMonstre(monstre, pos_x, pos_y);
@@ -50,9 +52,9 @@ public class Monstre {
         grille.addPoint(pos_x, pos_y);
         pos_y -= 1;
         grille.addMonstre(monstre, pos_x, pos_y);
-    }
+    }*/
 
-    public void Attaquer(/*Monstre monstre, Joueur joueur*/) {/*joueur.PV-=monstre.DEGAT;*/}
+   // public void Attaquer(/*Monstre monstre, Joueur joueur*/) {/*joueur.PV-=monstre.DEGAT;*/}
 
 
    /*  IDEES

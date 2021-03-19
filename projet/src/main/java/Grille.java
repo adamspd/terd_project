@@ -23,18 +23,13 @@ public class Grille
             }
         }
     }
-    public void addMonstre(Monstre monstre, int posX, int posY)
+    public void addEntite(Entite entite)
     {
-        grille[posX][posY] = monstre.SYMBOLE;
-        monstre.pos_x = posX;
-        monstre.pos_y = posY;
+        grille[entite.getPosY()][entite.getPosX()] = entite.getSymbole();
+
     }
 
-    public void afficheJoueur(Joueur joueur, int posX, int posY){
-        grille[posX][posY] = joueur.getSymbol();
-        joueur.setPosY(posY);
-        joueur.setPosX(posX);
-    }
+
 
 
     public void addPoint(int x,int y)
