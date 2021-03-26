@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Grille
 {
@@ -12,6 +11,7 @@ public class Grille
     private ArrayList <Salle> listeSalle = new ArrayList<Salle>();
     private ArrayList <Entite> listeEntite = new ArrayList<Entite>();
     private ArrayList <Monstre> listeMonstre = new ArrayList<Monstre>();
+    private ArrayList <Joueur> listeJoueur = new ArrayList<Joueur>();
 
     public Grille()
     {
@@ -29,6 +29,7 @@ public class Grille
     {
         grille[entite.getPosY()][entite.getPosX()] = entite.getSymbole();
         listeEntite.add(entite);
+        entite.addSpecificEntiteList(this);
 
     }
 
@@ -112,9 +113,19 @@ public class Grille
         return listeMonstre;
     }
 
+    public ArrayList<Joueur> getListeJoueur()
+    {
+        return listeJoueur;
+    }
+
     public void addMonstreList(Monstre monstre)
     {
         listeMonstre.add(monstre);
+    }
+
+    public void addJoueurList(Joueur joueur)
+    {
+        listeJoueur.add(joueur);
     }
 
 

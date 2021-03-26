@@ -1,8 +1,14 @@
+import java.util.ArrayList;
+
 public class Principale {
     public static void main(String[] args) {
         Map map = new Map();
         Niveau niveau = new Niveau();
         Grille grille = niveau.genererateSalles();
+
+
+
+
 
        /* Grille grille = new Grille();
         grille.addSalle(new Salle(5,5),0,5);
@@ -16,6 +22,8 @@ public class Principale {
 
 
         map.dessine(grille);
+
+
       //  niveau.actualiseSalle(grille);
        // map.dessine(grille);
     }

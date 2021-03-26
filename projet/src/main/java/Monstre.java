@@ -15,7 +15,6 @@
  */
 
 
-
 public class Monstre extends Entite
 {
     public final String SYMBOLE = "M  ";
@@ -29,6 +28,12 @@ public class Monstre extends Entite
         super("M  ",posX,posY);
 
 
+    }
+
+    @Override
+    public void addSpecificEntiteList(Grille grille)
+    {
+        grille.addMonstreList(this);
     }
 
 

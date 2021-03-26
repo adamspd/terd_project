@@ -1,4 +1,3 @@
-import java.util.Scanner;
 /* il y' a encore une erreur dans joueur,des fois ça marche des fois ça fait des erreurs comme ça:
 "Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException: Index 43 out of bounds for length 40"
 
@@ -13,6 +12,12 @@ public class Joueur extends Entite
     {
         super("@  ", posX, posY);
 
+    }
+
+    @Override
+    public void addSpecificEntiteList(Grille grille)
+    {
+        grille.addJoueurList(this);
     }
 }
 

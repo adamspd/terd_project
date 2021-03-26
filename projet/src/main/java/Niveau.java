@@ -112,6 +112,6 @@ public class Niveau
         int coordSalleRandomY = salleDuMonstre.getPosY() +(int)(Math.random() *( salleDuMonstre.getLongueurSalle()+salleDuMonstre.getPosY()- salleDuMonstre.getPosY()));
         Monstre monstre = new Monstre(coordSalleRandomX,coordSalleRandomY);
         grille.addEntite(monstre);
-        grille.addMonstreList(monstre);
+
     }
 }

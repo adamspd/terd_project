@@ -53,6 +53,8 @@ public abstract class Entite
 
     }
 
+    public abstract void addSpecificEntiteList(Grille grille);
+
     public String getSymbole() { return symbole;}
 
     public int getPosX() { return posX;}
