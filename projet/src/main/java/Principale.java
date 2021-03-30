@@ -23,6 +23,10 @@ public class Principale {
 
         map.dessine(grille);
 
+        int a = 11/2;
+        System.out.println(a+1);
+
+
 
       //  niveau.actualiseSalle(grille);
        // map.dessine(grille);
