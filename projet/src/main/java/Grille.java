@@ -128,6 +128,11 @@ public class Grille
         listeJoueur.add(joueur);
     }
 
+    public String getSymbolAtCoord(int posX,int posY)
+    {
+        return grille[posY][posX];
+    }
+
 
 
 

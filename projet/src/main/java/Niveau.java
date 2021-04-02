@@ -21,7 +21,7 @@ public class Niveau
         initialiseSalle(grille);
         relierSalle(grille);
         ajouterJoueur(grille);
-        ajouterMonstre(grille);
+        initialiseMonstre(grille);
 
 
 
@@ -105,7 +105,7 @@ public class Niveau
         }
         return salleDepart;
     }
-    private void ajouterMonstre(Grille grille)
+   /* private void ajouterMonstre(Grille grille)
     {
         int choixListeRandom = (int) (Math.random() * grille.getListeSalle().size());
         Salle salleDuMonstre = grille.getListeSalle().get(choixListeRandom);
@@ -113,6 +113,78 @@ public class Niveau
         int coordSalleRandomY = salleDuMonstre.getPosY() +(int)(Math.random() *( salleDuMonstre.getLongueurSalle()+salleDuMonstre.getPosY()- salleDuMonstre.getPosY()));
         Monstre monstre = new Monstre(coordSalleRandomX,coordSalleRandomY);
         grille.addEntite(monstre);
+
+    }*/
+
+    private void initialiseMonstre(Grille grille)
+    {
+        Joueur joueur = grille.getListeJoueur().get(0);
+        ArrayList<Salle> listeSalle = grille.getListeSalle();
+
+        for (Salle salle : listeSalle)
+        {
+            final int MAX_MONSTRE = 2;
+            final int DISTANCEMAXJOUEURMONSTRE = 2;
+            int choixNombreDeMonstre = (int) (Math.random() * (MAX_MONSTRE+1));
+
+
+            for(int a = 0 ;a < choixNombreDeMonstre;a++)
+            {
+                int coordSalleRandomX = salle.getPosX()  + (int)(Math.random() * (  salle.getLargeurSalle()+salle.getPosX() - salle.getPosX()  ));
+                int coordSalleRandomY = salle.getPosY() +(int)(Math.random() *( salle.getLongueurSalle()+salle.getPosY()- salle.getPosY()));
+                Monstre monstre;
+                boolean isEnoughFarJoueur = true;
+                try
+                {
+                    for(int i = coordSalleRandomX;i > coordSalleRandomX-DISTANCEMAXJOUEURMONSTRE;i--)
+                    {
+                        for(int j = coordSalleRandomY; j<coordSalleRandomY-DISTANCEMAXJOUEURMONSTRE;j--)
+                        {
+                            if(grille.getSymbolAtCoord(coordSalleRandomX,coordSalleRandomY).equals(joueur.getSymbole()))
+                            {
+                                isEnoughFarJoueur = false;
+                            }
+
+                        }
+                    }
+
+                } catch (Exception e)
+                {
+
+                }
+
+
+                while (! grille.isInSalle(coordSalleRandomX,coordSalleRandomY) && isEnoughFarJoueur == false)
+                {
+                    coordSalleRandomX = salle.getPosX()  + (int)(Math.random() * (  salle.getLargeurSalle()+salle.getPosX() - salle.getPosX()  ));
+                    coordSalleRandomY = salle.getPosY() +(int)(Math.random() *( salle.getLongueurSalle()+salle.getPosY()- salle.getPosY()));
+                    isEnoughFarJoueur = true;
+                    try
+                    {
+                        for(int i = coordSalleRandomX;i > coordSalleRandomX-DISTANCEMAXJOUEURMONSTRE;i--)
+                        {
+                            for(int j = coordSalleRandomY; j<coordSalleRandomY-DISTANCEMAXJOUEURMONSTRE;j--)
+                            {
+                                if(grille.getSymbolAtCoord(coordSalleRandomX,coordSalleRandomY).equals(joueur.getSymbole()))
+                                {
+                                    isEnoughFarJoueur = false;
+                                }
+
+                            }
+                        }
+
+                    } catch (Exception e)
+                    {
+
+                    }
+                }
+
+                monstre = new Monstre(coordSalleRandomX,coordSalleRandomY);
+                grille.addEntite(monstre);
+            }
+
+
+        }
 
     }
 
@@ -186,12 +258,12 @@ public class Niveau
                 {
                     if(! grille.isInSalle(salle2X,i))
                     {
-                        System.out.println("rentrer");
+
                         grille.getGrille()[i][salle2X]= symboleCouloir;
                     }
                     else
                     {
-                        System.out.println("pas rentrer");
+
                     }
 
                 }
