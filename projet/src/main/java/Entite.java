@@ -4,6 +4,7 @@ public abstract class Entite
     private int posX;
     private int posY;
     private int pv;
+    private boolean isInCouloir=false;
 
     public Entite(String symbole,int posX,int posY)
     {
@@ -18,11 +19,34 @@ public abstract class Entite
     }
     public void Se_deplacer_en_bas(Grille grille)
     {
+
+
         if(grille.isInsSalleBas(posX,posY)||grille.isInsCouloirBas(posX,posY))
         {
-            grille.addPoint(posX, posY);
-            posY += 1;
+            if(isInCouloir)
+            {
+                grille.addElement(posX,posY,grille.getTextCouloir());
+            }
+            else
+            {
+                grille.addPoint(posX, posY);
+            }
+
+            if(grille.isInsCouloirBas(posX,posY))
+            {
+                isInCouloir = true;
+
+            }
+            else
+            {
+                isInCouloir=false;
+
+            }
+            posY +=1;
             grille.addEntite(this);
+
+
+
         }
 
     }
@@ -30,7 +54,24 @@ public abstract class Entite
     {
         if(grille.isInsSalleHaut(posX,posY)||grille.isInsCouloirHaut(posX,posY))
         {
-            grille.addPoint(posX, posY);
+            if(isInCouloir)
+            {
+                grille.addElement(posX,posY,grille.getTextCouloir());
+            }
+            else
+            {
+                grille.addPoint(posX, posY);
+            }
+            if(grille.isInsCouloirHaut(posX,posY))
+            {
+                isInCouloir = true;
+
+            }
+            else
+            {
+                isInCouloir=false;
+
+            }
             posY -= 1;
             grille.addEntite(this);
         }
@@ -40,7 +81,25 @@ public abstract class Entite
     {
         if(grille.isInsSalleDroite(posX,posY)||grille.isInsCouloirDroite(posX,posY))
         {
-            grille.addPoint(posX, posY);
+
+            if(isInCouloir)
+            {
+                grille.addElement(posX,posY,grille.getTextCouloir());
+            }
+            else
+            {
+                grille.addPoint(posX, posY);
+            }
+            if(grille.isInsCouloirDroite(posX,posY))
+            {
+                isInCouloir = true;
+
+            }
+            else
+            {
+                isInCouloir=false;
+
+            }
             posX += 1;
             grille.addEntite(this);
         }
@@ -50,7 +109,26 @@ public abstract class Entite
     {
         if(grille.isInsSalleGauche(posX,posY)||grille.isInsCouloirGauche(posX,posY))
         {
-            grille.addPoint(posX, posY);
+
+
+            if(isInCouloir)
+            {
+                grille.addElement(posX,posY,grille.getTextCouloir());
+            }
+            else
+            {
+                grille.addPoint(posX, posY);
+            }
+            if(grille.isInsCouloirGauche(posX,posY))
+            {
+                isInCouloir = true;
+
+            }
+            else
+            {
+                isInCouloir=false;
+
+            }
             posX -= 1;
             grille.addEntite(this);
         }

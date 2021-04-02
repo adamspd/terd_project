@@ -34,22 +34,7 @@ public class Principale {
             try
             {
                 String touche = scan.nextLine();
-                switch (touche)
-                {
-                    case "z":
-                        joueur.Se_deplacer_en_haut(grille);
-                        break;
-                    case "q":
-                        joueur.Se_deplacer_a_gauche(grille);
-                        break;
-                    case "s":
-                        joueur.Se_deplacer_en_bas(grille);
-                        break;
-                    case "d":
-                        joueur.Se_deplacer_a_droite(grille);
-                        break;
-                    default: break;
-                }
+                grille = niveau.actualiseSalle(grille,touche,joueur);
 
                 map.dessine(grille);
 

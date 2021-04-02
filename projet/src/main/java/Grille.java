@@ -106,7 +106,10 @@ public class Grille
         }
         return false;
     }
-
+    public void addElement(int posX,int posY,String symbole)
+    {
+        grille[posY][posX] = symbole;
+    }
 
     public ArrayList<Salle> getListeSalle() { return listeSalle; }
 
@@ -148,6 +151,11 @@ public class Grille
     public String getTextVide()
     {
         return textVide;
+    }
+
+    public String getTextCouloir()
+    {
+        return textCouloir;
     }
 
 
