@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Niveau
 {
@@ -22,15 +23,25 @@ public class Niveau
         relierSalle(grille);
         ajouterJoueur(grille);
         initialiseMonstre(grille);
-
-
+        for  (Monstre monstre : grille.getListeMonstre())
+        {
+            if (monstre.checkJoueurPresent(grille))
+            {
+                System.out.println("Je te vois");
+            }
+            else
+            {
+                System.out.println("Je te vois pas");
+            }
+        }
 
         return grille;
     }
 
     public Grille actualiseSalle(Grille grille)
     {
-            grille.getListeMonstre().get(0).Se_deplacer_a_droite(grille);
+
+
 
 
         return grille;

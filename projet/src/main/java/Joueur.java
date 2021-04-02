@@ -7,10 +7,13 @@ public class Joueur extends Entite
     private String Symbol = "@  ";
     private int posX;
     private int posY;
+    private int pv;
 
     Joueur(int posX, int posY)
     {
         super("@  ", posX, posY);
+        pv = 100;
+        super.setPv(pv);
 
     }
 

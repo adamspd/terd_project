@@ -3,6 +3,7 @@ public abstract class Entite
     private String symbole;
     private int posX;
     private int posY;
+    private int pv;
 
     public Entite(String symbole,int posX,int posY)
     {
@@ -11,10 +12,13 @@ public abstract class Entite
         this.posY = posY;
     }
 
-
+    public boolean isAlive()
+    {
+        return pv!=0;
+    }
     public void Se_deplacer_en_bas(Grille grille)
     {
-        if(grille.isInsSalleBas(posX,posY))
+        if(grille.isInsSalleBas(posX,posY)||grille.isInsCouloirBas(posX,posY))
         {
             grille.addPoint(posX, posY);
             posY += 1;
@@ -24,7 +28,7 @@ public abstract class Entite
     }
     public void Se_deplacer_en_haut(Grille grille)
     {
-        if(grille.isInsSalleHaut(posX,posY))
+        if(grille.isInsSalleHaut(posX,posY)||grille.isInsCouloirHaut(posX,posY))
         {
             grille.addPoint(posX, posY);
             posY -= 1;
@@ -34,7 +38,7 @@ public abstract class Entite
 
     public void Se_deplacer_a_droite(Grille grille)
     {
-        if(grille.isInsSalleDroite(posX,posY))
+        if(grille.isInsSalleDroite(posX,posY)||grille.isInsCouloirDroite(posX,posY))
         {
             grille.addPoint(posX, posY);
             posX += 1;
@@ -44,7 +48,7 @@ public abstract class Entite
     }
     public void Se_deplacer_a_gauche(Grille grille)
     {
-        if(grille.isInsSalleGauche(posX,posY))
+        if(grille.isInsSalleGauche(posX,posY)||grille.isInsCouloirGauche(posX,posY))
         {
             grille.addPoint(posX, posY);
             posX -= 1;
@@ -64,6 +68,11 @@ public abstract class Entite
     public void setPosX(int posX) { this.posX = posX;}
 
     public void setPosY(int posX) { this.posX = posX;}
+
+    public void setPv(int pv)
+    {
+        this.pv = pv;
+    }
 
 
 }

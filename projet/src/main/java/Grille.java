@@ -7,6 +7,7 @@ public class Grille
     private final int ESPACE_MINIMUM_ENTRE_SALLE = 2;
     private final String textSalle = "*  ";
     private final String textVide = "   ";
+    private final String textCouloir = "#  ";
     public String[][] grille = new String [LONGUEURGRILLE][LARGEURGRILLE];
     private ArrayList <Salle> listeSalle = new ArrayList<Salle>();
     private ArrayList <Entite> listeEntite = new ArrayList<Entite>();
@@ -53,11 +54,17 @@ public class Grille
         }
     }
     public boolean isInSalle(int posX,int posY) { return grille[posY][posX].equals(textSalle); }
+    public boolean isInCouloir(int posX,int posY) { return grille[posY][posX].equals(textCouloir); }
 
     public boolean isInsSalleGauche(int posX,int posY) {return isInSalle(posX-1,posY);}
     public boolean isInsSalleDroite(int posX,int posY) {return isInSalle(posX+1,posY);}
     public boolean isInsSalleHaut(int posX,int posY) {return isInSalle(posX,posY-1);}
     public boolean isInsSalleBas(int posX,int posY) {return isInSalle(posX,posY+1);}
+
+    public boolean isInsCouloirGauche(int posX,int posY) {return isInCouloir(posX-1,posY);}
+    public boolean isInsCouloirDroite(int posX,int posY) {return isInCouloir(posX+1,posY);}
+    public boolean isInsCouloirHaut(int posX,int posY) {return isInCouloir(posX,posY-1);}
+    public boolean isInsCouloirBas(int posX,int posY) {return isInCouloir(posX,posY+1);}
 
     public boolean isEnoughFar(Salle salle,int posX,int posY)
     {
@@ -131,6 +138,16 @@ public class Grille
     public String getSymbolAtCoord(int posX,int posY)
     {
         return grille[posY][posX];
+    }
+
+    public String getSymbolJoueur()
+    {
+        return listeJoueur.get(0).getSymbole();
+    }
+
+    public String getTextVide()
+    {
+        return textVide;
     }
 
 
