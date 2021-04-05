@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 
 public class Couloir {
-    private final String SYMBOLE = "#";
+    private final String SYMBOLE = "#  ";
     private Salle salle1;
     private Salle salle2;
     private int[] coordArrive;
