@@ -6,6 +6,7 @@ public class Principale {
         Map map = new Map();
         Niveau niveau = new Niveau();
         Grille grille = niveau.genererateSalles();
+        int delaiActu = 500;
 
 
 
@@ -28,29 +29,89 @@ public class Principale {
 
         Joueur joueur = grille.getListeJoueur().get(0);
 
-        while(joueur.isAlive())
+
+        Thread threadActu = new Thread(new Runnable()
         {
-            Scanner scan = new Scanner(System.in);
-            try
+            @Override
+            public void run()
             {
-                String touche = scan.nextLine();
-                grille = niveau.actualiseSalle(grille,touche,joueur);
+                while (joueur.isAlive())
+                {
+                    niveau.actualiseSalle(grille);
+                    try
+                    {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException e)
+                    {
 
-                map.dessine(grille);
+                    }
+                }
 
 
-            } catch (Exception e)
-            {
-                System.out.println("error");
+
+
+
+
+
             }
-        }
+        });
+
+        Thread threadScan = new Thread(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                while(joueur.isAlive())
+                {
+                    Scanner scan = new Scanner(System.in);
+                    try
+                    {
+                        String touche = scan.nextLine();
+                        Thread.currentThread().setPriority(Thread.MAX_PRIORITY);
+
+                        for(int i=0;i<10;i++)
+                        {
+                            System.out.println("b");
+                        }
+
+                        switch (touche)
+                        {
+                            case "z":
+
+                                joueur.Se_deplacer_en_haut(grille);
+                                break;
+                            case "q":
+                                joueur.Se_deplacer_a_gauche(grille);
+                                break;
+                            case "s":
+                                joueur.Se_deplacer_en_bas(grille);
+                                break;
+                            case "d":
+                                joueur.Se_deplacer_a_droite(grille);
+                                break;
+                            default: break;
+                        }
+
+                        map.dessine(grille);
+                        Thread.currentThread().setPriority(Thread.NORM_PRIORITY);
+
+
+                    } catch (Exception e)
+                    {
+                        System.out.println("error");
+                    }
+                }
+
+
+            }
+        });
+        threadScan.start();
+        threadActu.start();
 
 
 
 
-
-
-      //  niveau.actualiseSalle(grille);
+        //  niveau.actualiseSalle(grille);
        // map.dessine(grille);
     }
 }

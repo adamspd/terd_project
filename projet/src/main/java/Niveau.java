@@ -38,26 +38,16 @@ public class Niveau
         return grille;
     }
 
-    public Grille actualiseSalle(Grille grille, String touche,Joueur joueur)
+    public Grille actualiseSalle(Grille grille)
     {
 
-        switch (touche)
-        {
-            case "z":
 
-                joueur.Se_deplacer_en_haut(grille);
-                break;
-            case "q":
-                joueur.Se_deplacer_a_gauche(grille);
-                break;
-            case "s":
-                joueur.Se_deplacer_en_bas(grille);
-                break;
-            case "d":
-                joueur.Se_deplacer_a_droite(grille);
-                break;
-            default: break;
-        }
+
+
+
+        System.out.println("a");
+
+
 
 
         return grille;

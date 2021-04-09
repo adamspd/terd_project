@@ -4,7 +4,7 @@ public abstract class Entite
     private int posX;
     private int posY;
     private int pv;
-    //private boolean isInCouloir=false;
+    private boolean isInCouloir=false;
 
     public Entite(String symbole,int posX,int posY)
     {
@@ -17,7 +17,7 @@ public abstract class Entite
     {
         return pv!=0;
     }
-   /* public void Se_deplacer_en_bas(Grille grille)
+    public void Se_deplacer_en_bas(Grille grille)
     {
 
 
@@ -134,7 +134,7 @@ public abstract class Entite
         }
 
     }
-*/
+
     public abstract void addSpecificEntiteList(Grille grille);
 
     public String getSymbole() { return symbole;}
