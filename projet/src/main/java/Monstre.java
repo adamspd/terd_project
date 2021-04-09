@@ -17,7 +17,7 @@
 
 public class Monstre extends Entite
 {
-    public final String SYMBOLE = "M  ";
+    public final String SYMBOLE = "M ";
     public int PV;
     public int DEGAT;
     private int posX,posY;
@@ -26,7 +26,7 @@ public class Monstre extends Entite
     // La position doit être aléatoire ET dans une salle.
     public Monstre(int posX,int posY)
     {
-        super("M  ",posX,posY);
+        super("M ",posX,posY);
         this.posX=posX;
         this.posY=posY;
 

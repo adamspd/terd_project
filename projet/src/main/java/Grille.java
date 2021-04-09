@@ -5,14 +5,16 @@ public class Grille
     private final int LARGEURGRILLE = 80;
     private final int LONGUEURGRILLE = 40;
     private final int ESPACE_MINIMUM_ENTRE_SALLE = 2;
-    private final String textSalle = "*  ";
-    private final String textVide = "   ";
-    private final String textCouloir = "#  ";
+    private final String textSalle = "* ";
+    private final String textVide = "  ";
+    private final String textCouloir = "# ";
     public String[][] grille = new String [LONGUEURGRILLE][LARGEURGRILLE];
     private ArrayList <Salle> listeSalle = new ArrayList<Salle>();
     private ArrayList <Entite> listeEntite = new ArrayList<Entite>();
+    private ArrayList <EntiteAbstrait> entiteAbstraitArrayList = new ArrayList<EntiteAbstrait>();
     private ArrayList <Monstre> listeMonstre = new ArrayList<Monstre>();
     private ArrayList <Joueur> listeJoueur = new ArrayList<Joueur>();
+    private ArrayList <Potion> listePotion = new ArrayList<Potion>();
 
     public Grille()
     {
@@ -31,6 +33,14 @@ public class Grille
         grille[entite.getPosY()][entite.getPosX()] = entite.getSymbole();
         listeEntite.add(entite);
         entite.addSpecificEntiteList(this);
+
+    }
+
+    public void addEntite(EntiteAbstrait entite)
+    {
+        grille[entite.getPosY()][entite.getPosX()] = entite.getSymbole();
+        entiteAbstraitArrayList.add(entite);
+        entite.addSpecificEntityList(this);
 
     }
 
@@ -158,9 +168,10 @@ public class Grille
         return textCouloir;
     }
 
-
-
-
-
-
+    public ArrayList<Potion> getListePotion(){
+        return listePotion;
+    }
+    public void addPotionList(Potion potion) {
+        listePotion.add(potion);
+    }
 }

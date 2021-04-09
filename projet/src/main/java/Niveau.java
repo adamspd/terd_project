@@ -23,15 +23,16 @@ public class Niveau
         relierSalle(grille);
         ajouterJoueur(grille);
         initialiseMonstre(grille);
+        initialisePotion(grille);
         for  (Monstre monstre : grille.getListeMonstre())
         {
             if (monstre.checkJoueurPresent(grille))
             {
-                System.out.println("Je te vois");
+                //dSystem.out.println("Je te vois");
             }
             else
             {
-                System.out.println("Je te vois pas");
+                //System.out.println("Je te vois pas");
             }
         }
 
@@ -41,14 +42,7 @@ public class Niveau
     public Grille actualiseSalle(Grille grille)
     {
 
-
-
-
-
-        System.out.println("a");
-
-
-
+        //System.out.println("a");
 
         return grille;
     }
@@ -198,6 +192,84 @@ public class Niveau
 
                 monstre = new Monstre(coordSalleRandomX,coordSalleRandomY);
                 grille.addEntite(monstre);
+            }
+
+
+        }
+
+    }
+
+    private void initialisePotion(Grille grille)
+    {
+        Joueur joueur = grille.getListeJoueur().get(0);
+        ArrayList<Salle> listeSalle = grille.getListeSalle();
+
+        for (Salle salle : listeSalle)
+        {
+            final int MAX_POTION = 2;
+            final int DISTANCEMAXJOUEURPOTION = 2;
+            int choixNombreDePotion = (int) (Math.random() * (MAX_POTION + 1));
+
+
+            for(int a = 0 ; a < choixNombreDePotion; a++)
+            {
+                int coordSalleRandomX = salle.getPosX()  + (int)(Math.random() *
+                        (salle.getLargeurSalle()+salle.getPosX() - salle.getPosX()));
+                int coordSalleRandomY = salle.getPosY() +(int)(Math.random() *
+                        (salle.getLongueurSalle()+salle.getPosY()- salle.getPosY()));
+                Potion potion;
+                boolean isEnoughFarJoueur = true;
+                try
+                {
+                    for(int i = coordSalleRandomX;i > coordSalleRandomX-DISTANCEMAXJOUEURPOTION;i--)
+                    {
+                        for(int j = coordSalleRandomY; j<coordSalleRandomY-DISTANCEMAXJOUEURPOTION;j--)
+                        {
+                            if(grille.getSymbolAtCoord(coordSalleRandomX,coordSalleRandomY).equals(
+                                    joueur.getSymbole()))
+                            {
+                                isEnoughFarJoueur = false;
+                            }
+
+                        }
+                    }
+
+                } catch (Exception e)
+                {
+
+                }
+
+
+                while (! grille.isInSalle(coordSalleRandomX,coordSalleRandomY) && isEnoughFarJoueur == false)
+                {
+                    coordSalleRandomX = salle.getPosX()  + (int)(Math.random() *
+                            (  salle.getLargeurSalle()+salle.getPosX() - salle.getPosX()  ));
+                    coordSalleRandomY = salle.getPosY() +(int)(Math.random() *
+                            ( salle.getLongueurSalle()+salle.getPosY()- salle.getPosY()));
+                    isEnoughFarJoueur = true;
+                    try
+                    {
+                        for(int i = coordSalleRandomX;i > coordSalleRandomX-DISTANCEMAXJOUEURPOTION;i--)
+                        {
+                            for(int j = coordSalleRandomY; j<coordSalleRandomY-DISTANCEMAXJOUEURPOTION;j--)
+                            {
+                                if(grille.getSymbolAtCoord(coordSalleRandomX,coordSalleRandomY).equals(
+                                        joueur.getSymbole()))
+                                {
+                                    isEnoughFarJoueur = false;
+                                }
+
+                            }
+                        }
+
+                    } catch (Exception e)
+                    {
+
+                    }
+                }
+
+                potion = new Potion(coordSalleRandomX, coordSalleRandomY);
+                grille.addEntite(potion);
             }
 
 

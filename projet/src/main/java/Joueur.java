@@ -3,14 +3,14 @@
 
  */
 public class Joueur extends Entite {
-    private String Symbol = "@  ";
+    private String Symbol = "@ ";
     private int posX;
     private int posY;
     private int pv;
     private boolean isInCouloir = false;
 
     Joueur(int posX, int posY) {
-        super("@  ", posX, posY);
+        super("@ ", posX, posY);
         pv = 100;
         super.setPv(pv);
 

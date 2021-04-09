@@ -1,29 +1,47 @@
-import java.util.ArrayList;
-
+/**
+ * Cette classe permet la creation de couloir.
+ * @version 1.0
+ * @see Salle (Methode: getMillieuSalle()) qui calcule le milieu de la salle
+ */
 
 public class Couloir {
-    private final String SYMBOLE = "#  ";
-    private Salle salle1;
-    private Salle salle2;
-    private int[] coordArrive;
-    private int[] coordDepart;
+    private final int[] coordArrive;
+    private final int[] coordDepart;
 
+    /**
+     * Le constructeur prend en parametre 2 salles avec les coordonnees de depart et d'arrivee
+     * en partant de la salle 1 a la salle 2. Ils sont trouves en calculant les milieu de chaque salle
+     */
     public Couloir(Salle salle1, Salle salle2) {
-        this.salle1 = salle1;
-        this.salle2 = salle2;
-        coordDepart = this.salle1.getMillieuSalle();
-        coordArrive = this.salle2.getMillieuSalle();
+        coordDepart = salle1.getMillieuSalle();
+        coordArrive = salle2.getMillieuSalle();
     }
 
+    /**
+     * Renvoie milieu salle 2.
+     * Utilisation dans la methode ajoutCouloirGrille
+     * @see Niveau
+     * @return coordonnee d'arrive
+     */
     public int[] getCoordArrive() {
         return coordArrive;
     }
 
+    /**
+     * Renvoie milieu salle 1
+     * @see Niveau
+     * @return coordonnee de depart
+     */
     public int[] getCoordDepart() {
         return coordDepart;
     }
 
+    /**
+     * Renvoie symbole couloir
+     * @see Niveau
+     * @return #
+     */
     public String getSYMBOLE() {
-        return SYMBOLE;
+        return "# ";
     }
 }

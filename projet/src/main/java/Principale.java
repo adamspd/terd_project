@@ -46,13 +46,6 @@ public class Principale {
 
                     }
                 }
-
-
-
-
-
-
-
             }
         });
 
@@ -68,11 +61,6 @@ public class Principale {
                     {
                         String touche = scan.nextLine();
                         Thread.currentThread().setPriority(Thread.MAX_PRIORITY);
-
-                        for(int i=0;i<10;i++)
-                        {
-                            System.out.println("b");
-                        }
 
                         switch (touche)
                         {
@@ -91,18 +79,13 @@ public class Principale {
                                 break;
                             default: break;
                         }
-
                         map.dessine(grille);
                         Thread.currentThread().setPriority(Thread.NORM_PRIORITY);
-
-
                     } catch (Exception e)
                     {
                         System.out.println("error");
                     }
                 }
-
-
             }
         });
         threadScan.start();
