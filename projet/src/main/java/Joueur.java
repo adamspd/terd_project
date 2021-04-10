@@ -11,6 +11,7 @@ public class Joueur extends Entite {
     public int getPv() {
         return pv;
     }
+
     public void setPv(int pv)
     {
         this.pv = pv;
