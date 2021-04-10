@@ -4,7 +4,8 @@ public abstract class Entite
     private int posX;
     private int posY;
     private int pv;
-    private boolean isInCouloir=false;
+    private int degat;
+    private boolean isInCouloir = false;
 
     public Entite(String symbole,int posX,int posY)
     {
@@ -12,6 +13,12 @@ public abstract class Entite
         this.posX = posX;
         this.posY = posY;
     }
+
+
+    public void Attaquer(Entite ennemi) {
+        ennemi.pv -= degat;
+    }
+
 
     public boolean isAlive()
     {
@@ -150,6 +157,10 @@ public abstract class Entite
     public void setPv(int pv)
     {
         this.pv = pv;
+    }
+    public void setDegat(int degat)
+    {
+        this.degat = degat;
     }
 
 
