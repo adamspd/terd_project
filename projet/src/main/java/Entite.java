@@ -4,7 +4,8 @@ public abstract class Entite
     private int posX;
     private int posY;
     private int pv;
-    private boolean isInCouloir=false;
+    private int degat;
+    private boolean isInCouloir = false;
 
     public Entite(String symbole,int posX,int posY)
     {
@@ -12,6 +13,14 @@ public abstract class Entite
         this.posX = posX;
         this.posY = posY;
     }
+
+
+    public void Attaquer(Entite ennemi) {
+        int pvActuels = ennemi.getPv()-degat;
+        if (pvActuels < 0) { pvActuels = 0; }
+        ennemi.setPv(pvActuels);
+    }
+
 
     public boolean isAlive()
     {
@@ -44,8 +53,10 @@ public abstract class Entite
             }
             posY +=1;
             grille.addEntite(this);
-        }
 
+
+
+        }
 
     }
     public void Se_deplacer_en_haut(Grille grille)
@@ -145,9 +156,15 @@ public abstract class Entite
 
     public void setPosY(int posX) { this.posX = posX;}
 
+    public int getPv(){ return pv; }
+
     public void setPv(int pv)
     {
         this.pv = pv;
+    }
+    public void setDegat(int degat)
+    {
+        this.degat = degat;
     }
 
 
