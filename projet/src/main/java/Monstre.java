@@ -82,29 +82,6 @@ public class Monstre extends Entite
         return false;
     }
 
-
-   /* public void Se_deplacer_en_bas(Monstre monstre, Grille grille) {
-        grille.addPoint(pos_x, pos_y);
-        pos_x += 1;
-        grille.addMonstre(monstre, pos_x, pos_y);
-    }
-    public void Se_deplacer_en_haut(Monstre monstre, Grille grille) {
-        grille.addPoint(pos_x, pos_y);
-        pos_x -= 1;
-        grille.addMonstre(monstre, pos_x, pos_y);
-    }
-
-    public void Se_deplacer_a_droite(Monstre monstre, Grille grille) {
-        grille.addPoint(pos_x, pos_y);
-        pos_y += 1;
-        grille.addMonstre(monstre, pos_x, pos_y);
-    }
-    public void Se_deplacer_a_gauche(Monstre monstre, Grille grille) {
-        grille.addPoint(pos_x, pos_y);
-        pos_y -= 1;
-        grille.addMonstre(monstre, pos_x, pos_y);
-    }*/
-
    // public void Attaquer(/*Monstre monstre, Joueur joueur*/) {/*joueur.PV-=monstre.DEGAT;*/}
 
 
