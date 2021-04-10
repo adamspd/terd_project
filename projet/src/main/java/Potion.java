@@ -14,6 +14,7 @@ public class Potion extends EntiteAbstrait {
         grille.addPotionList(this);
     }
 
+
     public static void initialisePotion(Grille grille){
         Joueur joueur = grille.getListeJoueur().get(0);
         ArrayList<Salle> listeSalle = grille.getListeSalle();

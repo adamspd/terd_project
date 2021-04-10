@@ -29,8 +29,6 @@ public class Monstre extends Entite
         super("M ",posX,posY);
         this.posX=posX;
         this.posY=posY;
-
-
     }
 
     @Override

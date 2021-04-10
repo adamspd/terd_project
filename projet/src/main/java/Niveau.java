@@ -28,7 +28,7 @@ public class Niveau
         {
             if (monstre.checkJoueurPresent(grille))
             {
-                //dSystem.out.println("Je te vois");
+                System.out.println("Je te vois");
             }
             else
             {
