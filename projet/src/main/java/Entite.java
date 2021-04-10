@@ -16,7 +16,9 @@ public abstract class Entite
 
 
     public void Attaquer(Entite ennemi) {
-        ennemi.pv -= degat;
+        int pvActuels = ennemi.getPv()-degat;
+        if (pvActuels < 0) { pvActuels = 0; }
+        ennemi.setPv(pvActuels);
     }
 
 
@@ -153,6 +155,8 @@ public abstract class Entite
     public void setPosX(int posX) { this.posX = posX;}
 
     public void setPosY(int posX) { this.posX = posX;}
+
+    public int getPv(){ return pv; }
 
     public void setPv(int pv)
     {
