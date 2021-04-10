@@ -23,7 +23,7 @@ public class Niveau
         relierSalle(grille);
         ajouterJoueur(grille);
         initialiseMonstre(grille);
-        initialisePotion(grille);
+        Potion.initialisePotion(grille);
         for  (Monstre monstre : grille.getListeMonstre())
         {
             if (monstre.checkJoueurPresent(grille))
@@ -52,7 +52,6 @@ public class Niveau
         int tailleTotalSalles = 0;
         while (tailleTotalSalles < ESPACE_ALOUE)
         {
-
 
             int largeurSalle = (int) (ESPACE_MINIMUM_SALLE_X + Math.random() * (ESPACE_MAXIMUM_SALLE_X - ESPACE_MINIMUM_SALLE_X));
             int hauteurSalle = (int) (ESPACE_MINIMUM_SALLE_Y + Math.random() * (ESPACE_MAXIMUM_SALLE_Y - ESPACE_MINIMUM_SALLE_Y));
@@ -116,16 +115,7 @@ public class Niveau
         }
         return salleDepart;
     }
-   /* private void ajouterMonstre(Grille grille)
-    {
-        int choixListeRandom = (int) (Math.random() * grille.getListeSalle().size());
-        Salle salleDuMonstre = grille.getListeSalle().get(choixListeRandom);
-        int coordSalleRandomX = salleDuMonstre.getPosX()  + (int)(Math.random() * (  salleDuMonstre.getLargeurSalle()+salleDuMonstre.getPosX() - salleDuMonstre.getPosX()  ));
-        int coordSalleRandomY = salleDuMonstre.getPosY() +(int)(Math.random() *( salleDuMonstre.getLongueurSalle()+salleDuMonstre.getPosY()- salleDuMonstre.getPosY()));
-        Monstre monstre = new Monstre(coordSalleRandomX,coordSalleRandomY);
-        grille.addEntite(monstre);
 
-    }*/
 
     private void initialiseMonstre(Grille grille)
     {
@@ -198,84 +188,39 @@ public class Niveau
         }
 
     }
-
-    private void initialisePotion(Grille grille)
-    {
+/*d
+    private void initialisePotion(Grille grille) {
         Joueur joueur = grille.getListeJoueur().get(0);
         ArrayList<Salle> listeSalle = grille.getListeSalle();
 
-        for (Salle salle : listeSalle)
-        {
+        for (Salle salle : listeSalle) {
             final int MAX_POTION = 2;
             final int DISTANCEMAXJOUEURPOTION = 2;
             int choixNombreDePotion = (int) (Math.random() * (MAX_POTION + 1));
 
+            for(int a = 0 ; a < choixNombreDePotion; a++) {
+                int[] coord = Utils.getRandomCoordSalle(salle);
+                int coordSalleRandomX = coord[0];
+                int coordSalleRandomY = coord[1];
 
-            for(int a = 0 ; a < choixNombreDePotion; a++)
-            {
-                int coordSalleRandomX = salle.getPosX()  + (int)(Math.random() *
-                        (salle.getLargeurSalle()+salle.getPosX() - salle.getPosX()));
-                int coordSalleRandomY = salle.getPosY() +(int)(Math.random() *
-                        (salle.getLongueurSalle()+salle.getPosY()- salle.getPosY()));
                 Potion potion;
-                boolean isEnoughFarJoueur = true;
-                try
-                {
-                    for(int i = coordSalleRandomX;i > coordSalleRandomX-DISTANCEMAXJOUEURPOTION;i--)
-                    {
-                        for(int j = coordSalleRandomY; j<coordSalleRandomY-DISTANCEMAXJOUEURPOTION;j--)
-                        {
-                            if(grille.getSymbolAtCoord(coordSalleRandomX,coordSalleRandomY).equals(
-                                    joueur.getSymbole()))
-                            {
-                                isEnoughFarJoueur = false;
-                            }
-
-                        }
-                    }
-
-                } catch (Exception e)
-                {
-
-                }
-
-
-                while (! grille.isInSalle(coordSalleRandomX,coordSalleRandomY) && isEnoughFarJoueur == false)
-                {
-                    coordSalleRandomX = salle.getPosX()  + (int)(Math.random() *
-                            (  salle.getLargeurSalle()+salle.getPosX() - salle.getPosX()  ));
-                    coordSalleRandomY = salle.getPosY() +(int)(Math.random() *
-                            ( salle.getLongueurSalle()+salle.getPosY()- salle.getPosY()));
+                boolean isEnoughFarJoueur = Utils.estAssezLoinDuJoueur(
+                        coordSalleRandomX, coordSalleRandomY, DISTANCEMAXJOUEURPOTION, grille, joueur
+                );
+                while (! grille.isInSalle(coordSalleRandomX,coordSalleRandomY) && isEnoughFarJoueur == false) {
+                    coord = Utils.getRandomCoordSalle(salle);
+                    coordSalleRandomX = coord[0];
+                    coordSalleRandomY = coord[1];
                     isEnoughFarJoueur = true;
-                    try
-                    {
-                        for(int i = coordSalleRandomX;i > coordSalleRandomX-DISTANCEMAXJOUEURPOTION;i--)
-                        {
-                            for(int j = coordSalleRandomY; j<coordSalleRandomY-DISTANCEMAXJOUEURPOTION;j--)
-                            {
-                                if(grille.getSymbolAtCoord(coordSalleRandomX,coordSalleRandomY).equals(
-                                        joueur.getSymbole()))
-                                {
-                                    isEnoughFarJoueur = false;
-                                }
-
-                            }
-                        }
-
-                    } catch (Exception e)
-                    {
-
-                    }
+                    isEnoughFarJoueur = Utils.estAssezLoinDuJoueur(
+                            coordSalleRandomX, coordSalleRandomY, DISTANCEMAXJOUEURPOTION, grille, joueur
+                    );
                 }
-
                 potion = new Potion(coordSalleRandomX, coordSalleRandomY);
                 grille.addEntite(potion);
             }
-
-
         }
-
-    }
+    }*/
 
     private void relierSalle(Grille grille)
     {

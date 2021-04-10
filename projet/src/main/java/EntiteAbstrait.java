@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public abstract class EntiteAbstrait {
     private String symbole;
     private int posX;
@@ -34,4 +36,28 @@ public abstract class EntiteAbstrait {
     public void setPosY(int posY) {
         this.posY = posY;
     }
-}
+
+    public static ArrayList<Integer> initialiseEntite(Grille grille, int choix, Salle salle, Joueur joueur, int DISTANCEMAXJOUEURPOTION) {
+            ArrayList<Integer> tab = new ArrayList<Integer>();
+            for(int a = 0 ; a < choix; a++) {
+                int[] coord = Utils.getRandomCoordSalle(salle);
+                int coordSalleRandomX = coord[0];
+                int coordSalleRandomY = coord[1];
+
+                boolean isEnoughFarJoueur = Utils.estAssezLoinDuJoueur(
+                        coordSalleRandomX, coordSalleRandomY, DISTANCEMAXJOUEURPOTION, grille, joueur
+                );
+                while (! grille.isInSalle(coordSalleRandomX,coordSalleRandomY) && isEnoughFarJoueur == false) {
+                    coord = Utils.getRandomCoordSalle(salle);
+                    coordSalleRandomX = coord[0];
+                    coordSalleRandomY = coord[1];
+                    isEnoughFarJoueur = Utils.estAssezLoinDuJoueur(
+                            coordSalleRandomX, coordSalleRandomY, DISTANCEMAXJOUEURPOTION, grille, joueur
+                    );
+                }
+                tab.add(coordSalleRandomX);
+                tab.add(coordSalleRandomY);
+            }
+        return tab;
+        }
+    }
