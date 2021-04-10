@@ -81,10 +81,6 @@ public class Monstre extends Entite
         }
         return false;
     }
-
-   // public void Attaquer(/*Monstre monstre, Joueur joueur*/) {/*joueur.PV-=monstre.DEGAT;*/}
-
-
 }
 
 
