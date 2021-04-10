@@ -19,5 +19,6 @@ public class Map {
             }
             System.out.println();
         }
+        Information.Affichage(grille);
     }
 }

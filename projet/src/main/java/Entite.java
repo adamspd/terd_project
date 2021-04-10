@@ -44,10 +44,8 @@ public abstract class Entite
             }
             posY +=1;
             grille.addEntite(this);
-
-
-
         }
+
 
     }
     public void Se_deplacer_en_haut(Grille grille)

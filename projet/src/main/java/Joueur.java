@@ -6,14 +6,23 @@ public class Joueur extends Entite {
     private String Symbol = "@ ";
     private int posX;
     private int posY;
-    private int pv;
+    private int pv = 100;
+
+    public int getPv() {
+        return pv;
+    }
+    public void setPv(int pv)
+    {
+        this.pv = pv;
+    }
+    public boolean isAlive() {
+        return pv!=0;
+    }
+
     private boolean isInCouloir = false;
 
     Joueur(int posX, int posY) {
         super("@ ", posX, posY);
-        pv = 100;
-        super.setPv(pv);
-
     }
 
     @Override
