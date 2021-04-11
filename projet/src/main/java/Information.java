@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Information {
     private static void isEnoughfar(Grille grille, ArrayList<Monstre> monstres, Joueur joueur){
         for (Monstre monstre : monstres) {
-            boolean estEnCombat = Utils.estAssezLoinDuJoueur(
+            boolean estEnCombat = !Utils.estAssezLoinDuJoueur(
                     monstre.getPosX(),
                     monstre.getPosY(),
                     1,grille,joueur);
