@@ -3,14 +3,15 @@ import java.util.Scanner;
 
 public class Niveau
 {
-    private final int ESPACE_TOTAL = 3600;
-    private final int ESPACE_ALOUE = ESPACE_TOTAL/12;
+    private final int LARGEURGRILLE = 80;
+    private final int LONGUEURGRILLE = 40;
+    private final int ESPACE_TOTAL = LARGEURGRILLE * LONGUEURGRILLE;
+    private final int ESPACE_ALOUE = ESPACE_TOTAL/10;
     private final int ESPACE_MINIMUM_SALLE_X = 4;
     private final int ESPACE_MINIMUM_SALLE_Y = 5;
     private final int ESPACE_MAXIMUM_SALLE_X = 10;
     private final int ESPACE_MAXIMUM_SALLE_Y = 12;
-    private final int LARGEURGRILLE = 80;
-    private final int LONGUEURGRILLE = 40;
+
     public Niveau()
     {
 
