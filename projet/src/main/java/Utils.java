@@ -12,12 +12,14 @@ public class Utils {
     }
 
     public static boolean estAssezLoinDuJoueur(int x, int y, int distanceMin, Grille grille, Joueur joueur){
-        boolean isEnoughFar = false;
+        boolean isEnoughFar = true;
+
         try{
             for (int i = x; i > x - distanceMin; i--){
                 for (int j = y; i < j - distanceMin; j--){
-                    if(grille.getSymbolAtCoord(x, y).equals(joueur.getSymbole())){
+                    if(grille.getSymbolAtCoord(i, j).equals(joueur.getSymbole())){
                         isEnoughFar = false;
+
                     }
                 }
             }
@@ -26,3 +28,4 @@ public class Utils {
     }
 
 }
+
