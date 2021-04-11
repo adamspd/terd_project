@@ -15,8 +15,8 @@ public class Utils {
         boolean isEnoughFar = true;
 
         try{
-            for (int j = y - distanceMin; j < j + distanceMin; j++){
-                for (int i = x - distanceMin; i < i + distanceMin; i++){
+            for (int j = y - distanceMin; j <= y + distanceMin; j++){
+                for (int i = x - distanceMin; i <= x + distanceMin; i++){
                     if(grille.getSymbolAtCoord(i, j).equals(joueur.getSymbole())){
                         isEnoughFar = false;
 
