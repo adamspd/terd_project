@@ -24,7 +24,7 @@ public class Principale {
 
 
         map.dessine(grille);
-        System.out.println("Pour aller à gauche entrez \"q\" \nPour aller à droite entrez \"d\"\nPour aller en haut entrez \"z\"\nPour aller en bas entrez \"s\"");
+        System.out.println("Gauche: \"q\"\tDroite: \"d\"\tHaut: \"z\"\tBas: \"s\"");
 
 
         Joueur joueur = grille.getListeJoueur().get(0);
@@ -73,6 +73,7 @@ public class Principale {
                                 break;
                             case "s":
                                 joueur.Se_deplacer_en_bas(grille);
+
                                 break;
                             case "d":
                                 joueur.Se_deplacer_a_droite(grille);

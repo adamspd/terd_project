@@ -188,39 +188,6 @@ public class Niveau
         }
 
     }
-/*d
-    private void initialisePotion(Grille grille) {
-        Joueur joueur = grille.getListeJoueur().get(0);
-        ArrayList<Salle> listeSalle = grille.getListeSalle();
-
-        for (Salle salle : listeSalle) {
-            final int MAX_POTION = 2;
-            final int DISTANCEMAXJOUEURPOTION = 2;
-            int choixNombreDePotion = (int) (Math.random() * (MAX_POTION + 1));
-
-            for(int a = 0 ; a < choixNombreDePotion; a++) {
-                int[] coord = Utils.getRandomCoordSalle(salle);
-                int coordSalleRandomX = coord[0];
-                int coordSalleRandomY = coord[1];
-
-                Potion potion;
-                boolean isEnoughFarJoueur = Utils.estAssezLoinDuJoueur(
-                        coordSalleRandomX, coordSalleRandomY, DISTANCEMAXJOUEURPOTION, grille, joueur
-                );
-                while (! grille.isInSalle(coordSalleRandomX,coordSalleRandomY) && isEnoughFarJoueur == false) {
-                    coord = Utils.getRandomCoordSalle(salle);
-                    coordSalleRandomX = coord[0];
-                    coordSalleRandomY = coord[1];
-                    isEnoughFarJoueur = true;
-                    isEnoughFarJoueur = Utils.estAssezLoinDuJoueur(
-                            coordSalleRandomX, coordSalleRandomY, DISTANCEMAXJOUEURPOTION, grille, joueur
-                    );
-                }
-                potion = new Potion(coordSalleRandomX, coordSalleRandomY);
-                grille.addEntite(potion);
-            }
-        }
-    }*/
 
     private void relierSalle(Grille grille)
     {
