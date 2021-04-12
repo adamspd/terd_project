@@ -34,5 +34,9 @@ public class Potion extends EntiteAbstrait {
                 }
             }
         }
+        /*for (Potion potion : grille.getListePotion()){
+            System.out.println("Potion coord x et y: " + potion.getPosX() +
+                    ", " + potion.getPosY());
+        }*/
     }
 }

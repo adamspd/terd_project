@@ -91,7 +91,6 @@ public class Niveau
         salleDepart = listSalle.get(0);
         for (Salle salle : listSalle)
         {
-
             if(salle.getPosY()<= y)
             {
                 if(salle.getPosY() == y)

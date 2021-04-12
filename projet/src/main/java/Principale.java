@@ -6,7 +6,7 @@ public class Principale {
         Map map = new Map();
         Niveau niveau = new Niveau();
         Grille grille = niveau.genererateSalles();
-        int delaiActu = 500;
+        int delaiActu = 1500;
 
 
 
@@ -40,7 +40,7 @@ public class Principale {
                     niveau.actualiseSalle(grille);
                     try
                     {
-                        Thread.sleep(2000);
+                        Thread.sleep(delaiActu);
                     } catch (InterruptedException e)
                     {
 
