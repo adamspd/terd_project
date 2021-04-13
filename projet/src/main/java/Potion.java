@@ -3,6 +3,7 @@ import java.util.ArrayList;
 public class Potion extends EntiteAbstrait {
     private int posX;
     private int posY;
+    private final String symbole = "! ";
     Niveau niveau = new Niveau();
 
     public Potion(int posX, int posY){
@@ -34,9 +35,50 @@ public class Potion extends EntiteAbstrait {
                 }
             }
         }
-        /*for (Potion potion : grille.getListePotion()){
-            System.out.println("Potion coord x et y: " + potion.getPosX() +
-                    ", " + potion.getPosY());
-        }*/
+    }
+
+    public static boolean isPotionDown(int posX, int posY, Grille grille) {
+        return EntiteAbstrait.isEntityDown(posX, posY, "! ", grille);
+    }
+
+    public static boolean isPotionUp(int posX, int posY, Grille grille) {
+        return EntiteAbstrait.isEntityUp(posX, posY, "! ", grille);
+    }
+
+    public static boolean isPotionLeft(int posX, int posY, Grille grille) {
+        return EntiteAbstrait.isEntityLeft(posX, posY, "! ", grille);
+    }
+
+    public static boolean isPotionRigth(int posX, int posY, Grille grille) {
+        return EntiteAbstrait.isEntityRigth(posX, posY, "! ", grille);
+    }
+
+
+    public static void hasDrunkPotion(Grille grille, int posX, int posY){
+        Joueur joueur = grille.getListeJoueur().get(0);
+        if (!checkPvJoueur(joueur)){
+            joueur.setPv(joueur.getPv() + 5);
+        } else {
+            joueur.setPotionReserve(joueur.getPotionReserve() + 1);
+        }
+        grille.addPoint(posX, posY);
+        removePotionFromList(grille, posX, posY);
+    }
+
+    private static void removePotionFromList(Grille grille, int posX, int posY) {
+        ArrayList<Potion> listePotion = grille.getListePotion();
+        for (Potion potion : listePotion) {
+           if (potion.getPosX() == posX && potion.getPosY() == posY){
+               listePotion.remove(potion);
+           }
+        }
+    }
+
+    private static boolean checkPvJoueur(Joueur joueur){
+        return joueur.getPv() == 100;
+    }
+
+    public String getSymbole(){
+        return symbole;
     }
 }
