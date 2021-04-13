@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Principale {
@@ -24,7 +23,7 @@ public class Principale {
 
 
         map.dessine(grille);
-        System.out.println("Gauche: \"q\"\tDroite: \"d\"\tHaut: \"z\"\tBas: \"s\"");
+        System.out.print("Gauche: \"q\"\t\t\tDroite: \"d\"\t\t\tHaut: \"z\"\t\t\tBas: \"s\"\n> ");
 
 
         Joueur joueur = grille.getListeJoueur().get(0);

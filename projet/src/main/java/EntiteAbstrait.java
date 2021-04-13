@@ -37,7 +37,8 @@ public abstract class EntiteAbstrait {
         this.posY = posY;
     }
 
-    public static ArrayList<Integer> initialiseEntite(Grille grille, int choix, Salle salle, Joueur joueur, int DISTANCEMAXJOUEURPOTION) {
+    public static ArrayList<Integer> initialiseEntite(
+            Grille grille, int choix, Salle salle, Joueur joueur, int DISTANCEMAXJOUEURPOTION) {
             ArrayList<Integer> tab = new ArrayList<Integer>();
             for(int a = 0 ; a < choix; a++) {
                 int[] coord = Utils.getRandomCoordSalle(salle);
@@ -60,4 +61,17 @@ public abstract class EntiteAbstrait {
             }
         return tab;
         }
+
+    public static boolean isEntityDown(int posX, int posY, String symbole, Grille grille){
+        return grille.getSymbolAtCoord(posX, posY + 1).equals(symbole);
     }
+    public static boolean isEntityUp(int posX, int posY, String symbole, Grille grille){
+        return grille.getSymbolAtCoord(posX, posY - 1).equals(symbole);
+    }
+    public static boolean isEntityLeft(int posX, int posY, String symbole, Grille grille){
+        return grille.getSymbolAtCoord(posX, posX - 1).equals(symbole);
+    }
+    public static boolean isEntityRigth(int posX, int posY, String symbole, Grille grille){
+        return grille.getSymbolAtCoord(posX, posX + 1).equals(symbole);
+    }
+}

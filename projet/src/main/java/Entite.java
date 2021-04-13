@@ -32,42 +32,30 @@ public abstract class Entite
 
 
 
-    public void Se_deplacer_en_bas(Grille grille)
-    {
-
-
-        if(grille.isInsSalleBas(posX,posY)||grille.isInsCouloirBas(posX,posY))
-        {
-            if(isInCouloir)
-            {
+    public void Se_deplacer_en_bas(Grille grille) {
+        if(grille.isInsSalleBas(posX,posY)||grille.isInsCouloirBas(posX,posY)||Potion.isPotionDown(posX,posY,grille)) {
+            if(isInCouloir) {
                 grille.addElement(posX,posY,grille.getTextCouloir());
+            } else {
+                if(Potion.isPotionDown(posX, posY, grille)){
+                    Potion.hasDrunkPotion(grille, posX, posY);
+                } else {
+                    grille.addPoint(posX, posY);
+                }
             }
-            else
-            {
-                grille.addPoint(posX, posY);
-            }
-
-            if(grille.isInsCouloirBas(posX,posY))
-            {
+            if(grille.isInsCouloirBas(posX,posY)) {
                 isInCouloir = true;
-
-            }
-            else
-            {
+            } else {
                 isInCouloir=false;
-
             }
             posY +=1;
             grille.addEntite(this);
-
-
-
         }
-
     }
+
     public void Se_deplacer_en_haut(Grille grille)
     {
-        if(grille.isInsSalleHaut(posX,posY)||grille.isInsCouloirHaut(posX,posY))
+        if(grille.isInsSalleHaut(posX,posY)||grille.isInsCouloirHaut(posX,posY)||Potion.isPotionUp(posX,posY,grille))
         {
             if(isInCouloir)
             {
@@ -75,7 +63,11 @@ public abstract class Entite
             }
             else
             {
-                grille.addPoint(posX, posY);
+                if(Potion.isPotionUp(posX, posY, grille)){
+                    Potion.hasDrunkPotion(grille, posX, posY);
+                } else {
+                    grille.addPoint(posX, posY);
+                }
             }
             if(grille.isInsCouloirHaut(posX,posY))
             {
@@ -94,16 +86,19 @@ public abstract class Entite
 
     public void Se_deplacer_a_droite(Grille grille)
     {
-        if(grille.isInsSalleDroite(posX,posY)||grille.isInsCouloirDroite(posX,posY))
+        if(grille.isInsSalleDroite(posX,posY)||grille.isInsCouloirDroite(posX,posY)||Potion.isPotionRigth(posX,posY,grille))
         {
-
             if(isInCouloir)
             {
                 grille.addElement(posX,posY,grille.getTextCouloir());
             }
             else
             {
-                grille.addPoint(posX, posY);
+                if(Potion.isPotionRigth(posX, posY, grille)){
+                    Potion.hasDrunkPotion(grille, posX, posY);
+                } else {
+                    grille.addPoint(posX, posY);
+                }
             }
             if(grille.isInsCouloirDroite(posX,posY))
             {
@@ -122,17 +117,19 @@ public abstract class Entite
     }
     public void Se_deplacer_a_gauche(Grille grille)
     {
-        if(grille.isInsSalleGauche(posX,posY)||grille.isInsCouloirGauche(posX,posY))
+        if(grille.isInsSalleGauche(posX,posY)||grille.isInsCouloirGauche(posX,posY)||Potion.isPotionLeft(posX,posY,grille))
         {
-
-
             if(isInCouloir)
             {
                 grille.addElement(posX,posY,grille.getTextCouloir());
             }
             else
             {
-                grille.addPoint(posX, posY);
+                if(Potion.isPotionLeft(posX, posY, grille)){
+                    Potion.hasDrunkPotion(grille, posX, posY);
+                } else {
+                    grille.addPoint(posX, posY);
+                }
             }
             if(grille.isInsCouloirGauche(posX,posY))
             {

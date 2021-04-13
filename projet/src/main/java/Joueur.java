@@ -3,6 +3,7 @@
 
  */
 public class Joueur extends Entite {
+    public int potionReserve;
     private String Symbol = "@ ";
     private int posX;
     private int posY;
@@ -31,6 +32,13 @@ public class Joueur extends Entite {
         grille.addJoueurList(this);
     }
 
+    public int getPotionReserve() {
+        return potionReserve;
+    }
+
+    public void setPotionReserve(int potionReserve) {
+        this.potionReserve = potionReserve;
+    }
 
     /*  public int getPosX (){ return posX;}
       public int getPosY (){ return posY;}

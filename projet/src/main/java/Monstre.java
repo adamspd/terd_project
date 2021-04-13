@@ -37,8 +37,6 @@ public class Monstre extends Entite
         }
          x = posX;
          y = posY;
-
-
         while(!grille.getSymbolAtCoord(x,y).equals(grille.getTextVide()))
         {
             if (grille.getSymbolAtCoord(x, y).equals(grille.getSymbolJoueur())) {

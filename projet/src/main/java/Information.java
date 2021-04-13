@@ -13,17 +13,19 @@ public class Information {
 
         }
     }
-    private static void SeeObject(Grille grille, ArrayList<Potion> potions, Joueur joueur){
+    private static void SeeObject(Grille grille, ArrayList<Potion> potions, Joueur joueur) {
         for (Potion potion : potions) {
             boolean seeIt = !Utils.estAssezLoinDuJoueur(
                     potion.getPosX(),
                     potion.getPosY(),
-                    1,grille,joueur);
+                    1, grille, joueur);
             if (seeIt) {
                 System.out.println("$$$$ Potion En vue $$$$");
             }
 
-        }}
+        }
+    }
+
     public static void Affichage(Grille grille){
         ArrayList<Monstre> lesMonstres = grille.getListeMonstre();
         ArrayList<Potion> lesPotions = grille.getListePotion();
@@ -35,7 +37,14 @@ public class Information {
         int nbreMonstres = lesMonstres.size();
         isEnoughfar(grille,lesMonstres, joueur);
         SeeObject(grille,lesPotions, joueur);
-        System.out.println("Le nombre de Monstres : " + nbreMonstres + "\t \t Points de Vie restants: "+ pv);
+        System.out.println();
+        if (joueur.getPotionReserve() > 1){
+            System.out.println("Le nombre de Monstres : " + nbreMonstres + "\t \t Points de Vie restants: "+ pv +
+                    "\t \t Potions en reserve: " + joueur.getPotionReserve());
+        } else {
+            System.out.println("Le nombre de Monstres : " + nbreMonstres + "\t \t Points de Vie restants: "+ pv +
+                    "\t \t Potion en reserve: " + joueur.getPotionReserve());
+        }
     }
 
 
