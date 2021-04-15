@@ -43,9 +43,11 @@ public abstract class Entite
                     grille.addPoint(posX, posY);
                 }
             }
-            if(grille.isInsCouloirBas(posX,posY)) {
+            if(grille.isInsCouloirBas(posX,posY))
+            {
                 isInCouloir = true;
-            } else {
+            }
+            else {
                 isInCouloir=false;
             }
             posY +=1;
@@ -72,12 +74,10 @@ public abstract class Entite
             if(grille.isInsCouloirHaut(posX,posY))
             {
                 isInCouloir = true;
-
             }
             else
             {
                 isInCouloir=false;
-
             }
             posY -= 1;
             grille.addEntite(this);
@@ -86,7 +86,7 @@ public abstract class Entite
 
     public void Se_deplacer_a_droite(Grille grille)
     {
-        if(grille.isInsSalleDroite(posX,posY)||grille.isInsCouloirDroite(posX,posY)||Potion.isPotionRigth(posX,posY,grille))
+        if(grille.isInsSalleDroite(posX,posY)||grille.isInsCouloirDroite(posX,posY)||Potion.isPotionRight(posX,posY,grille))
         {
             if(isInCouloir)
             {
@@ -94,7 +94,7 @@ public abstract class Entite
             }
             else
             {
-                if(Potion.isPotionRigth(posX, posY, grille)){
+                if(Potion.isPotionRight(posX, posY, grille)){
                     Potion.hasDrunkPotion(grille, posX, posY);
                 } else {
                     grille.addPoint(posX, posY);
@@ -103,12 +103,10 @@ public abstract class Entite
             if(grille.isInsCouloirDroite(posX,posY))
             {
                 isInCouloir = true;
-
             }
             else
             {
                 isInCouloir=false;
-
             }
             posX += 1;
             grille.addEntite(this);
@@ -139,7 +137,6 @@ public abstract class Entite
             else
             {
                 isInCouloir=false;
-
             }
             posX -= 1;
             grille.addEntite(this);

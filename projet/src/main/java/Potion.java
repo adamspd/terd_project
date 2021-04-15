@@ -49,8 +49,8 @@ public class Potion extends EntiteAbstrait {
         return EntiteAbstrait.isEntityLeft(posX, posY, "! ", grille);
     }
 
-    public static boolean isPotionRigth(int posX, int posY, Grille grille) {
-        return EntiteAbstrait.isEntityRigth(posX, posY, "! ", grille);
+    public static boolean isPotionRight(int posX, int posY, Grille grille) {
+        return EntiteAbstrait.isEntityRight(posX, posY, "! ", grille);
     }
 
 
