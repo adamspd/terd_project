@@ -64,7 +64,6 @@ public class Principale {
                         switch (touche)
                         {
                             case "z":
-
                                 joueur.Se_deplacer_en_haut(grille);
                                 break;
                             case "q":
@@ -72,12 +71,12 @@ public class Principale {
                                 break;
                             case "s":
                                 joueur.Se_deplacer_en_bas(grille);
-
                                 break;
                             case "d":
                                 joueur.Se_deplacer_a_droite(grille);
                                 break;
-                            default: break;
+                            default:
+                                break;
                         }
                         map.dessine(grille);
                         Thread.currentThread().setPriority(Thread.NORM_PRIORITY);
