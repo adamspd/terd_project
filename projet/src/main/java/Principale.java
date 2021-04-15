@@ -83,7 +83,7 @@ public class Principale {
                         Thread.currentThread().setPriority(Thread.NORM_PRIORITY);
                     } catch (Exception e)
                     {
-                        System.out.println("error");
+                        System.out.println("error: " + e);
                     }
                 }
             }
