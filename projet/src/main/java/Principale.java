@@ -51,18 +51,14 @@ public class Principale {
         Thread threadScan = new Thread(new Runnable()
         {
             @Override
-            public void run()
-            {
-                while(joueur.isAlive())
-                {
+            public void run() {
+                while(joueur.isAlive()) {
                     Scanner scan = new Scanner(System.in);
-                    try
-                    {
+                    try {
                         String touche = scan.nextLine();
                         Thread.currentThread().setPriority(Thread.MAX_PRIORITY);
 
-                        switch (touche)
-                        {
+                        switch (touche) {
                             case "z":
                                 joueur.Se_deplacer_en_haut(grille);
                                 break;
@@ -71,17 +67,16 @@ public class Principale {
                                 break;
                             case "s":
                                 joueur.Se_deplacer_en_bas(grille);
+
                                 break;
                             case "d":
                                 joueur.Se_deplacer_a_droite(grille);
                                 break;
-                            default:
-                                break;
+                            default: break;
                         }
                         map.dessine(grille);
                         Thread.currentThread().setPriority(Thread.NORM_PRIORITY);
-                    } catch (Exception e)
-                    {
+                    } catch (Exception e) {
                         System.out.println("error: " + e);
                     }
                 }

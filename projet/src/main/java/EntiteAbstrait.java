@@ -69,9 +69,9 @@ public abstract class EntiteAbstrait {
         return grille.getSymbolAtCoord(posX, posY - 1).equals(symbole);
     }
     public static boolean isEntityLeft(int posX, int posY, String symbole, Grille grille){
-        return grille.getSymbolAtCoord(posX, posX - 1).equals(symbole);
+        return grille.getSymbolAtCoord(posX - 1, posY).equals(symbole);
     }
     public static boolean isEntityRight(int posX, int posY, String symbole, Grille grille){
-        return grille.getSymbolAtCoord(posX, posX + 1).equals(symbole);
+        return grille.getSymbolAtCoord(posX + 1, posY).equals(symbole);
     }
 }

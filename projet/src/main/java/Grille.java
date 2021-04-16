@@ -18,8 +18,7 @@ public class Grille
 
     public Grille()
     {
-
-
+        
         for (int i = 0 ; i < LARGEURGRILLE;i++)
         {
             for (int j = 0; j< LONGUEURGRILLE ;j++)
@@ -33,7 +32,6 @@ public class Grille
         grille[entite.getPosY()][entite.getPosX()] = entite.getSymbole();
         listeEntite.add(entite);
         entite.addSpecificEntiteList(this);
-
     }
 
     public void addEntite(EntiteAbstrait entite)
@@ -41,10 +39,7 @@ public class Grille
         grille[entite.getPosY()][entite.getPosX()] = entite.getSymbole();
         entiteAbstraitArrayList.add(entite);
         entite.addSpecificEntityList(this);
-
     }
-
-
 
 
     public void addPoint(int x,int y)
@@ -116,6 +111,7 @@ public class Grille
         }
         return false;
     }
+
     public void addElement(int posX,int posY,String symbole)
     {
         grille[posY][posX] = symbole;
