@@ -59,6 +59,8 @@ public abstract class Entite
             Portail portail_de_sortie = Portail.entrerPortail(posX,posY,grille);
             posX= portail_de_sortie.getPosX();
             posY= portail_de_sortie.getPosY()+1;
+            if(grille.getSymbolAtCoord(posX,posY)==grille.getTextVide()){posY-=2;}
+            if(grille.getSymbolAtCoord(posX,posY)==Potion.getSymbole()){Potion.hasDrunkPotion(grille, posX, posY);}
             grille.addEntite(this);
         }
     }
@@ -96,6 +98,8 @@ public abstract class Entite
             Portail portail_de_sortie = Portail.entrerPortail(posX,posY,grille);
             posX= portail_de_sortie.getPosX();
             posY= portail_de_sortie.getPosY()-1;
+            if(grille.getSymbolAtCoord(posX,posY)==grille.getTextVide()){posY+=2;}
+            if(grille.getSymbolAtCoord(posX,posY)==Potion.getSymbole()){Potion.hasDrunkPotion(grille, posX, posY);}
             grille.addEntite(this);
         }
     }
@@ -133,6 +137,8 @@ public abstract class Entite
             Portail portail_de_sortie = Portail.entrerPortail(posX,posY,grille);
             posX= portail_de_sortie.getPosX()+1;
             posY= portail_de_sortie.getPosY();
+            if(grille.getSymbolAtCoord(posX,posY)==grille.getTextVide()){posX-=2;}
+            if(grille.getSymbolAtCoord(posX,posY)==Potion.getSymbole()){Potion.hasDrunkPotion(grille, posX, posY);}
             grille.addEntite(this);
         }
 
@@ -171,6 +177,8 @@ public abstract class Entite
             Portail portail_de_sortie = Portail.entrerPortail(posX,posY,grille);
             posX= portail_de_sortie.getPosX()-1;
             posY= portail_de_sortie.getPosY();
+            if(grille.getSymbolAtCoord(posX,posY)==grille.getTextVide()){posX+=2;}
+            if(grille.getSymbolAtCoord(posX,posY)==Potion.getSymbole()){Potion.hasDrunkPotion(grille, posX, posY);}
             grille.addEntite(this);
         }
 
