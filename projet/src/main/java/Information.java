@@ -10,7 +10,6 @@ public class Information {
             if (estEnCombat) {
                 System.out.println("#### DANGER #### LE COMBAT EST ENGAGE ##########");
             }
-
         }
     }
     private static void SeeObject(Grille grille, ArrayList<Potion> potions, Joueur joueur) {
@@ -22,21 +21,32 @@ public class Information {
             if (seeIt) {
                 System.out.println("$$$$ Potion En vue $$$$");
             }
+        }
+    }
 
+    private static void SeePortal(Grille grille, ArrayList<Portail> portals, Joueur joueur){
+        for(Portail portail : portals){
+            boolean SeeIt = !Utils.estAssezLoinDuJoueur(
+                portail.getPosX(),
+                portail.getPosY(),
+                1, grille, joueur);
+            if(SeeIt){
+                System.out.println("#### Oh un portail ! ####");
+            }
         }
     }
 
     public static void Affichage(Grille grille){
         ArrayList<Monstre> lesMonstres = grille.getListeMonstre();
         ArrayList<Potion> lesPotions = grille.getListePotion();
+        ArrayList<Portail> lesPortails = grille.getListePortail();
 
         Joueur joueur = grille.getListeJoueur().get(0);
         int pv = joueur.getPv();
-        ArrayList<Salle> lesSalles = grille.getListeSalle();
-        ArrayList<Monstre> monstres =grille.getListeMonstre();
         int nbreMonstres = lesMonstres.size();
-        isEnoughfar(grille,lesMonstres, joueur);
-        SeeObject(grille,lesPotions, joueur);
+        isEnoughfar(grille,lesMonstres,joueur);
+        SeeObject(grille,lesPotions,joueur);
+        SeePortal(grille,lesPortails,joueur);
         System.out.println();
         if (joueur.getPotionReserve() > 1){
             System.out.println("Le nombre de Monstres : " + nbreMonstres + "\t \t Points de Vie restants: "+ pv +
@@ -46,6 +56,4 @@ public class Information {
                     "\t \t Potion en reserve: " + joueur.getPotionReserve());
         }
     }
-
-
 }
