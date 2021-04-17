@@ -15,6 +15,7 @@ public class Grille
     private ArrayList <Monstre> listeMonstre = new ArrayList<Monstre>();
     private ArrayList <Joueur> listeJoueur = new ArrayList<Joueur>();
     private ArrayList <Potion> listePotion = new ArrayList<Potion>();
+    private ArrayList <Portail> listePortail = new ArrayList<Portail>();
 
     public Grille()
     {
@@ -154,6 +155,11 @@ public class Grille
         return listeJoueur.get(0).getSymbole();
     }
 
+    public String getTextSalle()
+    {
+        return textSalle;
+    }
+
     public String getTextVide()
     {
         return textVide;
@@ -170,4 +176,7 @@ public class Grille
     public void addPotionList(Potion potion) {
         listePotion.add(potion);
     }
+
+    public ArrayList<Portail> getListePortail(){ return listePortail; }
+    public void addPortailList(Portail portail) { listePortail.add(portail); }
 }
