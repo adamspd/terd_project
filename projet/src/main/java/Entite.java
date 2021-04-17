@@ -53,6 +53,14 @@ public abstract class Entite
             posY +=1;
             grille.addEntite(this);
         }
+        else if(Portail.isPortailDown(posX,posY,grille)){
+            grille.addPoint(posX,posY);
+            posY+=1;
+            Portail portail_de_sortie = Portail.entrerPortail(posX,posY,grille);
+            posX= portail_de_sortie.getPosX();
+            posY= portail_de_sortie.getPosY()+1;
+            grille.addEntite(this);
+        }
     }
 
     public void Se_deplacer_en_haut(Grille grille)
@@ -80,6 +88,14 @@ public abstract class Entite
                 isInCouloir=false;
             }
             posY -= 1;
+            grille.addEntite(this);
+        }
+        else if(Portail.isPortailUp(posX,posY,grille)){
+            grille.addPoint(posX,posY);
+            posY-=1;
+            Portail portail_de_sortie = Portail.entrerPortail(posX,posY,grille);
+            posX= portail_de_sortie.getPosX();
+            posY= portail_de_sortie.getPosY()-1;
             grille.addEntite(this);
         }
     }
@@ -111,6 +127,14 @@ public abstract class Entite
             posX += 1;
             grille.addEntite(this);
         }
+        else if(Portail.isPortailRight(posX,posY,grille)){
+            grille.addPoint(posX,posY);
+            posX+=1;
+            Portail portail_de_sortie = Portail.entrerPortail(posX,posY,grille);
+            posX= portail_de_sortie.getPosX()+1;
+            posY= portail_de_sortie.getPosY();
+            grille.addEntite(this);
+        }
 
     }
     public void Se_deplacer_a_gauche(Grille grille)
@@ -139,6 +163,14 @@ public abstract class Entite
                 isInCouloir=false;
             }
             posX -= 1;
+            grille.addEntite(this);
+        }
+        else if(Portail.isPortailLeft(posX,posY,grille)){
+            grille.addPoint(posX,posY);
+            posX-=1;
+            Portail portail_de_sortie = Portail.entrerPortail(posX,posY,grille);
+            posX= portail_de_sortie.getPosX()-1;
+            posY= portail_de_sortie.getPosY();
             grille.addEntite(this);
         }
 
