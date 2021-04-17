@@ -13,9 +13,10 @@ public class Map {
     {
         this.grille = grille;
         String[][] tableauGrille = grille.getGrille();
+        String symbole_portail = Portail.getSymbole();
         for (String[] strings : tableauGrille) {
             for (int j = 0; j < tableauGrille[0].length; j++) {
-                if (strings[j]== Portail.getSymbole()) {
+                if (strings[j]==symbole_portail) {
                     System.out.print( Couleur.JAUNE + strings[j] + Couleur.RESET);
                     continue;
                 }
