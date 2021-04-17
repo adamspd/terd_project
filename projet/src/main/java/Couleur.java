@@ -1,4 +1,4 @@
-public class Couleur {
+public abstract class Couleur {
 
     /*
     Utilisation: System.out.print(Couleur.COULEUR + "message" + Couleur.RESET);
