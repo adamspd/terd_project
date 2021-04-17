@@ -78,7 +78,4 @@ public class Potion extends EntiteAbstrait {
         return joueur.getPv() == 100;
     }
 
-    public String getSymbole(){
-        return symbole;
-    }
 }

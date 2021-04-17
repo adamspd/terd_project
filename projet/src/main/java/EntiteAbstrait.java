@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public abstract class EntiteAbstrait {
-    private String symbole;
+    private static String symbole;
     private int posX;
     private int posY;
 
@@ -11,11 +11,11 @@ public abstract class EntiteAbstrait {
         this.posY = posY;
     }
 
+
+
     public abstract void addSpecificEntityList(Grille grille);
 
-    public String getSymbole() {
-        return symbole;
-    }
+    public static String getSymbole() { return symbole; }
 
     public void setSymbole(String symbole) {
         this.symbole = symbole;
