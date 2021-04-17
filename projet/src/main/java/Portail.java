@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class Portail extends EntiteAbstrait
 {
-    private final static String symbole = "O ";
+    private final static String symbole = "P ";
     private static int NOMBRE_PORTAILS = 4;
     private static ArrayList<Salle> liste_salles_ayant_deja_un_portail = new ArrayList<Salle>();
 
