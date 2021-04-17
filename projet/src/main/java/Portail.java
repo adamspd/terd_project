@@ -55,8 +55,6 @@ public class Portail extends EntiteAbstrait
         else { return listePortail.get(i-1); }
     }
 
-    /*@Override
-    public static String getSymbole() { return symbole; }*/
 
     public static boolean isPortailDown(int posX, int posY, Grille grille) {
         return EntiteAbstrait.isEntityDown(posX, posY, symbole , grille);
