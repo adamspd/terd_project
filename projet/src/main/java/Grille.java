@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class Grille
 {
-    private final int LARGEURGRILLE = 80;
+    private final int LARGEURGRILLE = 40;
     private final int LONGUEURGRILLE = 40;
     private final int ESPACE_MINIMUM_ENTRE_SALLE = 2;
     private final String textSalle = "* ";
@@ -15,14 +15,15 @@ public class Grille
     private ArrayList <Monstre> listeMonstre = new ArrayList<Monstre>();
     private ArrayList <Joueur> listeJoueur = new ArrayList<Joueur>();
     private ArrayList <Potion> listePotion = new ArrayList<Potion>();
+    private ArrayList <Coffres> listeCoffres = new ArrayList<Coffres>();
     private ArrayList <Portail> listePortail = new ArrayList<Portail>();
 
     public Grille()
     {
         
-        for (int i = 0 ; i < LARGEURGRILLE;i++)
+        for (int i = 0 ; i < LONGUEURGRILLE;i++)
         {
-            for (int j = 0; j< LONGUEURGRILLE ;j++)
+            for (int j = 0; j< LARGEURGRILLE ;j++)
             {
                 grille[j][i] = textVide;
             }
@@ -175,6 +176,12 @@ public class Grille
     }
     public void addPotionList(Potion potion) {
         listePotion.add(potion);
+    }
+    public ArrayList<Coffres> getListeCoffres(){
+        return listeCoffres;
+    }
+    public void addCoffresList(Coffres coffres) {
+        listeCoffres.add(coffres);
     }
 
     public ArrayList<Portail> getListePortail(){ return listePortail; }

@@ -25,6 +25,7 @@ public class Niveau
         ajouterJoueur(grille);
         initialiseMonstre(grille);
         Potion.initialisePotion(grille);
+        Coffres.initialiseCoffres(grille);
         Portail.initialisePortail(grille);
 
         for  (Monstre monstre : grille.getListeMonstre())

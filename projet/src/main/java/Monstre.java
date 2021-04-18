@@ -1,6 +1,6 @@
 public class Monstre extends Entite
 {
-    public final String SYMBOLE = "M ";
+    public final static String SYMBOLE = "M ";
     private int posX,posY;
 
 

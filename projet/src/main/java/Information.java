@@ -2,6 +2,10 @@ import java.util.ArrayList;
 
 public class Information {
     private static void isEnoughfar(Grille grille, ArrayList<Monstre> monstres, Joueur joueur){
+
+        /*if (Niveau.checkIfJoueurPresent(grille)) {
+            System.out.println("#### DANGER #### LE COMBAT EST ENGAGE ##########");
+        }*/
         for (Monstre monstre : monstres) {
             boolean estEnCombat = !Utils.estAssezLoinDuJoueur(
                     monstre.getPosX(),

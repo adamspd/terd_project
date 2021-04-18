@@ -63,6 +63,9 @@ public abstract class Entite
             if(grille.getSymbolAtCoord(posX,posY)==Potion.getSymbole()){Potion.hasDrunkPotion(grille, posX, posY);}
             grille.addEntite(this);
         }
+        else if (Coffres.isSafeDown(posX, posY, grille)){
+            Coffres.hasOpenSafe(grille, posX, posY);
+        }
     }
 
     public void Se_deplacer_en_haut(Grille grille)
@@ -101,6 +104,9 @@ public abstract class Entite
             if(grille.getSymbolAtCoord(posX,posY)==grille.getTextVide()){posY+=2;}
             if(grille.getSymbolAtCoord(posX,posY)==Potion.getSymbole()){Potion.hasDrunkPotion(grille, posX, posY);}
             grille.addEntite(this);
+        }
+        else if (Coffres.isSafeUp(posX, posY, grille)){
+            Coffres.hasOpenSafe(grille, posX, posY);
         }
     }
 
@@ -141,6 +147,9 @@ public abstract class Entite
             if(grille.getSymbolAtCoord(posX,posY)==Potion.getSymbole()){Potion.hasDrunkPotion(grille, posX, posY);}
             grille.addEntite(this);
         }
+        else if (Coffres.isSafeRight(posX, posY, grille)){
+            Coffres.hasOpenSafe(grille, posX, posY);
+        }
 
     }
     public void Se_deplacer_a_gauche(Grille grille)
@@ -180,6 +189,9 @@ public abstract class Entite
             if(grille.getSymbolAtCoord(posX,posY)==grille.getTextVide()){posX+=2;}
             if(grille.getSymbolAtCoord(posX,posY)==Potion.getSymbole()){Potion.hasDrunkPotion(grille, posX, posY);}
             grille.addEntite(this);
+        }
+        else if (Coffres.isSafeLeft(posX, posY, grille)){
+            Coffres.hasOpenSafe(grille, posX, posY);
         }
 
     }
