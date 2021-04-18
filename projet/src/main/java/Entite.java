@@ -4,15 +4,8 @@ public abstract class Entite
     private int posX;
     private int posY;
     private int degat = 3;
-    private int pvEnnemi;
 
-    public int getPvEnnemi() {
-        return pvEnnemi;
-    }
 
-    public void setPvEnnemi(int pvEnnemi) {
-        this.pvEnnemi = pvEnnemi;
-    }
 
     private boolean isInCouloir = false;
 
@@ -24,22 +17,24 @@ public abstract class Entite
     }
 
 
-    public void Attaquer(Entite ennemi) {
+    /*public void Attaquer(Entite ennemi) {
         int pvActuels = ennemi.getPvEnnemi()-degat;
         if (pvActuels < 0) { pvActuels = 0; }
         ennemi.setPvEnnemi(pvActuels);
-    }
-
+    }*/
 
 
     public void Se_deplacer_en_bas(Grille grille) {
         if(grille.isInsSalleBas(posX,posY)||grille.isInsCouloirBas(posX,posY)||
-                Potion.isPotionDown(posX,posY,grille)) {
+                Potion.isPotionDown(posX,posY,grille)||Coffres.isSafeDown(posX,posY,grille)) {
             if(isInCouloir) {
                 grille.addElement(posX,posY,grille.getTextCouloir());
             } else {
                 if(Potion.isPotionDown(posX, posY, grille)){
                     Potion.hasDrunkPotion(grille, posX, posY);
+                }  else if (Coffres.isSafeDown(posX, posY, grille)){
+                    Coffres.hasOpenSafe(grille, posX, posY);
+                    // posY ++;
                 } else {
                     grille.addPoint(posX, posY);
                 }
@@ -65,15 +60,18 @@ public abstract class Entite
             {Potion.hasDrunkPotion(grille, posX, posY);}
             grille.addEntite(this);
         }
-        else if (Coffres.isSafeDown(posX, posY, grille)){
-            Coffres.hasOpenSafe(grille, posX, posY);
+        else if (EntiteAbstrait.isEntityDown(posX, posY, "M ", grille)){
+            Monstre monstre = Monstre.getMonstre(grille, posX, posY + 1);
+            Joueur.attaquerMonstre(grille, monstre, posX, posY);
+            posY += 1;
+            grille.addEntite(this);
         }
     }
 
     public void Se_deplacer_en_haut(Grille grille)
     {
         if(grille.isInsSalleHaut(posX,posY)||grille.isInsCouloirHaut(posX,posY)||
-                Potion.isPotionUp(posX,posY,grille))
+                Potion.isPotionUp(posX,posY,grille)||Coffres.isSafeUp(posX,posY,grille))
         {
             if(isInCouloir)
             {
@@ -83,6 +81,9 @@ public abstract class Entite
             {
                 if(Potion.isPotionUp(posX, posY, grille)){
                     Potion.hasDrunkPotion(grille, posX, posY);
+                } else if (Coffres.isSafeUp(posX, posY, grille)){
+                    Coffres.hasOpenSafe(grille, posX, posY);
+                    //posY --;
                 } else {
                     grille.addPoint(posX, posY);
                 }
@@ -110,15 +111,19 @@ public abstract class Entite
             {Potion.hasDrunkPotion(grille, posX, posY);}
             grille.addEntite(this);
         }
-        else if (Coffres.isSafeUp(posX, posY, grille)){
-            Coffres.hasOpenSafe(grille, posX, posY);
+        else if (EntiteAbstrait.isEntityDown(posX, posY, "M ", grille)){
+            Monstre monstre = Monstre.getMonstre(grille, posX, posY - 1);
+            Joueur.attaquerMonstre(grille, monstre, posX, posY);
+            posY -= 1;
+            grille.addEntite(this);
         }
+
     }
 
     public void Se_deplacer_a_droite(Grille grille)
     {
         if(grille.isInsSalleDroite(posX,posY)||grille.isInsCouloirDroite(posX,posY)||
-                Potion.isPotionRight(posX,posY,grille))
+                Potion.isPotionRight(posX,posY,grille)||Coffres.isSafeRight(posX,posY,grille))
         {
             if(isInCouloir)
             {
@@ -128,6 +133,9 @@ public abstract class Entite
             {
                 if(Potion.isPotionRight(posX, posY, grille)){
                     Potion.hasDrunkPotion(grille, posX, posY);
+                } else if (Coffres.isSafeRight(posX, posY, grille)){
+                    Coffres.hasOpenSafe(grille, posX, posY);
+                    //posX ++;
                 } else {
                     grille.addPoint(posX, posY);
                 }
@@ -154,15 +162,18 @@ public abstract class Entite
             {Potion.hasDrunkPotion(grille, posX, posY);}
             grille.addEntite(this);
         }
-        else if (Coffres.isSafeRight(posX, posY, grille)){
-            Coffres.hasOpenSafe(grille, posX, posY);
+        else if (EntiteAbstrait.isEntityDown(posX, posY, "M ", grille)){
+            Monstre monstre = Monstre.getMonstre(grille, posX, posX + 1);
+            Joueur.attaquerMonstre(grille, monstre, posX, posY);
+            posX += 1;
+            grille.addEntite(this);
         }
 
     }
     public void Se_deplacer_a_gauche(Grille grille)
     {
         if(grille.isInsSalleGauche(posX,posY)||grille.isInsCouloirGauche(posX,posY)||
-                Potion.isPotionLeft(posX,posY,grille))
+                Potion.isPotionLeft(posX,posY,grille)||Coffres.isSafeLeft(posX,posY,grille))
         {
             if(isInCouloir)
             {
@@ -172,6 +183,9 @@ public abstract class Entite
             {
                 if(Potion.isPotionLeft(posX, posY, grille)){
                     Potion.hasDrunkPotion(grille, posX, posY);
+                } else if (Coffres.isSafeLeft(posX, posY, grille)){
+                    Coffres.hasOpenSafe(grille, posX, posY);
+                    //posX --;
                 } else {
                     grille.addPoint(posX, posY);
                 }
@@ -199,8 +213,11 @@ public abstract class Entite
             {Potion.hasDrunkPotion(grille, posX, posY);}
             grille.addEntite(this);
         }
-        else if (Coffres.isSafeLeft(posX, posY, grille)){
-            Coffres.hasOpenSafe(grille, posX, posY);
+        else if (EntiteAbstrait.isEntityDown(posX, posY, "M ", grille)){
+            Monstre monstre = Monstre.getMonstre(grille, posX, posX - 1);
+            Joueur.attaquerMonstre(grille, monstre, posX, posY);
+            posX -= 1;
+            grille.addEntite(this);
         }
 
     }

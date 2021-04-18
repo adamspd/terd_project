@@ -7,7 +7,7 @@ public class Monstre extends Entite
 {
     public static final String SYMBOLE = "M ";
     private int posX,posY;
-    private int pvMonstre = 30;
+    private int pvMonstre = 50;
 
 
     public Monstre(int posX,int posY)
@@ -116,47 +116,12 @@ public class Monstre extends Entite
             for (Monstre monstre : quiVoitLeJoueur) {
                 while (monstre.monstreIsAlive()){
                     attaquerLeJoueur(grille, monstre, joueur);
-                    /*switch (direction){
-                        case 1 :
-                            monstre.Se_deplacer_a_gauche(grille);
-                            attaquerLeJoueur(grille, monstre, joueur);
-                        case 2 :
-                            monstre.Se_deplacer_a_droite(grille);
-                            attaquerLeJoueur(grille, monstre, joueur);
-                        case 3 :
-                            monstre.Se_deplacer_en_haut(grille);
-                            attaquerLeJoueur(grille, monstre, joueur);
-                        case 4 :
-                            monstre.Se_deplacer_en_bas(grille);
-                            attaquerLeJoueur(grille, monstre, joueur);
-                    }*/
+
                 }
             }
         }
     }
 
-    /*public static void deplacementsMonstre(Grille grille) throws InterruptedException {
-        ArrayList<Monstre> monstreArrayList = grille.getListeMonstre();
-        while(!monstreArrayList.isEmpty()){
-            TimeUnit.SECONDS.sleep(1);
-            for (Monstre monstre : monstreArrayList) {
-                while (monstre.monstreIsAlive()){
-                    int direction = Utils.randInt(1, 4);
-                    switch (direction){
-                        case 1 :
-                            monstre.Se_deplacer_a_gauche(grille);
-                        case 2 :
-                            monstre.Se_deplacer_a_droite(grille);
-                        case 3 :
-                            monstre.Se_deplacer_en_haut(grille);
-                        case 4 :
-                            monstre.Se_deplacer_en_bas(grille);
-                    }
-                }
-            }
-        }
-
-    }*/
 
     public static void attaquerLeJoueur(Grille grille, Monstre monstre, Joueur joueur){
         boolean doitAttaquer = false;
@@ -166,7 +131,7 @@ public class Monstre extends Entite
                 1, grille, joueur
         );
         if (doitAttaquer){
-            System.out.println("Je dois attaquer");
+            System.out.println("Le monstre attaque le joueur !");
             int pvJoueur = joueur.getPv();
             if (pvJoueur >= 0){
                 joueur.setPv(joueur.getPv() - 5);
@@ -174,6 +139,26 @@ public class Monstre extends Entite
 
         }
 
+    }
+
+    public static Monstre getMonstre(Grille grille, int posX, int posY){
+        ArrayList<Monstre> listMonstre = grille.getListeMonstre();
+        Monstre m = null;
+        for (Monstre monstre : listMonstre) {
+            if (monstre.getPosX()== posX && monstre.getPosY()==posY){
+                m = monstre;
+                return m;
+            }
+        }
+        return m;
+    }
+
+    public int getPvMonstre() {
+        return pvMonstre;
+    }
+
+    public void setPvMonstre(int pvMonstre) {
+        this.pvMonstre = pvMonstre;
     }
 }
 

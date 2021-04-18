@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Potion extends EntiteAbstrait {
     private int posX;
     private int posY;
-    private final String symbole = "! ";
+    public static final String symbole = "! ";
     Niveau niveau = new Niveau();
 
     public Potion(int posX, int posY){

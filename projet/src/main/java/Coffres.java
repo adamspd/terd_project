@@ -60,16 +60,25 @@ public class Coffres extends EntiteAbstrait {
 
 
     public static void hasOpenSafe(Grille grille, int posX, int posY){
-        /*Joueur joueur = grille.getListeJoueur().get(0);
-        if (!checkPvJoueur(joueur)){
-            joueur.setPv(joueur.getPv() + 5);
-        } else {
-            joueur.setPotionReserve(joueur.getPotionReserve() + 1);
-        }*/
+        int nbresCoffres = grille.getListeCoffres().size();
+        int nbresRandom = Utils.randInt(1, nbresCoffres);
+        //int nbreRestant = nbresCoffres - nbresRandom;
+        if (nbresRandom <= nbresCoffres/2){
+            System.out.println("C'ETAIT UN PIEGE, VOUS ETES TOMBER DEDANT");
+            grille.getListeJoueur().get(0).setPv(0); }
+
+        else{
+            Joueur joueur = grille.getListeJoueur().get(0);
+            if (!checkPvJoueur(joueur)){
+                joueur.setPv(joueur.getPv() + 5);
+            } else {
+                joueur.setPotionReserve(joueur.getPotionReserve() + 1);
+            }}
         grille.addPoint(posX, posY);
-        //removePotionFromList(grille, posX, posY);
+        removeCoffresFromList(grille, posX, posY);
+
     }
-/*
+
     private static void removeCoffresFromList(Grille grille, int posX, int posY) {
         ArrayList<Coffres> listeCoffre = grille.getListeCoffres();
         for (Coffres Coffre : listeCoffre) {
@@ -81,6 +90,6 @@ public class Coffres extends EntiteAbstrait {
 
     private static boolean checkPvJoueur(Joueur joueur){
         return joueur.getPv() == 100;
-    }*/
+    }
 
 }

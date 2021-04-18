@@ -49,19 +49,15 @@ public class Principale {
                         switch (touche) {
                             case "z":
                                 joueur.Se_deplacer_en_haut(grille);
-                                joueur.setDirection(3);
                                 break;
                             case "q":
                                 joueur.Se_deplacer_a_gauche(grille);
-                                joueur.setDirection(1);
                                 break;
                             case "s":
                                 joueur.Se_deplacer_en_bas(grille);
-                                joueur.setDirection(4);
                                 break;
                             case "d":
                                 joueur.Se_deplacer_a_droite(grille);
-                                joueur.setDirection(2);
                                 break;
                             case "p":
                                 joueur.boirePotion(grille);

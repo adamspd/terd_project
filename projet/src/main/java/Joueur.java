@@ -56,8 +56,24 @@ public class Joueur extends Entite {
         Joueur joueur = grille.getListeJoueur().get(0);
         if (joueur.getPotionReserve() > 0) {
             joueur.setPv(joueur.getPv() + 5);
+            joueur.setPotionReserve(joueur.getPotionReserve() - 1);
         }
     }
+
+    public static void attaquerMonstre(Grille grille, Monstre monstre, int posX, int posY){
+        System.out.println("PV Monstre: " + monstre.getPvMonstre());
+        int pvMonstre = monstre.getPvMonstre();
+        if (pvMonstre > 0) {
+            monstre.setPvMonstre(monstre.getPvMonstre() - 10);
+            System.out.println("Le joueur attaque le monstre !");
+        } else {
+            grille.addPoint(posX, posY);
+            grille.getListeMonstre().remove(monstre);
+        }
+    }
+
+
+
     /*  public int getPosX (){ return posX;}
       public int getPosY (){ return posY;}
       public String getSymbol(){return Symbol;}
