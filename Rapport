@@ -1,0 +1,36 @@
+Nous avons choisi d'implémenter la carte (map) car c'est la base du jeu Rogue-like.
+On a eu des souci à mettre les salles de façon aléatoire et du coup nous avons commencé par les faire de façon statique.
+Ensuite nous avons rajouté le joueur ainsi que son déplacement. 
+De plus il nous a fallu rajouté les monstres sur la map et on a eu le même souci que précedent avec les salles. 
+Du coup on a fait en sorte que les monstres soient sur la map de façon aléatoire, il nous reste à implémenter leur déplacement.
+Pour le combat entre les monstres et le joueur, le joueur a la possibilité d'attaquer le monstre et les monstres de même.
+On a rajouté sur la map des objets tels que des potions qui donnent des avantages au joueur.
+Nous avons rajouté aussi des coffres dans lesquels se trouvent soit des bonus soit un malus qui tue directement le joueur.
+
+Utils : 
+  * Dans cette classe se trouvent toutes les methodes de calcul qui sont utiles au projet.
+  
+Coffre : 
+  * La classe coffre rajoutent les coffres sur la map aléatoirement
+  
+Potion :
+  * La classe Potion rajoutent les potions sur la map
+  
+Couleur : 
+  * Rajoutent les couleurs
+  
+Entite :
+  * Classe abstraite dont héritent les monstres et le joueur
+  
+EntiteAbstrait :
+  * Classe abstraite dont héritent les objets non-movible
+  
+Portail :
+  * Rajoutent des portails sur la map
+  * Les portails permettent en quelque sorte de passer d'une salle à une autre 
+  
+
+
+BUG ACTUEL :
+  * Les threads posent jusque là un problème au bon fonctionnement du code.
+  * On peut commencer à jouer et des fois ça ne prend pas en compte les inputs du joueur.
