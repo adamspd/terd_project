@@ -8,6 +8,10 @@ public class Joueur extends Entite {
     private int posX;
     private int posY;
     private int pv = 100;
+    private int direction;
+    // pour que le monstre sait ou va le joueur et le suive et l'attaque
+    // si vous avez une idée plus sympa, n'hésite pas à changer
+    // 1 : gauche, 2 : droite, 3 : haut, 4 : bas
 
     public int getPv() {
         return pv;
@@ -40,6 +44,20 @@ public class Joueur extends Entite {
         this.potionReserve = potionReserve;
     }
 
+    public int getDirection() {
+        return direction;
+    }
+
+    public void setDirection(int direction) {
+        this.direction = direction;
+    }
+
+    public void boirePotion(Grille grille) {
+        Joueur joueur = grille.getListeJoueur().get(0);
+        if (joueur.getPotionReserve() > 0) {
+            joueur.setPv(joueur.getPv() + 5);
+        }
+    }
     /*  public int getPosX (){ return posX;}
       public int getPosY (){ return posY;}
       public String getSymbol(){return Symbol;}

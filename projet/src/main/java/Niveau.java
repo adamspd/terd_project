@@ -43,11 +43,7 @@ public class Niveau
         return grille;
     }
 
-    public Grille actualiseSalle(Grille grille)
-    {
-
-        //System.out.println("a");
-
+    public Grille actualiseSalle(Grille grille) {
         return grille;
     }
 

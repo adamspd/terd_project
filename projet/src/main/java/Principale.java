@@ -5,21 +5,8 @@ public class Principale {
         Map map = new Map();
         Niveau niveau = new Niveau();
         Grille grille = niveau.genererateSalles();
-        int delaiActu = 1500;
+        int delaiActu = 3000;
 
-
-
-
-
-       /* Grille grille = new Grille();
-        grille.addSalle(new Salle(5,5),0,5);
-        grille.addSalle(new Salle(4,5),10,13);
-
-        if (grille.isInSalle(0,5)) {
-            System.out.println("le personnage est dans une salle");
-        } else {
-            System.out.println("le personnage n'est pas dans une salle");
-        }*/
 
 
         map.dessine(grille);
@@ -37,6 +24,7 @@ public class Principale {
                 while (joueur.isAlive())
                 {
                     niveau.actualiseSalle(grille);
+                    map.dessine(grille);
                     try
                     {
                         Thread.sleep(delaiActu);
@@ -61,23 +49,29 @@ public class Principale {
                         switch (touche) {
                             case "z":
                                 joueur.Se_deplacer_en_haut(grille);
+                                joueur.setDirection(3);
                                 break;
                             case "q":
                                 joueur.Se_deplacer_a_gauche(grille);
+                                joueur.setDirection(1);
                                 break;
                             case "s":
                                 joueur.Se_deplacer_en_bas(grille);
-
+                                joueur.setDirection(4);
                                 break;
                             case "d":
                                 joueur.Se_deplacer_a_droite(grille);
+                                joueur.setDirection(2);
+                                break;
+                            case "p":
+                                joueur.boirePotion(grille);
                                 break;
                             default: break;
                         }
                         map.dessine(grille);
                         Thread.currentThread().setPriority(Thread.NORM_PRIORITY);
                     } catch (Exception e) {
-                        System.out.println("error: " + e);
+
                     }
                 }
             }
@@ -85,10 +79,5 @@ public class Principale {
         threadScan.start();
         threadActu.start();
 
-
-
-
-        //  niveau.actualiseSalle(grille);
-       // map.dessine(grille);
     }
 }

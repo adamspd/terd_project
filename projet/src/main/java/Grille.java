@@ -29,6 +29,7 @@ public class Grille
             }
         }
     }
+
     public void addEntite(Entite entite)
     {
         grille[entite.getPosY()][entite.getPosX()] = entite.getSymbole();

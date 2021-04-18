@@ -32,7 +32,12 @@ public class Map {
             }
             System.out.println();
         }
-        //Niveau.checkIfJoueurPresent(grille);
+        Monstre.checkIfJoueurPresent(grille);
         Information.Affichage(grille);
+
+        if(grille.getListeJoueur().get(0).getPv() <= 0){
+            System.out.println("GAME OVER");
+            System.exit(0);
+        }
     }
 }

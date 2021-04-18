@@ -3,7 +3,7 @@ public abstract class Entite
     private String symbole;
     private int posX;
     private int posY;
-    private int degat;
+    private int degat = 3;
     private int pvEnnemi;
 
     public int getPvEnnemi() {
@@ -33,7 +33,8 @@ public abstract class Entite
 
 
     public void Se_deplacer_en_bas(Grille grille) {
-        if(grille.isInsSalleBas(posX,posY)||grille.isInsCouloirBas(posX,posY)||Potion.isPotionDown(posX,posY,grille)) {
+        if(grille.isInsSalleBas(posX,posY)||grille.isInsCouloirBas(posX,posY)||
+                Potion.isPotionDown(posX,posY,grille)) {
             if(isInCouloir) {
                 grille.addElement(posX,posY,grille.getTextCouloir());
             } else {
@@ -60,7 +61,8 @@ public abstract class Entite
             posX= portail_de_sortie.getPosX();
             posY= portail_de_sortie.getPosY()+1;
             if(grille.getSymbolAtCoord(posX,posY)==grille.getTextVide()){posY-=2;}
-            if(grille.getSymbolAtCoord(posX,posY)==Potion.getSymbole()){Potion.hasDrunkPotion(grille, posX, posY);}
+            if(grille.getSymbolAtCoord(posX,posY)==Potion.getSymbole())
+            {Potion.hasDrunkPotion(grille, posX, posY);}
             grille.addEntite(this);
         }
         else if (Coffres.isSafeDown(posX, posY, grille)){
@@ -70,7 +72,8 @@ public abstract class Entite
 
     public void Se_deplacer_en_haut(Grille grille)
     {
-        if(grille.isInsSalleHaut(posX,posY)||grille.isInsCouloirHaut(posX,posY)||Potion.isPotionUp(posX,posY,grille))
+        if(grille.isInsSalleHaut(posX,posY)||grille.isInsCouloirHaut(posX,posY)||
+                Potion.isPotionUp(posX,posY,grille))
         {
             if(isInCouloir)
             {
@@ -94,6 +97,7 @@ public abstract class Entite
             }
             posY -= 1;
             grille.addEntite(this);
+            Monstre.attaquerLeJoueur(grille);
         }
         else if(Portail.isPortailUp(posX,posY,grille)){
             grille.addPoint(posX,posY);
@@ -102,7 +106,8 @@ public abstract class Entite
             posX= portail_de_sortie.getPosX();
             posY= portail_de_sortie.getPosY()-1;
             if(grille.getSymbolAtCoord(posX,posY)==grille.getTextVide()){posY+=2;}
-            if(grille.getSymbolAtCoord(posX,posY)==Potion.getSymbole()){Potion.hasDrunkPotion(grille, posX, posY);}
+            if(grille.getSymbolAtCoord(posX,posY)==Potion.getSymbole())
+            {Potion.hasDrunkPotion(grille, posX, posY);}
             grille.addEntite(this);
         }
         else if (Coffres.isSafeUp(posX, posY, grille)){
@@ -112,7 +117,8 @@ public abstract class Entite
 
     public void Se_deplacer_a_droite(Grille grille)
     {
-        if(grille.isInsSalleDroite(posX,posY)||grille.isInsCouloirDroite(posX,posY)||Potion.isPotionRight(posX,posY,grille))
+        if(grille.isInsSalleDroite(posX,posY)||grille.isInsCouloirDroite(posX,posY)||
+                Potion.isPotionRight(posX,posY,grille))
         {
             if(isInCouloir)
             {
@@ -144,7 +150,8 @@ public abstract class Entite
             posX= portail_de_sortie.getPosX()+1;
             posY= portail_de_sortie.getPosY();
             if(grille.getSymbolAtCoord(posX,posY)==grille.getTextVide()){posX-=2;}
-            if(grille.getSymbolAtCoord(posX,posY)==Potion.getSymbole()){Potion.hasDrunkPotion(grille, posX, posY);}
+            if(grille.getSymbolAtCoord(posX,posY)==Potion.getSymbole())
+            {Potion.hasDrunkPotion(grille, posX, posY);}
             grille.addEntite(this);
         }
         else if (Coffres.isSafeRight(posX, posY, grille)){
@@ -154,7 +161,8 @@ public abstract class Entite
     }
     public void Se_deplacer_a_gauche(Grille grille)
     {
-        if(grille.isInsSalleGauche(posX,posY)||grille.isInsCouloirGauche(posX,posY)||Potion.isPotionLeft(posX,posY,grille))
+        if(grille.isInsSalleGauche(posX,posY)||grille.isInsCouloirGauche(posX,posY)||
+                Potion.isPotionLeft(posX,posY,grille))
         {
             if(isInCouloir)
             {
@@ -187,7 +195,8 @@ public abstract class Entite
             posX= portail_de_sortie.getPosX()-1;
             posY= portail_de_sortie.getPosY();
             if(grille.getSymbolAtCoord(posX,posY)==grille.getTextVide()){posX+=2;}
-            if(grille.getSymbolAtCoord(posX,posY)==Potion.getSymbole()){Potion.hasDrunkPotion(grille, posX, posY);}
+            if(grille.getSymbolAtCoord(posX,posY)==Potion.getSymbole())
+            {Potion.hasDrunkPotion(grille, posX, posY);}
             grille.addEntite(this);
         }
         else if (Coffres.isSafeLeft(posX, posY, grille)){
@@ -211,6 +220,5 @@ public abstract class Entite
     {
         this.degat = degat;
     }
-
 
 }

@@ -1,7 +1,8 @@
 import java.util.ArrayList;
 
 public class Information {
-    private static void isEnoughfar(Grille grille, ArrayList<Monstre> monstres, Joueur joueur){
+    private static void isEnoughfar(
+            Grille grille, ArrayList<Monstre> monstres, Joueur joueur, int distance){
 
         /*if (Niveau.checkIfJoueurPresent(grille)) {
             System.out.println("#### DANGER #### LE COMBAT EST ENGAGE ##########");
@@ -10,7 +11,7 @@ public class Information {
             boolean estEnCombat = !Utils.estAssezLoinDuJoueur(
                     monstre.getPosX(),
                     monstre.getPosY(),
-                    1,grille,joueur);
+                    distance,grille,joueur);
             if (estEnCombat) {
                 System.out.println("#### DANGER #### LE COMBAT EST ENGAGE ##########");
             }
@@ -48,7 +49,7 @@ public class Information {
         Joueur joueur = grille.getListeJoueur().get(0);
         int pv = joueur.getPv();
         int nbreMonstres = lesMonstres.size();
-        isEnoughfar(grille,lesMonstres,joueur);
+        isEnoughfar(grille,lesMonstres,joueur, 1);
         SeeObject(grille,lesPotions,joueur);
         SeePortal(grille,lesPortails,joueur);
         System.out.println();
