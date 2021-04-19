@@ -36,7 +36,7 @@ public class Information {
                 portail.getPosY(),
                 1, grille, joueur);
             if(SeeIt){
-                System.out.println("#### Oh un portail ! ####");
+                System.out.println("#### Un portail ! ####");
             }
         }
     }
