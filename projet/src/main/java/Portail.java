@@ -44,7 +44,7 @@ public class Portail extends EntiteAbstrait
         return false;
     }
 
-    public static Portail entrerPortail(int posX, int posY, Grille grille){
+    public static Portail enterPortal(int posX, int posY, Grille grille){
         ArrayList<Portail> listePortail = grille.getListePortail();
         int i=0;
         for (Portail p : listePortail) {
@@ -56,19 +56,19 @@ public class Portail extends EntiteAbstrait
     }
 
 
-    public static boolean isPortailDown(int posX, int posY, Grille grille) {
+    public static boolean isPortalDown(int posX, int posY, Grille grille) {
         return EntiteAbstrait.isEntityDown(posX, posY, symbole , grille);
     }
 
-    public static boolean isPortailUp(int posX, int posY, Grille grille) {
+    public static boolean isPortalUp(int posX, int posY, Grille grille) {
         return EntiteAbstrait.isEntityUp(posX, posY, symbole, grille);
     }
 
-    public static boolean isPortailLeft(int posX, int posY, Grille grille) {
+    public static boolean isPortalLeft(int posX, int posY, Grille grille) {
         return EntiteAbstrait.isEntityLeft(posX, posY, symbole, grille);
     }
 
-    public static boolean isPortailRight(int posX, int posY, Grille grille) {
+    public static boolean isPortalRight(int posX, int posY, Grille grille) {
         return EntiteAbstrait.isEntityRight(posX, posY, symbole, grille);
     }
 }
