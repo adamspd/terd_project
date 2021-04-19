@@ -51,7 +51,7 @@ public class Portail extends EntiteAbstrait
             if (p.getPosX()==posX && p.getPosY()==posY) {break;}
             i++;
         }
-        if(i%2==0){ return listePortail.get(i+1); }
+        if(i%2==0){ return listePortail.get(i+1); } //Association des portails entre eux.
         else { return listePortail.get(i-1); }
     }
 
