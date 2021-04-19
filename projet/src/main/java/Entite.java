@@ -23,7 +23,6 @@ public abstract class Entite
         ennemi.setPvEnnemi(pvActuels);
     }*/
 
-
     public void Se_deplacer_en_bas(Grille grille) {
         if(grille.isInsSalleBas(posX,posY)||grille.isInsCouloirBas(posX,posY)||
                 Potion.isPotionDown(posX,posY,grille)||Coffres.isSafeDown(posX,posY,grille)) {
@@ -35,9 +34,8 @@ public abstract class Entite
                 }  else if (Coffres.isSafeDown(posX, posY, grille)){
                     Coffres.hasOpenSafe(grille, posX, posY);
                     // posY ++;
-                } else {
-                    grille.addPoint(posX, posY);
                 }
+                if(grille.getSymbolAtCoord(posX,posY)!=Portail.getSymbole()){grille.addPoint(posX, posY);}
             }
             if(grille.isInsCouloirBas(posX,posY))
             {
@@ -49,16 +47,15 @@ public abstract class Entite
             posY +=1;
             grille.addEntite(this);
         }
-        else if(Portail.isPortailDown(posX,posY,grille)){
+        else if(Portail.isPortalDown(posX,posY,grille)){
             grille.addPoint(posX,posY);
             posY+=1;
-            Portail portail_de_sortie = Portail.entrerPortail(posX,posY,grille);
+            Portail portail_de_sortie = Portail.enterPortal(posX,posY,grille);
             posX= portail_de_sortie.getPosX();
-            posY= portail_de_sortie.getPosY()+1;
-            if(grille.getSymbolAtCoord(posX,posY)==grille.getTextVide()){posY-=2;}
-            if(grille.getSymbolAtCoord(posX,posY)==Potion.getSymbole())
-            {Potion.hasDrunkPotion(grille, posX, posY);}
-            grille.addEntite(this);
+            posY= portail_de_sortie.getPosY();
+            if(grille.getSymbolAtCoord(posX,posY+1)==grille.getTextVide()){Se_deplacer_en_haut(grille);}
+            else{Se_deplacer_en_bas(grille);}
+            return; //Pour éviter des bugs potentiels, notamment d'éclatement de carte.
         }
         else if (EntiteAbstrait.isEntityDown(posX, posY, "M ", grille)){
             Monstre monstre = Monstre.getMonstre(grille, posX, posY + 1);
@@ -84,9 +81,8 @@ public abstract class Entite
                 } else if (Coffres.isSafeUp(posX, posY, grille)){
                     Coffres.hasOpenSafe(grille, posX, posY);
                     //posY --;
-                } else {
-                    grille.addPoint(posX, posY);
                 }
+                if(grille.getSymbolAtCoord(posX,posY)!=Portail.getSymbole()){grille.addPoint(posX, posY);}
             }
             if(grille.isInsCouloirHaut(posX,posY))
             {
@@ -100,16 +96,15 @@ public abstract class Entite
             grille.addEntite(this);
             Monstre.attaquerLeJoueur(grille);
         }
-        else if(Portail.isPortailUp(posX,posY,grille)){
+        else if(Portail.isPortalUp(posX,posY,grille)){
             grille.addPoint(posX,posY);
             posY-=1;
-            Portail portail_de_sortie = Portail.entrerPortail(posX,posY,grille);
+            Portail portail_de_sortie = Portail.enterPortal(posX,posY,grille);
             posX= portail_de_sortie.getPosX();
-            posY= portail_de_sortie.getPosY()-1;
-            if(grille.getSymbolAtCoord(posX,posY)==grille.getTextVide()){posY+=2;}
-            if(grille.getSymbolAtCoord(posX,posY)==Potion.getSymbole())
-            {Potion.hasDrunkPotion(grille, posX, posY);}
-            grille.addEntite(this);
+            posY= portail_de_sortie.getPosY();
+            if(grille.getSymbolAtCoord(posX,posY-1)==grille.getTextVide()){Se_deplacer_en_bas(grille);}
+            else{Se_deplacer_en_haut(grille);}
+            return;
         }
         else if (EntiteAbstrait.isEntityDown(posX, posY, "M ", grille)){
             Monstre monstre = Monstre.getMonstre(grille, posX, posY - 1);
@@ -117,7 +112,6 @@ public abstract class Entite
             posY -= 1;
             grille.addEntite(this);
         }
-
     }
 
     public void Se_deplacer_a_droite(Grille grille)
@@ -136,9 +130,8 @@ public abstract class Entite
                 } else if (Coffres.isSafeRight(posX, posY, grille)){
                     Coffres.hasOpenSafe(grille, posX, posY);
                     //posX ++;
-                } else {
-                    grille.addPoint(posX, posY);
                 }
+                if(grille.getSymbolAtCoord(posX,posY)!=Portail.getSymbole()){grille.addPoint(posX, posY);}
             }
             if(grille.isInsCouloirDroite(posX,posY))
             {
@@ -151,16 +144,15 @@ public abstract class Entite
             posX += 1;
             grille.addEntite(this);
         }
-        else if(Portail.isPortailRight(posX,posY,grille)){
+        else if(Portail.isPortalRight(posX,posY,grille)){
             grille.addPoint(posX,posY);
             posX+=1;
-            Portail portail_de_sortie = Portail.entrerPortail(posX,posY,grille);
-            posX= portail_de_sortie.getPosX()+1;
+            Portail portail_de_sortie = Portail.enterPortal(posX,posY,grille);
+            posX= portail_de_sortie.getPosX();
             posY= portail_de_sortie.getPosY();
-            if(grille.getSymbolAtCoord(posX,posY)==grille.getTextVide()){posX-=2;}
-            if(grille.getSymbolAtCoord(posX,posY)==Potion.getSymbole())
-            {Potion.hasDrunkPotion(grille, posX, posY);}
-            grille.addEntite(this);
+            if(grille.getSymbolAtCoord(posX+1,posY)==grille.getTextVide()){Se_deplacer_a_gauche(grille);}
+            else{Se_deplacer_a_droite(grille);}
+            return;
         }
         else if (EntiteAbstrait.isEntityDown(posX, posY, "M ", grille)){
             Monstre monstre = Monstre.getMonstre(grille, posX, posX + 1);
@@ -168,8 +160,8 @@ public abstract class Entite
             posX += 1;
             grille.addEntite(this);
         }
-
     }
+
     public void Se_deplacer_a_gauche(Grille grille)
     {
         if(grille.isInsSalleGauche(posX,posY)||grille.isInsCouloirGauche(posX,posY)||
@@ -186,14 +178,12 @@ public abstract class Entite
                 } else if (Coffres.isSafeLeft(posX, posY, grille)){
                     Coffres.hasOpenSafe(grille, posX, posY);
                     //posX --;
-                } else {
-                    grille.addPoint(posX, posY);
                 }
+                if(grille.getSymbolAtCoord(posX,posY)!=Portail.getSymbole()){grille.addPoint(posX, posY);}
             }
             if(grille.isInsCouloirGauche(posX,posY))
             {
                 isInCouloir = true;
-
             }
             else
             {
@@ -202,16 +192,15 @@ public abstract class Entite
             posX -= 1;
             grille.addEntite(this);
         }
-        else if(Portail.isPortailLeft(posX,posY,grille)){
+        else if(Portail.isPortalLeft(posX,posY,grille)){
             grille.addPoint(posX,posY);
             posX-=1;
-            Portail portail_de_sortie = Portail.entrerPortail(posX,posY,grille);
-            posX= portail_de_sortie.getPosX()-1;
+            Portail portail_de_sortie = Portail.enterPortal(posX,posY,grille);
+            posX= portail_de_sortie.getPosX();
             posY= portail_de_sortie.getPosY();
-            if(grille.getSymbolAtCoord(posX,posY)==grille.getTextVide()){posX+=2;}
-            if(grille.getSymbolAtCoord(posX,posY)==Potion.getSymbole())
-            {Potion.hasDrunkPotion(grille, posX, posY);}
-            grille.addEntite(this);
+            if(grille.getSymbolAtCoord(posX-1,posY)==grille.getTextVide()){Se_deplacer_a_droite(grille);}
+            else{Se_deplacer_a_gauche(grille);}
+            return;
         }
         else if (EntiteAbstrait.isEntityDown(posX, posY, "M ", grille)){
             Monstre monstre = Monstre.getMonstre(grille, posX, posX - 1);
@@ -219,7 +208,6 @@ public abstract class Entite
             posX -= 1;
             grille.addEntite(this);
         }
-
     }
 
     public abstract void addSpecificEntiteList(Grille grille);
