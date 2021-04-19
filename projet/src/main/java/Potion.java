@@ -65,7 +65,6 @@ public class Potion extends EntiteAbstrait {
         } else {
             joueur.setPotionReserve(joueur.getPotionReserve() + 1);
         }
-        grille.addPoint(posX, posY);
         removePotionFromList(grille, posX, posY);
     }
 

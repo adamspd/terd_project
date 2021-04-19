@@ -74,7 +74,6 @@ public class Coffres extends EntiteAbstrait {
             } else {
                 joueur.setPotionReserve(joueur.getPotionReserve() + 1);
             }}
-        grille.addPoint(posX, posY);
         removeCoffresFromList(grille, posX, posY);
 
     }
