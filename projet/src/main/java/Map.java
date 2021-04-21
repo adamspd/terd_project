@@ -35,7 +35,7 @@ public class Map {
                     System.out.print(Couleur.VERT + strings[j] + Couleur.RESET);
                     continue;}
                 else if (strings[j]==symbole_salle){
-                    System.out.print(Couleur.CYAN + strings[j] + Couleur.RESET);
+                    System.out.print(Couleur.SARCELLE + strings[j] + Couleur.RESET);
                     continue;}
                 else if (strings[j]==symbole_couloir){
                     System.out.print(Couleur.BLEU + strings[j] + Couleur.RESET);
