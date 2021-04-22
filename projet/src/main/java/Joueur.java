@@ -3,11 +3,10 @@
 
  */
 public class Joueur extends Entite {
-    public int potionReserve;
     private String Symbol = "@ ";
-    private int posX;
-    private int posY;
     private int pv = 100;
+    private static int degat = 15;
+    public int potionReserve;
     private int direction;
     // pour que le monstre sait ou va le joueur et le suive et l'attaque
     // si vous avez une idée plus sympa, n'hésite pas à changer
@@ -64,7 +63,7 @@ public class Joueur extends Entite {
         System.out.println("PV Monstre: " + monstre.getPvMonstre());
         int pvMonstre = monstre.getPvMonstre();
         if (pvMonstre > 0) {
-            monstre.setPvMonstre(monstre.getPvMonstre() - 10);
+            monstre.setPvMonstre(monstre.getPvMonstre() - degat);
             System.out.println("Le joueur attaque le monstre !");
         } else {
             grille.addPoint(posX, posY);
