@@ -1,6 +1,16 @@
 import java.util.ArrayList;
 
 public class Information {
+    public static int NOMBRE_MONSTRES_CONNU;
+
+    public void isMonsterDead(Grille grille){
+        int nouveau_nombre_monstres = grille.getListeMonstre().size();
+        if (nouveau_nombre_monstres < NOMBRE_MONSTRES_CONNU){
+            System.out.println("#### COUP FATALE !"+"\n"+"UN MONSTRE EST MORT ####"+"\n");
+            NOMBRE_MONSTRES_CONNU= nouveau_nombre_monstres;
+        }
+    }
+
     private static void isEnoughfar(
             Grille grille, ArrayList<Monstre> monstres, Joueur joueur, int distance){
 

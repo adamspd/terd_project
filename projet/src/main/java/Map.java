@@ -3,6 +3,7 @@ public class Map {
     private int y;
     private char symbole;
     private Grille grille;
+    Information info = new Information(); // Contient la variable NOMBRE_MONSTRES_CONNU qui a besoin d'être actualisé.
 
 
     public Map()
@@ -47,6 +48,8 @@ public class Map {
             }
             System.out.println();
         }
+
+        info.isMonsterDead(grille);
         Monstre.checkIfJoueurPresent(grille);
         Information.Affichage(grille);
 
