@@ -52,7 +52,7 @@ public abstract class Entite
             return; //Pour éviter des bugs potentiels, notamment d'éclatement de carte.
         }
         else if (EntiteAbstrait.isEntityDown(posX, posY, "M ", grille)){
-            Monstre monstre = Monstre.getMonstre(grille, posX, posY + 1);
+            Monstre monstre = Monstre.getMonstre(grille, posX, posY+1);
             if(isEnteredInPortal){ // A la sortie du portail, le monstre est transpersé.
                 grille.getListeMonstre().remove(monstre);
                 grille.getListeEntite().remove(monstre);
@@ -108,7 +108,7 @@ public abstract class Entite
             return;
         }
         else if (EntiteAbstrait.isEntityUp(posX, posY, "M ", grille)){
-            Monstre monstre = Monstre.getMonstre(grille, posX, posY - 1);
+            Monstre monstre = Monstre.getMonstre(grille, posX, posY-1);
             if(isEnteredInPortal){ // A la sortie du portail, le monstre est transpersé.
                 grille.getListeMonstre().remove(monstre);
                 grille.getListeEntite().remove(monstre);
@@ -163,7 +163,7 @@ public abstract class Entite
             return;
         }
         else if (EntiteAbstrait.isEntityRight(posX, posY, "M ", grille)){
-            Monstre monstre = Monstre.getMonstre(grille, posX, posX + 1);
+            Monstre monstre = Monstre.getMonstre(grille, posX+1, posY);
             if(isEnteredInPortal){ // A la sortie du portail, le monstre est transpersé.
                 grille.getListeMonstre().remove(monstre);
                 grille.getListeEntite().remove(monstre);
@@ -218,7 +218,7 @@ public abstract class Entite
             return;
         }
         else if (EntiteAbstrait.isEntityLeft(posX, posY, "M ", grille)){
-            Monstre monstre = Monstre.getMonstre(grille, posX, posX - 1);
+            Monstre monstre = Monstre.getMonstre(grille, posX-1, posY);
             if(isEnteredInPortal){ // A la sortie du portail, le monstre est transpersé.
                 grille.getListeMonstre().remove(monstre);
                 grille.getListeEntite().remove(monstre);
