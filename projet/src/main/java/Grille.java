@@ -137,6 +137,8 @@ public class Grille
         return listeJoueur;
     }
 
+    public ArrayList<Entite> getListeEntite() {return listeEntite; }
+
     public void addMonstreList(Monstre monstre)
     {
         listeMonstre.add(monstre);
