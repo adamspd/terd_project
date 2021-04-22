@@ -3,11 +3,9 @@ public abstract class Entite
     private String symbole;
     private int posX;
     private int posY;
-    private int degat = 3;
-
-
 
     private boolean isInCouloir = false;
+    private boolean isEnteredInPortal = false;
 
     public Entite(String symbole,int posX,int posY)
     {
@@ -16,12 +14,6 @@ public abstract class Entite
         this.posY = posY;
     }
 
-
-    /*public void Attaquer(Entite ennemi) {
-        int pvActuels = ennemi.getPvEnnemi()-degat;
-        if (pvActuels < 0) { pvActuels = 0; }
-        ennemi.setPvEnnemi(pvActuels);
-    }*/
 
     public void Se_deplacer_en_bas(Grille grille) {
         if(grille.isInsSalleBas(posX,posY)||grille.isInsCouloirBas(posX,posY)||
@@ -39,10 +31,10 @@ public abstract class Entite
             }
             if(grille.isInsCouloirBas(posX,posY))
             {
-                isInCouloir = true;
+                isInCouloir= true;
             }
             else {
-                isInCouloir=false;
+                isInCouloir= false;
             }
             posY +=1;
             grille.addEntite(this);
@@ -53,13 +45,20 @@ public abstract class Entite
             Portail portail_de_sortie = Portail.enterPortal(posX,posY,grille);
             posX= portail_de_sortie.getPosX();
             posY= portail_de_sortie.getPosY();
+            isEnteredInPortal= true;
             if(grille.getSymbolAtCoord(posX,posY+1)==grille.getTextVide()){Se_deplacer_en_haut(grille);}
             else{Se_deplacer_en_bas(grille);}
+            isEnteredInPortal= false;
             return; //Pour éviter des bugs potentiels, notamment d'éclatement de carte.
         }
         else if (EntiteAbstrait.isEntityDown(posX, posY, "M ", grille)){
             Monstre monstre = Monstre.getMonstre(grille, posX, posY + 1);
-            Joueur.attaquerMonstre(grille, monstre, posX, posY);
+            if(isEnteredInPortal){ // A la sortie du portail, le monstre est transpersé.
+                grille.getListeMonstre().remove(monstre);
+                grille.getListeEntite().remove(monstre);
+                grille.addPoint(posX,posY+1);
+            }
+            else {Joueur.attaquerMonstre(grille, monstre, posX, posY);}
             posY += 1;
             grille.addEntite(this);
         }
@@ -102,13 +101,20 @@ public abstract class Entite
             Portail portail_de_sortie = Portail.enterPortal(posX,posY,grille);
             posX= portail_de_sortie.getPosX();
             posY= portail_de_sortie.getPosY();
+            isEnteredInPortal= true;
             if(grille.getSymbolAtCoord(posX,posY-1)==grille.getTextVide()){Se_deplacer_en_bas(grille);}
             else{Se_deplacer_en_haut(grille);}
+            isEnteredInPortal= false;
             return;
         }
-        else if (EntiteAbstrait.isEntityDown(posX, posY, "M ", grille)){
+        else if (EntiteAbstrait.isEntityUp(posX, posY, "M ", grille)){
             Monstre monstre = Monstre.getMonstre(grille, posX, posY - 1);
-            Joueur.attaquerMonstre(grille, monstre, posX, posY);
+            if(isEnteredInPortal){ // A la sortie du portail, le monstre est transpersé.
+                grille.getListeMonstre().remove(monstre);
+                grille.getListeEntite().remove(monstre);
+                grille.addPoint(posX,posY-1);
+            }
+            else {Joueur.attaquerMonstre(grille, monstre, posX, posY);}
             posY -= 1;
             grille.addEntite(this);
         }
@@ -150,13 +156,20 @@ public abstract class Entite
             Portail portail_de_sortie = Portail.enterPortal(posX,posY,grille);
             posX= portail_de_sortie.getPosX();
             posY= portail_de_sortie.getPosY();
+            isEnteredInPortal= true;
             if(grille.getSymbolAtCoord(posX+1,posY)==grille.getTextVide()){Se_deplacer_a_gauche(grille);}
             else{Se_deplacer_a_droite(grille);}
+            isEnteredInPortal= false;
             return;
         }
-        else if (EntiteAbstrait.isEntityDown(posX, posY, "M ", grille)){
+        else if (EntiteAbstrait.isEntityRight(posX, posY, "M ", grille)){
             Monstre monstre = Monstre.getMonstre(grille, posX, posX + 1);
-            Joueur.attaquerMonstre(grille, monstre, posX, posY);
+            if(isEnteredInPortal){ // A la sortie du portail, le monstre est transpersé.
+                grille.getListeMonstre().remove(monstre);
+                grille.getListeEntite().remove(monstre);
+                grille.addPoint(posX+1,posY);
+            }
+            else {Joueur.attaquerMonstre(grille, monstre, posX, posY);}
             posX += 1;
             grille.addEntite(this);
         }
@@ -198,13 +211,20 @@ public abstract class Entite
             Portail portail_de_sortie = Portail.enterPortal(posX,posY,grille);
             posX= portail_de_sortie.getPosX();
             posY= portail_de_sortie.getPosY();
+            isEnteredInPortal= true;
             if(grille.getSymbolAtCoord(posX-1,posY)==grille.getTextVide()){Se_deplacer_a_droite(grille);}
             else{Se_deplacer_a_gauche(grille);}
+            isEnteredInPortal= false;
             return;
         }
-        else if (EntiteAbstrait.isEntityDown(posX, posY, "M ", grille)){
+        else if (EntiteAbstrait.isEntityLeft(posX, posY, "M ", grille)){
             Monstre monstre = Monstre.getMonstre(grille, posX, posX - 1);
-            Joueur.attaquerMonstre(grille, monstre, posX, posY);
+            if(isEnteredInPortal){ // A la sortie du portail, le monstre est transpersé.
+                grille.getListeMonstre().remove(monstre);
+                grille.getListeEntite().remove(monstre);
+                grille.addPoint(posX-1,posY);
+            }
+            else {Joueur.attaquerMonstre(grille, monstre, posX, posY);}
             posX -= 1;
             grille.addEntite(this);
         }
@@ -221,9 +241,5 @@ public abstract class Entite
     public void setPosX(int posX) { this.posX = posX;}
 
     public void setPosY(int posX) { this.posX = posX;}
-    public void setDegat(int degat)
-    {
-        this.degat = degat;
-    }
 
 }
