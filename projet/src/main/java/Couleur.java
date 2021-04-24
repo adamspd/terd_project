@@ -22,5 +22,6 @@ public abstract class Couleur {
     public static final String ORANGE = "\033[38;2;255;165;0m";
     public static final String ROUGE = "\033[38;2;255;0;0m";
     public static final String MARRON = "\033[38;2;175;103;37m";
+    public static final String BLANC = "\033[38;2;255;255;255m";
 
 }
