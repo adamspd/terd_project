@@ -5,7 +5,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Monstre extends Entite
 {
-    public static final String SYMBOLE = "M ";
+    public static final String symbole = "M ";
     private int posX,posY;
     private int pvMonstre = 50;
 

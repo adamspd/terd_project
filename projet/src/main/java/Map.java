@@ -16,7 +16,7 @@ public class Map {
         String[][] tableauGrille = grille.getGrille();
         String symbole_portail = Portail.getSymbole();
         String Symbole_coffres = Coffres.symbole;
-        String symbole_Monstres = Monstre.SYMBOLE;
+        String symbole_Monstres = Monstre.symbole;
         String symbole_Potion = Potion.symbole;
         String symbole_salle = grille.getTextSalle();
         String symbole_couloir = grille.getTextCouloir();
@@ -41,8 +41,8 @@ public class Map {
                 else if (strings[j]==symbole_couloir){
                     System.out.print(Couleur.BLEU + strings[j] + Couleur.RESET);
                     continue;}
-                else if (strings[j]==grille.getListeMonstre().get(0).getSymbole()){
-                    System.out.print(Couleur.VIOLET + strings[j] + Couleur.RESET);
+                else if (strings[j]==Evenement.stairs_symbole) {
+                    System.out.print(Couleur.BLANC + strings[j] + Couleur.RESET);
                     continue;}
                 System.out.print(strings[j]);
             }
