@@ -3,18 +3,9 @@ public abstract class Entite
     private String symbole;
     private int posX;
     private int posY;
-    private int degat = 3;
-    private int pvEnnemi;
-
-    public int getPvEnnemi() {
-        return pvEnnemi;
-    }
-
-    public void setPvEnnemi(int pvEnnemi) {
-        this.pvEnnemi = pvEnnemi;
-    }
 
     private boolean isInCouloir = false;
+    private boolean isEnteredInPortal = false;
 
     public Entite(String symbole,int posX,int posY)
     {
@@ -22,14 +13,6 @@ public abstract class Entite
         this.posX = posX;
         this.posY = posY;
     }
-
-
-    public void Attaquer(Entite ennemi) {
-        int pvActuels = ennemi.getPvEnnemi()-degat;
-        if (pvActuels < 0) { pvActuels = 0; }
-        ennemi.setPvEnnemi(pvActuels);
-    }
-
 
 
     public void Se_deplacer_en_bas(Grille grille) {
@@ -43,32 +26,42 @@ public abstract class Entite
                 }  else if (Coffres.isSafeDown(posX, posY, grille)){
                     Coffres.hasOpenSafe(grille, posX, posY);
                     // posY ++;
-                } else {
-                    grille.addPoint(posX, posY);
                 }
+                if(grille.getSymbolAtCoord(posX,posY)!=Portail.getSymbole()){grille.addPoint(posX, posY);}
             }
             if(grille.isInsCouloirBas(posX,posY))
             {
-                isInCouloir = true;
+                isInCouloir= true;
             }
             else {
-                isInCouloir=false;
+                isInCouloir= false;
             }
             posY +=1;
             grille.addEntite(this);
         }
-        else if(Portail.isPortailDown(posX,posY,grille)){
+        else if(Portail.isPortalDown(posX,posY,grille)){
             grille.addPoint(posX,posY);
             posY+=1;
-            Portail portail_de_sortie = Portail.entrerPortail(posX,posY,grille);
+            Portail portail_de_sortie = Portail.enterPortal(posX,posY,grille);
             posX= portail_de_sortie.getPosX();
-            posY= portail_de_sortie.getPosY()+1;
-            if(grille.getSymbolAtCoord(posX,posY)==grille.getTextVide()){posY-=2;}
-            if(grille.getSymbolAtCoord(posX,posY)==Potion.getSymbole())
-            {Potion.hasDrunkPotion(grille, posX, posY);}
+            posY= portail_de_sortie.getPosY();
+            isEnteredInPortal= true;
+            if(grille.getSymbolAtCoord(posX,posY+1)==grille.getTextVide()){Se_deplacer_en_haut(grille);}
+            else{Se_deplacer_en_bas(grille);}
+            isEnteredInPortal= false;
+            return; //Pour éviter des bugs potentiels, notamment d'éclatement de carte.
+        }
+        else if (EntiteAbstrait.isEntityDown(posX, posY, "M ", grille)){
+            Monstre monstre = Monstre.getMonstre(grille, posX, posY+1);
+            if(isEnteredInPortal){ // A la sortie du portail, on tue le monstre.
+                grille.addPoint(monstre.getPosX(), monstre.getPosY());
+                grille.getListeMonstre().remove(monstre);
+                grille.getListeEntite().remove(monstre);
+            }
+            else {Joueur.attaquerMonstre(grille, monstre, posX, posY);}
+            posY += 1;
             grille.addEntite(this);
         }
-
     }
 
     public void Se_deplacer_en_haut(Grille grille)
@@ -87,9 +80,8 @@ public abstract class Entite
                 } else if (Coffres.isSafeUp(posX, posY, grille)){
                     Coffres.hasOpenSafe(grille, posX, posY);
                     //posY --;
-                } else {
-                    grille.addPoint(posX, posY);
                 }
+                if(grille.getSymbolAtCoord(posX,posY)!=Portail.getSymbole()){grille.addPoint(posX, posY);}
             }
             if(grille.isInsCouloirHaut(posX,posY))
             {
@@ -103,18 +95,29 @@ public abstract class Entite
             grille.addEntite(this);
             Monstre.attaquerLeJoueur(grille);
         }
-        else if(Portail.isPortailUp(posX,posY,grille)){
+        else if(Portail.isPortalUp(posX,posY,grille)){
             grille.addPoint(posX,posY);
             posY-=1;
-            Portail portail_de_sortie = Portail.entrerPortail(posX,posY,grille);
+            Portail portail_de_sortie = Portail.enterPortal(posX,posY,grille);
             posX= portail_de_sortie.getPosX();
-            posY= portail_de_sortie.getPosY()-1;
-            if(grille.getSymbolAtCoord(posX,posY)==grille.getTextVide()){posY+=2;}
-            if(grille.getSymbolAtCoord(posX,posY)==Potion.getSymbole())
-            {Potion.hasDrunkPotion(grille, posX, posY);}
+            posY= portail_de_sortie.getPosY();
+            isEnteredInPortal= true;
+            if(grille.getSymbolAtCoord(posX,posY-1)==grille.getTextVide()){Se_deplacer_en_bas(grille);}
+            else{Se_deplacer_en_haut(grille);}
+            isEnteredInPortal= false;
+            return;
+        }
+        else if (EntiteAbstrait.isEntityUp(posX, posY, "M ", grille)){
+            Monstre monstre = Monstre.getMonstre(grille, posX, posY-1);
+            if(isEnteredInPortal){ // A la sortie du portail, on tue le monstre.
+                grille.addPoint(monstre.getPosX(), monstre.getPosY());
+                grille.getListeMonstre().remove(monstre);
+                grille.getListeEntite().remove(monstre);
+            }
+            else {Joueur.attaquerMonstre(grille, monstre, posX, posY);}
+            posY -= 1;
             grille.addEntite(this);
         }
-
     }
 
     public void Se_deplacer_a_droite(Grille grille)
@@ -133,9 +136,8 @@ public abstract class Entite
                 } else if (Coffres.isSafeRight(posX, posY, grille)){
                     Coffres.hasOpenSafe(grille, posX, posY);
                     //posX ++;
-                } else {
-                    grille.addPoint(posX, posY);
                 }
+                if(grille.getSymbolAtCoord(posX,posY)!=Portail.getSymbole()){grille.addPoint(posX, posY);}
             }
             if(grille.isInsCouloirDroite(posX,posY))
             {
@@ -148,19 +150,31 @@ public abstract class Entite
             posX += 1;
             grille.addEntite(this);
         }
-        else if(Portail.isPortailRight(posX,posY,grille)){
+        else if(Portail.isPortalRight(posX,posY,grille)){
             grille.addPoint(posX,posY);
             posX+=1;
-            Portail portail_de_sortie = Portail.entrerPortail(posX,posY,grille);
-            posX= portail_de_sortie.getPosX()+1;
+            Portail portail_de_sortie = Portail.enterPortal(posX,posY,grille);
+            posX= portail_de_sortie.getPosX();
             posY= portail_de_sortie.getPosY();
-            if(grille.getSymbolAtCoord(posX,posY)==grille.getTextVide()){posX-=2;}
-            if(grille.getSymbolAtCoord(posX,posY)==Potion.getSymbole())
-            {Potion.hasDrunkPotion(grille, posX, posY);}
+            isEnteredInPortal= true;
+            if(grille.getSymbolAtCoord(posX+1,posY)==grille.getTextVide()){Se_deplacer_a_gauche(grille);}
+            else{Se_deplacer_a_droite(grille);}
+            isEnteredInPortal= false;
+            return;
+        }
+        else if (EntiteAbstrait.isEntityRight(posX, posY, "M ", grille)){
+            Monstre monstre = Monstre.getMonstre(grille, posX+1, posY);
+            if(isEnteredInPortal){ // A la sortie du portail, on tue le monstre.
+                grille.addPoint(monstre.getPosX(), monstre.getPosY());
+                grille.getListeMonstre().remove(monstre);
+                grille.getListeEntite().remove(monstre);
+            }
+            else {Joueur.attaquerMonstre(grille, monstre, posX, posY);}
+            posX += 1;
             grille.addEntite(this);
         }
-
     }
+
     public void Se_deplacer_a_gauche(Grille grille)
     {
         if(grille.isInsSalleGauche(posX,posY)||grille.isInsCouloirGauche(posX,posY)||
@@ -177,14 +191,12 @@ public abstract class Entite
                 } else if (Coffres.isSafeLeft(posX, posY, grille)){
                     Coffres.hasOpenSafe(grille, posX, posY);
                     //posX --;
-                } else {
-                    grille.addPoint(posX, posY);
                 }
+                if(grille.getSymbolAtCoord(posX,posY)!=Portail.getSymbole()){grille.addPoint(posX, posY);}
             }
             if(grille.isInsCouloirGauche(posX,posY))
             {
                 isInCouloir = true;
-
             }
             else
             {
@@ -193,18 +205,29 @@ public abstract class Entite
             posX -= 1;
             grille.addEntite(this);
         }
-        else if(Portail.isPortailLeft(posX,posY,grille)){
+        else if(Portail.isPortalLeft(posX,posY,grille)){
             grille.addPoint(posX,posY);
             posX-=1;
-            Portail portail_de_sortie = Portail.entrerPortail(posX,posY,grille);
-            posX= portail_de_sortie.getPosX()-1;
+            Portail portail_de_sortie = Portail.enterPortal(posX,posY,grille);
+            posX= portail_de_sortie.getPosX();
             posY= portail_de_sortie.getPosY();
-            if(grille.getSymbolAtCoord(posX,posY)==grille.getTextVide()){posX+=2;}
-            if(grille.getSymbolAtCoord(posX,posY)==Potion.getSymbole())
-            {Potion.hasDrunkPotion(grille, posX, posY);}
+            isEnteredInPortal= true;
+            if(grille.getSymbolAtCoord(posX-1,posY)==grille.getTextVide()){Se_deplacer_a_droite(grille);}
+            else{Se_deplacer_a_gauche(grille);}
+            isEnteredInPortal= false;
+            return;
+        }
+        else if (EntiteAbstrait.isEntityLeft(posX, posY, "M ", grille)){
+            Monstre monstre = Monstre.getMonstre(grille, posX-1, posY);
+            if(isEnteredInPortal){ // A la sortie du portail, on tue le monstre.
+                grille.addPoint(monstre.getPosX(), monstre.getPosY());
+                grille.getListeMonstre().remove(monstre);
+                grille.getListeEntite().remove(monstre);
+            }
+            else {Joueur.attaquerMonstre(grille, monstre, posX, posY);}
+            posX -= 1;
             grille.addEntite(this);
         }
-
     }
 
     public abstract void addSpecificEntiteList(Grille grille);
@@ -218,9 +241,5 @@ public abstract class Entite
     public void setPosX(int posX) { this.posX = posX;}
 
     public void setPosY(int posX) { this.posX = posX;}
-    public void setDegat(int degat)
-    {
-        this.degat = degat;
-    }
 
 }
