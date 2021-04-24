@@ -1,9 +1,11 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Principale {
     public static void main(String[] args) {
         Map map = new Map();
         Niveau niveau = new Niveau();
+        Evenement evenement = new Evenement();
         Grille grille = niveau.genererateSalles();
         int delaiActu = 3000;
 
@@ -23,6 +25,7 @@ public class Principale {
             {
                 while (joueur.isAlive())
                 {
+                    evenement.ifMonstersAreAllDead_ThenUpperLevelEntryOpen(grille);
                     niveau.actualiseSalle(grille);
                     map.dessine(grille);
                     try
@@ -67,7 +70,7 @@ public class Principale {
                         map.dessine(grille);
                         Thread.currentThread().setPriority(Thread.NORM_PRIORITY);
                     } catch (Exception e) {
-
+                        System.out.println("Exception: " + e);
                     }
                 }
             }
