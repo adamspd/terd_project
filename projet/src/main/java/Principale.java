@@ -70,7 +70,7 @@ public class Principale {
                         map.dessine(grille);
                         Thread.currentThread().setPriority(Thread.NORM_PRIORITY);
                     } catch (Exception e) {
-                        System.out.println("Exception: " + e);
+                        run();
                     }
                 }
             }
