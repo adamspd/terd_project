@@ -24,7 +24,7 @@ public class Monstre extends Entite
     }
 
     private boolean monstreIsAlive(){
-        return pvMonstre != 0;
+        return pvMonstre > 0;
     }
 
     public boolean checkJoueurPresent(Grille grille)
