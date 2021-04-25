@@ -20,7 +20,17 @@ public class Grille
 
     public Grille()
     {
-        
+        for (int i = 0 ; i < LONGUEURGRILLE;i++)
+        {
+            for (int j = 0; j< LARGEURGRILLE ;j++)
+            {
+                grille[j][i] = textVide;
+            }
+        }
+    }
+
+    public void clearGrille() //On ne peut appeler le constructeur qu'une seule fois
+    {
         for (int i = 0 ; i < LONGUEURGRILLE;i++)
         {
             for (int j = 0; j< LARGEURGRILLE ;j++)
@@ -138,6 +148,8 @@ public class Grille
     }
 
     public ArrayList<Entite> getListeEntite() {return listeEntite; }
+
+    public ArrayList<EntiteAbstrait> getListeEntiteAbstrait() {return entiteAbstraitArrayList;}
 
     public void addMonstreList(Monstre monstre)
     {
