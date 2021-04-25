@@ -3,13 +3,15 @@ import java.util.ArrayList;
 public class Evenement {
 
     public static String stairs_symbole= "= ";
+    public static int posX_stairs, posY_stairs; //Haut de l'escalier
     public static boolean isCalled_ifMonstersAreAllDead_ThenUpperLevelEntryOpen= false;
 
 
     private static boolean freeSpace(Grille grille,Salle salle_aleatoire, int posX) {
-        if(grille.getSymbolAtCoord(posX, salle_aleatoire.getPosY())==Coffres.getSymbole()){return false;}
+        if(grille.getSymbolAtCoord(posX, salle_aleatoire.getPosY())==Coffres.getSymbole() ||
+                grille.getSymbolAtCoord(posX, salle_aleatoire.getPosY())==Portail.getSymbole()){return false;}
         for (int j = -4; j < 0; j++) {
-            for (int i = -1; i < 2; i++) { //Un espace à gauche, et à droite
+            for (int i = -1; i < 2; i++) { //Un espace à gauche et à droite
                 try {
                     if (grille.getSymbolAtCoord(posX + i, salle_aleatoire.getPosY() + j) != grille.getTextVide()) { return false; }
                 }
@@ -51,7 +53,10 @@ public class Evenement {
         }
         while (!freeSpace);
         for (int j=-3; j<0; j++) { grille.addElement(posX, salle_aleatoire.getPosY()+j, stairs_symbole); }
+        posX_stairs= posX;
+        posY_stairs= salle_aleatoire.getPosY()-3;
     }
+
 
     public void ifMonstersAreAllDead_ThenUpperLevelEntryOpen(Grille grille){
         if(!isCalled_ifMonstersAreAllDead_ThenUpperLevelEntryOpen && grille.getListeMonstre().isEmpty()){
@@ -59,4 +64,24 @@ public class Evenement {
             isCalled_ifMonstersAreAllDead_ThenUpperLevelEntryOpen= true;
         }
     }
+
+    public void ifPlayerHasGoneThroughTheUpperLevelEntry_ThenGenerateNewMap(Grille grille, Niveau niveau, Joueur joueur){
+        /*if(grille.getSymbolAtCoord(posX_stairs,posY_stairs)==joueur.getSymbole()){
+            //listeMonstre déjà vide
+            grille.getListeSalle().clear(); //sinon  remove();
+            grille.getListeEntite().clear();
+            grille.getListeEntiteAbstrait().clear();
+            grille.getListeJoueur().clear();
+            grille.getListePotion().clear();
+            grille.getListeCoffres().clear();
+            grille.getListePortail().clear();
+            grille.clearGrille();
+            isCalled_ifMonstersAreAllDead_ThenUpperLevelEntryOpen= false;
+
+
+            grille = niveau.genererateSalles();  // MARCHE PAS
+        }
+        */
+    }
+
 }
