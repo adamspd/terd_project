@@ -26,6 +26,7 @@ public class Principale {
                 while (joueur.isAlive())
                 {
                     evenement.ifMonstersAreAllDead_ThenUpperLevelEntryOpen(grille);
+                    evenement.ifPlayerHasGoneThroughTheUpperLevelEntry_ThenGenerateNewMap(grille,niveau,joueur);
                     niveau.actualiseSalle(grille);
                     map.dessine(grille);
                     try
@@ -49,19 +50,11 @@ public class Principale {
                         String touche = scan.nextLine();
                         Thread.currentThread().setPriority(Thread.MAX_PRIORITY);
 
+                        if (touche.matches("z.*")){ joueur.Se_deplacer_en_haut(grille); }
+                        else if (touche.matches("q.*")){joueur.Se_deplacer_a_gauche(grille);}
+                        else if (touche.matches("s.*")){joueur.Se_deplacer_en_bas(grille);}
+                        else if (touche.matches("d.*")){joueur.Se_deplacer_a_droite(grille);}
                         switch (touche) {
-                            case "z":
-                                joueur.Se_deplacer_en_haut(grille);
-                                break;
-                            case "q":
-                                joueur.Se_deplacer_a_gauche(grille);
-                                break;
-                            case "s":
-                                joueur.Se_deplacer_en_bas(grille);
-                                break;
-                            case "d":
-                                joueur.Se_deplacer_a_droite(grille);
-                                break;
                             case "p":
                                 joueur.boirePotion(grille);
                                 break;
