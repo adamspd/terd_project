@@ -59,10 +59,10 @@ public abstract class Entite
                 grille.getListeMonstre().remove(monstre);
                 grille.getListeEntite().remove(monstre);
                 grille.addPoint(posX,posY+1);
+                posY += 1;
+                grille.addEntite(this);
             }
             else {Joueur.attaquerMonstre(grille, monstre, posX, posY);}
-            posY += 1;
-            grille.addEntite(this);
         }
         else if (grille.getSymbolAtCoord(posX,posY+1)==Evenement.stairs_symbole)
         {
@@ -121,10 +121,10 @@ public abstract class Entite
                 grille.getListeMonstre().remove(monstre);
                 grille.getListeEntite().remove(monstre);
                 grille.addPoint(posX,posY-1);
+                posY -= 1;
+                grille.addEntite(this);
             }
             else {Joueur.attaquerMonstre(grille, monstre, posX, posY);}
-            posY -= 1;
-            grille.addEntite(this);
         }
         else if (grille.getSymbolAtCoord(posX,posY-1)==Evenement.stairs_symbole)
         {
@@ -185,10 +185,10 @@ public abstract class Entite
                 grille.getListeMonstre().remove(monstre);
                 grille.getListeEntite().remove(monstre);
                 grille.addPoint(posX+1,posY);
+                posX += 1;
+                grille.addEntite(this);
             }
             else {Joueur.attaquerMonstre(grille, monstre, posX, posY);}
-            posX += 1;
-            grille.addEntite(this);
         }
     }
 
@@ -240,10 +240,10 @@ public abstract class Entite
                 grille.getListeMonstre().remove(monstre);
                 grille.getListeEntite().remove(monstre);
                 grille.addPoint(posX-1,posY);
+                posX -= 1;
+                grille.addEntite(this);
             }
             else {Joueur.attaquerMonstre(grille, monstre, posX, posY);}
-            posX -= 1;
-            grille.addEntite(this);
         }
     }
 
