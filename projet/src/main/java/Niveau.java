@@ -44,9 +44,7 @@ public class Niveau
         return grille;
     }
 
-    public Grille actualiseSalle(Grille grille) {
-        return grille;
-    }
+    //public Grille actualiseSalle(Grille grille) { return grille; }
 
     private void initialiseSalle(Grille grille)
     {

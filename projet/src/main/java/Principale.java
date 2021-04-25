@@ -27,7 +27,6 @@ public class Principale {
                 {
                     evenement.ifMonstersAreAllDead_ThenUpperLevelEntryOpen(grille);
                     evenement.ifPlayerHasGoneThroughTheUpperLevelEntry_ThenGenerateNewMap(grille,niveau,joueur);
-                    niveau.actualiseSalle(grille);
                     map.dessine(grille);
                     try
                     {
