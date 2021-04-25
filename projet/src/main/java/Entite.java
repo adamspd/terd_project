@@ -27,7 +27,9 @@ public abstract class Entite
                     Coffres.hasOpenSafe(grille, posX, posY);
                     // posY ++;
                 }
-                if(grille.getSymbolAtCoord(posX,posY)!=Portail.getSymbole()){grille.addPoint(posX, posY);}
+                //S'il y a un escalier en haut, alors il y a un escalier, et donc on vérifie posY
+                if(EntiteAbstrait.isEntityUp(posX,posY,Evenement.stairs_symbole, grille) && posY==Evenement.posY_stairs+2) { grille.addElement(posX,posY,Evenement.stairs_symbole);}
+                else if(grille.getSymbolAtCoord(posX,posY)!=Portail.getSymbole()) { grille.addPoint(posX, posY); }
             }
             if(grille.isInsCouloirBas(posX,posY))
             {
@@ -59,6 +61,12 @@ public abstract class Entite
                 grille.addPoint(posX,posY+1);
             }
             else {Joueur.attaquerMonstre(grille, monstre, posX, posY);}
+            posY += 1;
+            grille.addEntite(this);
+        }
+        else if (grille.getSymbolAtCoord(posX,posY+1)==Evenement.stairs_symbole)
+        {
+            grille.addElement(posX,posY,Evenement.stairs_symbole);
             posY += 1;
             grille.addEntite(this);
         }
@@ -115,6 +123,15 @@ public abstract class Entite
                 grille.addPoint(posX,posY-1);
             }
             else {Joueur.attaquerMonstre(grille, monstre, posX, posY);}
+            posY -= 1;
+            grille.addEntite(this);
+        }
+        else if (grille.getSymbolAtCoord(posX,posY-1)==Evenement.stairs_symbole)
+        {
+            if(grille.getSymbolAtCoord(Evenement.posX_stairs,Evenement.posY_stairs+3)==getSymbole()){
+                grille.addPoint(posX,posY); //Si le joueur est à l'entrée de l'escalier, on met un textSalle.
+            }
+            else {grille.addElement(posX,posY,Evenement.stairs_symbole);}
             posY -= 1;
             grille.addEntite(this);
         }
