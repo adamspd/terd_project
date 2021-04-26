@@ -21,7 +21,7 @@ public class Joueur extends Entite {
         this.pv = pv;
     }
     public boolean isAlive() {
-        return pv!=0;
+        return pv>0;
     }
 
     private boolean isInCouloir = false;
