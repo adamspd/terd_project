@@ -27,6 +27,7 @@ public class Niveau
         Potion.initialisePotion(grille);
         Coffres.initialiseCoffres(grille);
         Portail.initialisePortail(grille);
+        Evenement.genererateStairs(grille);
 
         for  (Monstre monstre : grille.getListeMonstre())
         {
