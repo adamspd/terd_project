@@ -1,9 +1,9 @@
 import java.util.ArrayList;
 
 public class Information {
-    public int NOMBRE_MONSTRES_CONNU;
+    public static int NOMBRE_MONSTRES_CONNU;
 
-    public void isMonsterDead(Grille grille){
+    public static void isMonsterDead(Grille grille){
         int nouveau_nombre_monstres = grille.getListeMonstre().size();
         if (nouveau_nombre_monstres < NOMBRE_MONSTRES_CONNU){
             System.out.println("#### COUP FATALE !! ####");
