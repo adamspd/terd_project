@@ -51,6 +51,7 @@ public class Map {
         if (!Evenement.gagne) {
             Information.isMonsterDead(grille);
             Monstre.checkIfJoueurPresent(grille);
+            Information.afficher_liste_info();
             Evenement.ifMonstersAreAllDead_ThenUpperLevelEntryOpen(grille, niveau);
             Evenement.ifPlayerHasGoneThroughTheUpperLevelEntry_ThenGenerateNewMap(grille, joueur, niveau);
             Information.Affichage(grille);

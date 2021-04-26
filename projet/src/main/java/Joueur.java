@@ -60,11 +60,13 @@ public class Joueur extends Entite {
     }
 
     public static void attaquerMonstre(Grille grille, Monstre monstre){
-        if (monstre.getPvMonstre() < 0) { monstre.setPvMonstre(0); }
-        if (monstre.getPvMonstre() > 0) {
+        if (monstre.getPvMonstre() < 0) {
+            monstre.setPvMonstre(0);
+        }
             monstre.setPvMonstre(monstre.getPvMonstre() - degat);
-            System.out.println("PV Monstre: " + monstre.getPvMonstre());
-            System.out.println("Le joueur attaque le monstre !");
+        if (monstre.getPvMonstre() > 0) {
+            Information.liste_infos.add("PV Monstre: " + monstre.getPvMonstre());
+            Information.liste_infos.add("Le joueur attaque le monstre !");
         }
         else {
             grille.addPoint(monstre.getPosX(), monstre.getPosY());

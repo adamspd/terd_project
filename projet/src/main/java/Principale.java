@@ -8,6 +8,7 @@ public class Principale {
         Grille grille = niveau.genererateSalles();
         Joueur joueur = grille.getListeJoueur().get(0);
         Information.NOMBRE_MONSTRES_CONNU = grille.getListeMonstre().size(); //On sauvegarde le nombre de monstres initial.
+        Information.liste_infos = new ArrayList<String>();
         niveau.NIVEAU = 1;
         niveau.NOMBRE_DE_NIVEAUX = 5;
         int delaiActu = 3000;

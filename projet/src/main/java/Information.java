@@ -2,7 +2,16 @@ import java.util.ArrayList;
 
 public class Information {
     public static int NOMBRE_MONSTRES_CONNU;
+    public static ArrayList<String> liste_infos;  //Ajouté à un stade de développement assez avancé.
 
+    public static void afficher_liste_info(){
+        System.out.println();
+        for (String info : liste_infos){
+           System.out.println(info);
+        }
+        System.out.println();
+        liste_infos.clear();
+    }
 
     public static void Game_Over(){
         for (int i=0; i <4; i++) { System.out.print("\n"); }
