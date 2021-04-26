@@ -58,14 +58,6 @@ public class Principale {
                             case "p":
                                 joueur.boirePotion(grille);
                                 break;
-                            case "k":
-                                if(!grille.getListeMonstre().isEmpty()){
-                                    grille.getListeMonstre().remove(grille.getListeMonstre().get(0));
-                                }
-                                break;
-                            case "m":
-                                grille.reset(niveau);
-                                break;
                             default: break;
                         }
                         map.dessine(grille);
