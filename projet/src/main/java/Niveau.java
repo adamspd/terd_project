@@ -27,7 +27,6 @@ public class Niveau
         Potion.initialisePotion(grille);
         Coffres.initialiseCoffres(grille);
         Portail.initialisePortail(grille);
-        Information.NOMBRE_MONSTRES_CONNU = grille.getListeMonstre().size(); //On sauvegarde le nombre de monstres initial.
 
         for  (Monstre monstre : grille.getListeMonstre())
         {

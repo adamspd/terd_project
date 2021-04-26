@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class Information {
-    public static int NOMBRE_MONSTRES_CONNU;
+    public int NOMBRE_MONSTRES_CONNU;
 
     public void isMonsterDead(Grille grille){
         int nouveau_nombre_monstres = grille.getListeMonstre().size();

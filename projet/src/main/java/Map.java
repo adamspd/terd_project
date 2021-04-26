@@ -3,14 +3,14 @@ public class Map {
     private int y;
     private char symbole;
     private Grille grille;
-    Information info = new Information(); // Contient la variable NOMBRE_MONSTRES_CONNU qui a besoin d'être actualisé.
+
 
 
     public Map()
     {
     }
 
-    public void dessine(Grille grille)
+    public void dessine(Grille grille,Information info)
     {
         this.grille = grille;
         String[][] tableauGrille = grille.getGrille();

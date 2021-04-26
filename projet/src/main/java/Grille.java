@@ -2,8 +2,8 @@ import java.util.ArrayList;
 
 public class Grille
 {
-    private final int LARGEURGRILLE = 40;
-    private final int LONGUEURGRILLE = 40;
+    private final int LARGEURGRILLE = 60;
+    private final int LONGUEURGRILLE = 30;
     private final int ESPACE_MINIMUM_ENTRE_SALLE = 2;
     private final String textSalle = "* ";
     private final String textVide = "  ";
@@ -20,24 +20,35 @@ public class Grille
 
     public Grille()
     {
-        for (int i = 0 ; i < LONGUEURGRILLE;i++)
-        {
-            for (int j = 0; j< LARGEURGRILLE ;j++)
-            {
-                grille[j][i] = textVide;
+        for (int i = 0 ; i < LONGUEURGRILLE; i++) {
+            for (int j = 0; j < LARGEURGRILLE; j++) {
+                grille[i][j] = textVide;
             }
         }
     }
 
-    public void clearGrille() //On ne peut appeler le constructeur qu'une seule fois
+    public void reset(Niveau niveau, Information info, Evenement evenement)
     {
-        for (int i = 0 ; i < LONGUEURGRILLE;i++)
-        {
-            for (int j = 0; j< LARGEURGRILLE ;j++)
-            {
-                grille[j][i] = textVide;
+       Grille nouvelle_grille = niveau.genererateSalles();
+        for (int i = 0 ; i < LONGUEURGRILLE; i++) {
+            for (int j = 0; j < LARGEURGRILLE; j++) {
+                grille[i][j] = nouvelle_grille.getSymbolAtCoord(j,i);
             }
         }
+        //On change tous, sauf le joueur
+        listeSalle = nouvelle_grille.getListeSalle();
+        listeEntite = nouvelle_grille.getListeEntite();
+        entiteAbstraitArrayList = nouvelle_grille.getListeEntiteAbstrait();
+        listeMonstre = nouvelle_grille.getListeMonstre();
+        listePotion = nouvelle_grille.getListePotion();
+        listeCoffres = nouvelle_grille.getListeCoffres();
+        listePortail = nouvelle_grille.getListePortail();
+
+        //Réinitialisation de variables utilitaires
+        info.NOMBRE_MONSTRES_CONNU= nouvelle_grille.getListeMonstre().size();
+        evenement.isCalled_ifMonstersAreAllDead_ThenUpperLevelEntryOpen= false;
+        /*evenement.posX_stairs = ;
+          evenement.posY_stairs = ;*/
     }
 
     public void addEntite(Entite entite)

@@ -5,13 +5,16 @@ public class Principale {
     public static void main(String[] args) {
         Map map = new Map();
         Niveau niveau = new Niveau();
-        Evenement evenement = new Evenement();
         Grille grille = niveau.genererateSalles();
         int delaiActu = 3000;
+        Evenement evenement = new Evenement();
+        Information info = new Information();
+        info.NOMBRE_MONSTRES_CONNU = grille.getListeMonstre().size(); //On sauvegarde le nombre de monstres initial.
 
 
 
-        map.dessine(grille);
+
+        map.dessine(grille,info);
         System.out.print("Gauche: \"q\"\t\t\tDroite: \"d\"\t\t\tHaut: \"z\"\t\t\tBas: \"s\"\n> ");
 
 
@@ -26,8 +29,8 @@ public class Principale {
                 while (joueur.isAlive())
                 {
                     evenement.ifMonstersAreAllDead_ThenUpperLevelEntryOpen(grille);
-                    evenement.ifPlayerHasGoneThroughTheUpperLevelEntry_ThenGenerateNewMap(grille,niveau,joueur);
-                    map.dessine(grille);
+                    evenement.ifPlayerHasGoneThroughTheUpperLevelEntry_ThenGenerateNewMap(grille,niveau,info);
+                    map.dessine(grille,info);
                     try
                     {
                         Thread.sleep(delaiActu);
@@ -59,7 +62,7 @@ public class Principale {
                                 break;
                             default: break;
                         }
-                        map.dessine(grille);
+                        map.dessine(grille,info);
                         Thread.currentThread().setPriority(Thread.NORM_PRIORITY);
                     } catch (Exception e) {
                         run();

@@ -65,23 +65,12 @@ public class Evenement {
         }
     }
 
-    public void ifPlayerHasGoneThroughTheUpperLevelEntry_ThenGenerateNewMap(Grille grille, Niveau niveau, Joueur joueur){
+    public void ifPlayerHasGoneThroughTheUpperLevelEntry_ThenGenerateNewMap(Grille grille, Niveau niveau, Information info){
+       grille.reset(niveau,info,this);
         /*if(grille.getSymbolAtCoord(posX_stairs,posY_stairs)==joueur.getSymbole()){
-            //listeMonstre déjà vide
-            grille.getListeSalle().clear(); //sinon  remove();
-            grille.getListeEntite().clear();
-            grille.getListeEntiteAbstrait().clear();
-            grille.getListeJoueur().clear();
-            grille.getListePotion().clear();
-            grille.getListeCoffres().clear();
-            grille.getListePortail().clear();
-            grille.clearGrille();
-            isCalled_ifMonstersAreAllDead_ThenUpperLevelEntryOpen= false;
 
+        }*/
 
-            grille = niveau.genererateSalles();  // MARCHE PAS
-        }
-        */
     }
 
 }
