@@ -6,17 +6,14 @@ public class Principale {
         Map map = new Map();
         Niveau niveau = new Niveau();
         Grille grille = niveau.genererateSalles();
+        Joueur joueur = grille.getListeJoueur().get(0);
         Information.NOMBRE_MONSTRES_CONNU = grille.getListeMonstre().size(); //On sauvegarde le nombre de monstres initial.
+        niveau.NIVEAU = 1;
+        niveau.NOMBRE_DE_NIVEAUX = 5;
         int delaiActu = 3000;
 
-
-
-
-        map.dessine(grille);
+        map.dessine(grille,joueur,niveau);
         System.out.print("Gauche: \"q\"\t\t\tDroite: \"d\"\t\t\tHaut: \"z\"\t\t\tBas: \"s\"\n> ");
-
-
-        Joueur joueur = grille.getListeJoueur().get(0);
 
 
         Thread threadActu = new Thread(new Runnable()
@@ -26,15 +23,13 @@ public class Principale {
             {
                 while (joueur.isAlive())
                 {
-                    Evenement.ifMonstersAreAllDead_ThenUpperLevelEntryOpen(grille);
-                    Evenement.ifPlayerHasGoneThroughTheUpperLevelEntry_ThenGenerateNewMap(grille,joueur,niveau);
-                    map.dessine(grille);
+                    map.dessine(grille,joueur,niveau);
                     try
                     {
                         Thread.sleep(delaiActu);
                     } catch (InterruptedException e)
                     {
-
+                        System.out.println("Exception: " + e);
                     }
                 }
             }
@@ -60,7 +55,7 @@ public class Principale {
                                 break;
                             default: break;
                         }
-                        map.dessine(grille);
+                        map.dessine(grille,joueur,niveau);
                         Thread.currentThread().setPriority(Thread.NORM_PRIORITY);
                     } catch (Exception e) {
                         run();
@@ -68,8 +63,7 @@ public class Principale {
                 }
             }
         });
-        threadScan.start();
         threadActu.start();
-
+        threadScan.start();
     }
 }

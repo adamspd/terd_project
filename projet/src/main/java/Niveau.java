@@ -3,18 +3,19 @@ import java.util.Scanner;
 
 public class Niveau
 {
-    private final int LARGEURGRILLE = 80;
-    private final int LONGUEURGRILLE = 40;
+    private final int LARGEURGRILLE = 60;
+    private final int LONGUEURGRILLE = 30;
     private final int ESPACE_TOTAL = LARGEURGRILLE * LONGUEURGRILLE;
-    private final int ESPACE_ALOUE = ESPACE_TOTAL/10;
+    private final int ESPACE_ALOUE = ESPACE_TOTAL/8;
     private final int ESPACE_MINIMUM_SALLE_X = 4;
     private final int ESPACE_MINIMUM_SALLE_Y = 5;
     private final int ESPACE_MAXIMUM_SALLE_X = 10;
     private final int ESPACE_MAXIMUM_SALLE_Y = 12;
+    public int NIVEAU;
+    public int NOMBRE_DE_NIVEAUX;
 
     public Niveau()
     {
-
     }
 
     public Grille genererateSalles()
