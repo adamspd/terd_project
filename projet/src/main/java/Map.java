@@ -10,7 +10,7 @@ public class Map {
     {
     }
 
-    public void dessine(Grille grille,Information info)
+    public void dessine(Grille grille)
     {
         this.grille = grille;
         String[][] tableauGrille = grille.getGrille();
@@ -49,7 +49,7 @@ public class Map {
             System.out.println();
         }
 
-        info.isMonsterDead(grille);
+        Information.isMonsterDead(grille);
         Monstre.checkIfJoueurPresent(grille);
         Information.Affichage(grille);
 
