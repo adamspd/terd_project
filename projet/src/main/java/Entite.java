@@ -28,7 +28,7 @@ public abstract class Entite
                     // posY ++;
                 }
 
-                if(posY==Evenement.posY_stairs+2) { grille.addElement(posX,posY,Evenement.stairs_symbole);}
+                if(posX==Evenement.posX_stairs && posY==Evenement.posY_stairs+2) { grille.addElement(posX,posY,Evenement.stairs_symbole);}
                 else if(grille.getSymbolAtCoord(posX,posY)!=Portail.getSymbole()) { grille.addPoint(posX, posY); }
             }
             if(grille.isInsCouloirBas(posX,posY))
@@ -62,7 +62,7 @@ public abstract class Entite
                 posY += 1;
                 grille.addEntite(this);
             }
-            else {Joueur.attaquerMonstre(grille, monstre, posX, posY);}
+            else {Joueur.attaquerMonstre(grille, monstre);}
         }
         else if (grille.getSymbolAtCoord(posX,posY+1)==Evenement.stairs_symbole)
         {
@@ -124,7 +124,7 @@ public abstract class Entite
                 posY -= 1;
                 grille.addEntite(this);
             }
-            else {Joueur.attaquerMonstre(grille, monstre, posX, posY);}
+            else {Joueur.attaquerMonstre(grille, monstre);}
         }
         else if (grille.getSymbolAtCoord(posX,posY-1)==Evenement.stairs_symbole)
         {
@@ -188,7 +188,7 @@ public abstract class Entite
                 posX += 1;
                 grille.addEntite(this);
             }
-            else {Joueur.attaquerMonstre(grille, monstre, posX, posY);}
+            else {Joueur.attaquerMonstre(grille, monstre);}
         }
     }
 
@@ -243,7 +243,7 @@ public abstract class Entite
                 posX -= 1;
                 grille.addEntite(this);
             }
-            else {Joueur.attaquerMonstre(grille, monstre, posX, posY);}
+            else {Joueur.attaquerMonstre(grille, monstre);}
         }
     }
 

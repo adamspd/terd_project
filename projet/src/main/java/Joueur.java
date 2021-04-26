@@ -59,7 +59,7 @@ public class Joueur extends Entite {
         }
     }
 
-    public static void attaquerMonstre(Grille grille, Monstre monstre, int posX, int posY){
+    public static void attaquerMonstre(Grille grille, Monstre monstre){
         if (monstre.getPvMonstre() < 0) { monstre.setPvMonstre(0); }
         if (monstre.getPvMonstre() > 0) {
             monstre.setPvMonstre(monstre.getPvMonstre() - degat);
