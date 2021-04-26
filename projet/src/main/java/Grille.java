@@ -27,7 +27,7 @@ public class Grille
         }
     }
 
-    public void reset(Niveau niveau, Information info, Evenement evenement)
+    public void reset(Niveau niveau)
     {
        Grille nouvelle_grille = niveau.genererateSalles();
         for (int i = 0 ; i < LONGUEURGRILLE; i++) {
@@ -43,12 +43,6 @@ public class Grille
         listePotion = nouvelle_grille.getListePotion();
         listeCoffres = nouvelle_grille.getListeCoffres();
         listePortail = nouvelle_grille.getListePortail();
-
-        //Réinitialisation de variables utilitaires
-        info.NOMBRE_MONSTRES_CONNU= nouvelle_grille.getListeMonstre().size();
-        evenement.isCalled_ifMonstersAreAllDead_ThenUpperLevelEntryOpen= false;
-        /*evenement.posX_stairs = ;
-          evenement.posY_stairs = ;*/
     }
 
     public void addEntite(Entite entite)

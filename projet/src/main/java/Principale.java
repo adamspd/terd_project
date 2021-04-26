@@ -6,15 +6,13 @@ public class Principale {
         Map map = new Map();
         Niveau niveau = new Niveau();
         Grille grille = niveau.genererateSalles();
+        Information.NOMBRE_MONSTRES_CONNU = grille.getListeMonstre().size(); //On sauvegarde le nombre de monstres initial.
         int delaiActu = 3000;
-        Evenement evenement = new Evenement();
-        Information info = new Information();
-        info.NOMBRE_MONSTRES_CONNU = grille.getListeMonstre().size(); //On sauvegarde le nombre de monstres initial.
 
 
 
 
-        map.dessine(grille,info);
+        map.dessine(grille);
         System.out.print("Gauche: \"q\"\t\t\tDroite: \"d\"\t\t\tHaut: \"z\"\t\t\tBas: \"s\"\n> ");
 
 
@@ -28,9 +26,9 @@ public class Principale {
             {
                 while (joueur.isAlive())
                 {
-                    evenement.ifMonstersAreAllDead_ThenUpperLevelEntryOpen(grille);
-                    evenement.ifPlayerHasGoneThroughTheUpperLevelEntry_ThenGenerateNewMap(grille,niveau,info);
-                    map.dessine(grille,info);
+                    Evenement.ifMonstersAreAllDead_ThenUpperLevelEntryOpen(grille);
+                    Evenement.ifPlayerHasGoneThroughTheUpperLevelEntry_ThenGenerateNewMap(grille,joueur,niveau);
+                    map.dessine(grille);
                     try
                     {
                         Thread.sleep(delaiActu);
@@ -60,9 +58,17 @@ public class Principale {
                             case "p":
                                 joueur.boirePotion(grille);
                                 break;
+                            case "k":
+                                if(!grille.getListeMonstre().isEmpty()){
+                                    grille.getListeMonstre().remove(grille.getListeMonstre().get(0));
+                                }
+                                break;
+                            case "m":
+                                grille.reset(niveau);
+                                break;
                             default: break;
                         }
-                        map.dessine(grille,info);
+                        map.dessine(grille);
                         Thread.currentThread().setPriority(Thread.NORM_PRIORITY);
                     } catch (Exception e) {
                         run();

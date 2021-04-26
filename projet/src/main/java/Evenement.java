@@ -3,8 +3,8 @@ import java.util.ArrayList;
 public class Evenement {
 
     public static String stairs_symbole= "= ";
-    public static int posX_stairs, posY_stairs; //Haut de l'escalier
-    public static boolean isCalled_ifMonstersAreAllDead_ThenUpperLevelEntryOpen= false;
+    public static int posX_stairs, posY_stairs; //Initialisés dans niveau.genererateSalles(); Haut de l'escalier.
+    public static boolean isCalled_ifMonstersAreAllDead_ThenUpperLevelEntryOpen;
 
 
     private static boolean freeSpace(Grille grille,Salle salle_aleatoire, int posX) {
@@ -22,7 +22,8 @@ public class Evenement {
     }
 
 
-    private static void genererateStairs(Grille grille) {
+
+    public static void genererateStairs(Grille grille) {    //Escalier présent mais caché
         /*On choisit une salle.
         On choisit une position, en bordure de salle.
         Et on crée l'escalier à partir de cette position. */
@@ -52,25 +53,24 @@ public class Evenement {
             listeSalles.remove(salle_aleatoire);
         }
         while (!freeSpace);
-        for (int j=-3; j<0; j++) { grille.addElement(posX, salle_aleatoire.getPosY()+j, stairs_symbole); }
         posX_stairs= posX;
         posY_stairs= salle_aleatoire.getPosY()-3;
     }
 
 
-    public void ifMonstersAreAllDead_ThenUpperLevelEntryOpen(Grille grille){
+
+    public static void ifMonstersAreAllDead_ThenUpperLevelEntryOpen(Grille grille){     //Rend l'escalier visible
         if(!isCalled_ifMonstersAreAllDead_ThenUpperLevelEntryOpen && grille.getListeMonstre().isEmpty()){
-            genererateStairs(grille);
+            for (int posY=posY_stairs; posY < posY_stairs+3; posY++) { grille.addElement(posX_stairs,posY, stairs_symbole); }
             isCalled_ifMonstersAreAllDead_ThenUpperLevelEntryOpen= true;
         }
     }
 
-    public void ifPlayerHasGoneThroughTheUpperLevelEntry_ThenGenerateNewMap(Grille grille, Niveau niveau, Information info){
-       grille.reset(niveau,info,this);
-        /*if(grille.getSymbolAtCoord(posX_stairs,posY_stairs)==joueur.getSymbole()){
-
-        }*/
-
+    public static void ifPlayerHasGoneThroughTheUpperLevelEntry_ThenGenerateNewMap(Grille grille, Joueur joueur, Niveau niveau){
+        if(grille.getSymbolAtCoord(posX_stairs,posY_stairs)==joueur.getSymbole()){
+            grille.reset(niveau);
+            isCalled_ifMonstersAreAllDead_ThenUpperLevelEntryOpen= false;
+            Information.NOMBRE_MONSTRES_CONNU= grille.getListeMonstre().size();
+        }
     }
-
 }
