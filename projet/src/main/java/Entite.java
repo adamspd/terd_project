@@ -27,8 +27,8 @@ public abstract class Entite
                     Coffres.hasOpenSafe(grille, posX, posY);
                     // posY ++;
                 }
-                //S'il y a un escalier en haut, alors il y a un escalier, et donc on vérifie posY
-                if(EntiteAbstrait.isEntityUp(posX,posY,Evenement.stairs_symbole, grille) && posY==Evenement.posY_stairs+2) { grille.addElement(posX,posY,Evenement.stairs_symbole);}
+
+                if(posY==Evenement.posY_stairs+2) { grille.addElement(posX,posY,Evenement.stairs_symbole);}
                 else if(grille.getSymbolAtCoord(posX,posY)!=Portail.getSymbole()) { grille.addPoint(posX, posY); }
             }
             if(grille.isInsCouloirBas(posX,posY))
