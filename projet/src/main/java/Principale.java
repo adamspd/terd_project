@@ -47,9 +47,9 @@ public class Principale {
                         Thread.currentThread().setPriority(Thread.MAX_PRIORITY);
 
                         if (touche.matches("z.*")){joueur.Se_deplacer_en_haut(grille);}
-                        if (touche.matches("q.*")){joueur.Se_deplacer_a_gauche(grille);}
-                        if (touche.matches("s.*")){joueur.Se_deplacer_en_bas(grille);}
-                        if (touche.matches("d.*")){joueur.Se_deplacer_a_droite(grille);}
+                        else if (touche.matches("q.*")){joueur.Se_deplacer_a_gauche(grille);}
+                        else if (touche.matches("s.*")){joueur.Se_deplacer_en_bas(grille);}
+                        else if (touche.matches("d.*")){joueur.Se_deplacer_a_droite(grille);}
                         switch (touche) {
                             case "p":
                                 joueur.boirePotion(grille);
