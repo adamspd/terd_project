@@ -10,7 +10,7 @@ public class Map {
     {
     }
 
-    public void dessine(Grille grille)
+    public void dessine(Grille grille, Joueur joueur, Niveau niveau)
     {
         this.grille = grille;
         String[][] tableauGrille = grille.getGrille();
@@ -48,14 +48,19 @@ public class Map {
             }
             System.out.println();
         }
-
-        Information.isMonsterDead(grille);
-        Monstre.checkIfJoueurPresent(grille);
-        Information.Affichage(grille);
-
-        if(grille.getListeJoueur().get(0).getPv() <= 0){
-            System.out.println("GAME OVER");
-            System.exit(0);
+        if (!Evenement.gagne) {
+            Information.isMonsterDead(grille);
+            Monstre.checkIfJoueurPresent(grille);
+            Evenement.ifMonstersAreAllDead_ThenUpperLevelEntryOpen(grille, niveau);
+            Evenement.ifPlayerHasGoneThroughTheUpperLevelEntry_ThenGenerateNewMap(grille, joueur, niveau);
+            Information.Affichage(grille);
+            if (grille.getListeJoueur().get(0).getPv() <= 0) {
+                Information.Game_Over();
+            }
+        }
+        else {
+            Information.Affichage(grille);
+            Information.You_Win();
         }
     }
 }
