@@ -27,7 +27,7 @@ public class Grille
         }
     }
 
-    public void reset(Niveau niveau)
+    public void reset(Niveau niveau, Joueur joueur)
     {
        Grille nouvelle_grille = niveau.genererateSalles();
         for (int i = 0 ; i < LONGUEURGRILLE; i++) {
@@ -35,7 +35,10 @@ public class Grille
                 grille[i][j] = nouvelle_grille.getSymbolAtCoord(j,i);
             }
         }
-        //On change tous, sauf le joueur
+
+        joueur.setPosX(nouvelle_grille.getListeJoueur().get(0).getPosX());
+        joueur.setPosY(nouvelle_grille.getListeJoueur().get(0).getPosY());
+
         listeSalle = nouvelle_grille.getListeSalle();
         listeEntite = nouvelle_grille.getListeEntite();
         entiteAbstraitArrayList = nouvelle_grille.getListeEntiteAbstrait();

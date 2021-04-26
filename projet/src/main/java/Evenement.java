@@ -68,7 +68,7 @@ public class Evenement {
 
     public static void ifPlayerHasGoneThroughTheUpperLevelEntry_ThenGenerateNewMap(Grille grille, Joueur joueur, Niveau niveau){
         if(grille.getSymbolAtCoord(posX_stairs,posY_stairs)==joueur.getSymbole()){
-            grille.reset(niveau);
+            grille.reset(niveau, joueur);
             isCalled_ifMonstersAreAllDead_ThenUpperLevelEntryOpen= false;
             Information.NOMBRE_MONSTRES_CONNU= grille.getListeMonstre().size();
         }

@@ -255,8 +255,8 @@ public abstract class Entite
 
     public int getPosY() { return posY;}
 
-    public void setPosX(int posX) { this.posX = posX;}
+    public void setPosX(int x) { posX = x;}
 
-    public void setPosY(int posX) { this.posX = posX;}
+    public void setPosY(int y) { posY = y;}
 
 }
