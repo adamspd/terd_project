@@ -5,6 +5,7 @@ public class Evenement {
     public static String stairs_symbole= "= ";
     public static int posX_stairs, posY_stairs; //Initialisés dans niveau.genererateSalles(); Haut de l'escalier.
     public static boolean isCalled_ifMonstersAreAllDead_ThenUpperLevelEntryOpen;
+    public static boolean gagne;
 
 
     private static boolean freeSpace(Grille grille,Salle salle_aleatoire, int posX) {
@@ -23,7 +24,7 @@ public class Evenement {
 
 
 
-    public static void genererateStairs(Grille grille) {    //Escalier présent mais caché
+    public static void genererateStairs(Grille grille) {    //Escalier présent, mais caché et inaccessible
         /*On choisit une salle.
         On choisit une position, en bordure de salle.
         Et on crée l'escalier à partir de cette position. */
@@ -59,10 +60,16 @@ public class Evenement {
 
 
 
-    public static void ifMonstersAreAllDead_ThenUpperLevelEntryOpen(Grille grille){     //Rend l'escalier visible
-        if(!isCalled_ifMonstersAreAllDead_ThenUpperLevelEntryOpen && grille.getListeMonstre().isEmpty()){
-            for (int posY=posY_stairs; posY < posY_stairs+3; posY++) { grille.addElement(posX_stairs,posY, stairs_symbole); }
-            isCalled_ifMonstersAreAllDead_ThenUpperLevelEntryOpen= true;
+    public static void ifMonstersAreAllDead_ThenUpperLevelEntryOpen(Grille grille, Niveau niveau){     //Rend l'escalier visible
+        if(grille.getListeMonstre().isEmpty() && !isCalled_ifMonstersAreAllDead_ThenUpperLevelEntryOpen){
+            if(niveau.NIVEAU < niveau.NOMBRE_DE_NIVEAUX) {
+                for (int posY = posY_stairs; posY < posY_stairs + 3; posY++) {
+                    grille.addElement(posX_stairs, posY, stairs_symbole);
+                }
+                isCalled_ifMonstersAreAllDead_ThenUpperLevelEntryOpen = true;
+                System.out.println("#### UN ESCALIER A ETE OUVERT !! ####\n");
+            }
+            else {gagne= true;}
         }
     }
 
@@ -71,6 +78,7 @@ public class Evenement {
             grille.reset(niveau, joueur);
             isCalled_ifMonstersAreAllDead_ThenUpperLevelEntryOpen= false;
             Information.NOMBRE_MONSTRES_CONNU= grille.getListeMonstre().size();
+            niveau.NIVEAU++;
         }
     }
 }
