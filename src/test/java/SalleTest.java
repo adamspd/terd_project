@@ -46,6 +46,10 @@ class SalleTest {
 
         assertEquals(salle1.getSalleText(), salle2.getSalleText());
         assertEquals(salle2.getSalleText(), salle3.getSalleText());
+
+        assertEquals(salle1.getPos().getX(), 0);
+        assertEquals(salle2.getPos().getX(), 10);
+        assertEquals(salle3.getPos().getX(), 20);
     }
 
     @Test
