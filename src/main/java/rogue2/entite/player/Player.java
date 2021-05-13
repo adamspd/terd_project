@@ -36,18 +36,14 @@ public class Player extends AbstractEntity implements PlayerInterface {
             Information.liste_infos.add("PV Monstre: " + monster.getHitPoints());
             Information.liste_infos.add("Le joueur attaque le monstre !");
         }
-
-        /*monster.setHitPoints(monster.getHitPoints() - 2);
-        System.out.println("Le joueur attaque le monstre");
-        System.out.println("Points de vie monstre restant: " + monster.getHitPoints());*/
     }
 
     public void attackMonster(Grille grille, Position position){
         Monster monster = grille.getMonster(position);
         if (monster != null){
-            Information.liste_infos.add("Monstre trouvé: " + position.getX()+":"+position.getY()+"\tPV initial: "+monster.getMaxHitPoints());
+            //Information.liste_infos.add("Monstre trouvé: " + position.getX()+":"+position.getY()+"\tPV initial: "+monster.getMaxHitPoints());
             monster.setHitPoints(monster.getHitPoints() - 2);
-            Information.liste_infos.add("PV monstre restant: " + monster.getHitPoints());
+            Information.liste_infos.add("Monster XP: " + monster.getHitPoints());
             if (!monster.isAlive()){
                 grille.addPoint(position);
                 grille.getListMonster().remove(monster);

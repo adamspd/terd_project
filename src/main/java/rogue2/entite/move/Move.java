@@ -2,6 +2,7 @@ package rogue2.entite.move;
 
 import rogue0.utils.Position;
 import rogue1.map.map.Grille;
+import rogue1.map.map.Information;
 import rogue2.entite.monstre.Monster;
 import rogue2.entite.player.Player;
 import rogue3.artefact.Coffre;
@@ -55,7 +56,6 @@ public class Move {
             }
             else {
                 if (grille.isPotionThere(position)){
-                    System.out.println("yes yes");
                     Potion.hasDrunkPotion(grille, position);
                 } else if (grille.isSafeThere(position)){
                     Coffre.hasOpenSafe(grille, position);
@@ -109,7 +109,8 @@ public class Move {
                 player.setPosition(position);
                 grille.addEntite(player);
             }
-            else { player.attackMonster(grille, position); }
+            else { player.attackMonster(grille, position);
+            }
         }
         else if(grille.isStairsThere(position)){
             //Si le joueur est à l'entrée de l'escalier

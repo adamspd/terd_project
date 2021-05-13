@@ -27,15 +27,15 @@ public class Map {
     private void addPlayer(Grille grille)
     {
         Salle sallePlayer = getSalleDepart(grille.getListOfSalle());
-        int sallePlayerX = (int) sallePlayer.getPos().getX();
-        int sallePlayerY = (int) sallePlayer.getPos().getY();
+        int sallePlayerX = sallePlayer.getPos().getX();
+        int sallePlayerY = sallePlayer.getPos().getY();
         grille.addEntite(new Player(new Position(sallePlayerX,sallePlayerY)));
     }
 
     private Salle getSalleDepart(ArrayList<Salle>listSalle)
     {
-        int x = (int) listSalle.get(0).getPos().getX();
-        int y = (int) listSalle.get(0).getPos().getY();
+        int x = listSalle.get(0).getPos().getX();
+        int y = listSalle.get(0).getPos().getY();
         Salle salleDepart;
         salleDepart = listSalle.get(0);
         for (Salle salle : listSalle)
@@ -47,15 +47,15 @@ public class Map {
                     if(salle.getPos().getX() < x)
                     {
                         salleDepart = salle;
-                        x = (int) salleDepart.getPos().getX();
-                        y = (int) salleDepart.getPos().getY();
+                        x = salleDepart.getPos().getX();
+                        y = salleDepart.getPos().getY();
                     }
                 }
                 else
                 {
                     salleDepart = salle;
-                    x = (int) salleDepart.getPos().getX();
-                    y = (int) salleDepart.getPos().getY();
+                    x = salleDepart.getPos().getX();
+                    y = salleDepart.getPos().getY();
 
                 }
             }

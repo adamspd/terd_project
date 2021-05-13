@@ -59,13 +59,7 @@ public class Draw {
 
     }
 
-    public void affiche(Grille grille){
-        ArrayList<Monster> listMonster = grille.getListMonster();
-        System.out.println("Nombre Monstre: " + listMonster.size());
-        for (Monster monster : listMonster) {
-            System.out.print("x: " + monster.getPosition().getX() + " y: " + monster.getPosition().getY()+"\t");
-        }
-    }
+
 
     /*public void rechercheJoeur(Grille grille){
         DFS DFS = new DFS(grille);
