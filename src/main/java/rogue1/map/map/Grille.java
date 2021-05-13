@@ -445,17 +445,14 @@ public class Grille {
         }
     }
 
+    public void addCorridor(Grille grille){
+        ArrayList<Salle> visited = new ArrayList<Salle>();
+
+    }
+
     public void addPortailList(Portal portail) {
         getListPortail().add(portail);
     }
-
-    public boolean isInSalle(int posX,int posY) { return grille[posY][posX].equals(getSymbolSalle()); }
-    public boolean isInCouloir(int posX,int posY) { return grille[posY][posX].equals(getSymbolCouloir()); }
-
-    public boolean isInsSalleGauche(Position position) {return isInSalle(new Position(position.getX()-1,position.getY()));}
-    public boolean isInsSalleDroite(Position position) {return isInSalle(new Position(position.getX()+1,position.getY()));}
-    public boolean isInsSalleHaut(Position position) {return isInSalle(new Position(position.getX(),position.getY()-1));}
-    public boolean isInsSalleBas(Position position) {return isInSalle(new Position(position.getX(),position.getY()+1));}
 
     public boolean isInsCouloirGauche(Position position) {return isInCouloir(new Position(position.getX()-1,position.getY()));}
     public boolean isInsCouloirDroite(Position position) {return isInCouloir(new Position(position.getX()+1,position.getY()));}
@@ -497,10 +494,6 @@ public class Grille {
             for (int i = 0; i < size - 1; i++) {
                 monster.setPosition(path.get(i));
             }
-
-
-
-
             grille.addSymbolMonster(monster.getPosition(), monster);
         }
         System.out.println();

@@ -114,10 +114,10 @@ public class Information {
         SeePortal(grille,lesPortails,joueur);
         System.out.println();
         if (joueur.getPotionReserve() > 1){
-            System.out.println("Le nombre de Monstres : " + nbreMonstres + "\t \t Points de Vie restants: "+ lifePoints +
+            System.out.println("Le nombre de Monstres : " + nbreMonstres + "\t \t XP: "+ lifePoints +
                     "\t \t Potions en reserve: " + joueur.getPotionReserve());
         } else {
-            System.out.println("Le nombre de Monstres : " + nbreMonstres + "\t \t Points de Vie restants: "+ lifePoints +
+            System.out.println("Le nombre de Monstres : " + nbreMonstres + "\t \t XP: "+ lifePoints +
                     "\t \t Potion en reserve: " + joueur.getPotionReserve());
         }
     }
