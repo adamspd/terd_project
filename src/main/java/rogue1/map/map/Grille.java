@@ -88,28 +88,29 @@ public class Grille {
     public void initialiseMonstre(Grille grille){
         Player player = getPlayer();
         ArrayList<Salle> listeSalle = grille.getListOfSalle();
+        if (player != null) {
+            for (Salle salle : listeSalle) {
+                final int maxMonster = 3;
+                final int distancePlayerMonster = 2;
+                int choixNombreDeMonstre = (int) (Math.random() * (maxMonster + 1));
+                ArrayList<Position> coord = initialiseEntite(grille, choixNombreDeMonstre, salle, player, distancePlayerMonster);
 
-        for (Salle salle : listeSalle) {
-            final int maxMonster = 3;
-            final int distancePlayerMonster = 2;
-            int choixNombreDeMonstre = (int) (Math.random() * (maxMonster + 1));
-            ArrayList<Position> coord = initialiseEntite(grille, choixNombreDeMonstre, salle, player, distancePlayerMonster);
+                if (coord.size() != 0) {
+                    MonsterFactory factory = MonsterFactory.getInstance();
+                    while (coord.size() != 0) {
+                        int choix = Utils.randInt(3);
+                        if (choix == 0) {
+                            Monster monster = factory.generate(coord.remove(0), "goblin_archer");
+                            grille.addEntite(monster);
+                        } else if (choix == 1) {
+                            Monster monster = factory.generate(coord.remove(0), "orc_warrior");
+                            grille.addEntite(monster);
+                        } else {
+                            Monster monster = factory.generate(coord.remove(0), "rogue");
+                            grille.addEntite(monster);
+                        }
 
-            if (coord.size() != 0) {
-                MonsterFactory factory = MonsterFactory.getInstance();
-                while (coord.size() != 0) {
-                    int choix = Utils.randInt(3);
-                    if (choix == 0){
-                        Monster monster = factory.generate(coord.remove(0), "goblin_archer");
-                        grille.addEntite(monster);
-                    } else if (choix == 1){
-                        Monster monster = factory.generate(coord.remove(0), "orc_warrior");
-                        grille.addEntite(monster);
-                    } else {
-                        Monster monster = factory.generate(coord.remove(0), "rogue");
-                        grille.addEntite(monster);
                     }
-
                 }
             }
         }
@@ -474,7 +475,7 @@ public class Grille {
     public void addSymbolMonster(Position position,Monster monster){
         grille[position.getY()][position.getX()] = monster.getSymbol();
     }
-    public void SearchPlayer(Grille grille,Monster monster){
+    public void SearchPlayer1(Grille grille,Monster monster){
         List<Position> path = new ArrayList<>();
         DFS dfs = new DFS(grille);
         int [][] matrix = dfs.createMatrix();
@@ -494,5 +495,48 @@ public class Grille {
             grille.addSymbolMonster(monster.getPosition(), monster);
         }
         //dfs.printPosition(monster.getPosition());
+    }
+
+    public void SearchPlayer(Grille grille,Monster monster){
+        List<Position> path = new ArrayList<>();
+        DFS dfs = new DFS(grille);
+        int [][] matrix = dfs.createMatrix();
+        DFS.searchPath(matrix,(int) monster.getPosition().getX(), (int) monster.getPosition().getY(), path);
+        int size = path.size();
+        dfs.printPosition(monster.getPosition());
+        Player player = grille.getPlayer();
+        Position positionPlayer = new Position(player.getPosition().getX(),player.getPosition().getY());
+
+        if (positionPlayer.getDistance(monster.getPosition()) > 1) {
+            //grille.addPoint(monster.getPosition());
+            //Position positionInitial = monster.getPosition();
+            boolean isINSALLE = true;
+            ArrayList<Salle> listeSalle = grille.getListOfSalle();
+            for (Salle salle : listeSalle){
+                if ((salle.getPos().getX() <= monster.getPosition().getX() &&
+                        monster.getPosition().getX() <= (salle.getPos().getX() + salle.getSalleWidth())) &&
+                        (salle.getPos().getY() <= monster.getPosition().getY() &&
+                                monster.getPosition().getY() <= (salle.getPos().getY() + salle.getSalleLenght()))){
+                    isINSALLE = false;
+                }
+                if (isINSALLE) {
+                    grille.addElement(monster.getPosition(), "# ");
+                }
+                else {grille.addElement(monster.getPosition(), "* ");}
+            }
+            for (int i = 0; i < size - 1; i++) {
+
+                monster.setPosition(path.get(i));
+
+            }
+            isINSALLE = true;
+
+            //positionInitial = monster.getPosition();
+
+
+            grille.addSymbolMonster(monster.getPosition(), monster);
+        }
+        System.out.println();
+        dfs.printPosition(monster.getPosition());
     }
 }
