@@ -29,9 +29,3 @@ Portail :
   * Rajoutent des portails sur la map
   * Les portails permettent en quelque sorte de passer d'une salle à une autre 
   
-
-
-BUG ACTUEL :
-  * Les threads posaient un problème au bon fonctionnement du code. 
-    C'est pourquoi on a opté pour du tour par tour à la place.
-  * On peut commencer à jouer et des fois ça ne prend pas en compte les inputs du joueur.
