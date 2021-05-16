@@ -55,7 +55,7 @@ public class Run {
             try {
                 Event.ifMonstersAreAllDead_ThenUpperLevelEntryOpen(grille,draw);
                 Event.ifPlayerHasGoneThroughTheUpperLevelEntry_ThenGenerateNewMap(grille,player,map,draw);
-                Key.showKey(grille);
+                //Key.showKey(grille);
                 String touche = scan.nextLine();
                 if (touche.matches("z.*")){Move.moveUp(grille, grille.getPlayer()); }
                 else if (touche.matches("q.*")){Move.moveLeft(grille, grille.getPlayer());}

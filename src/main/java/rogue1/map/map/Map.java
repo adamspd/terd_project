@@ -16,7 +16,7 @@ public class Map {
         grille.initialiseSalle(grille);
         grille.relierSalle(grille);
         addPlayer(grille);
-        grille.initialiseMonstre(grille, NIVEAU);
+        grille.initialiseMonstre(grille);
         grille.initialiseArtefact(grille);
         Portal.initialisePortail(grille);
         Event.genererateStairs(grille);

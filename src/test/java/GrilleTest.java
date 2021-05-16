@@ -94,7 +94,7 @@ class GrilleTest {
         grilleInit.initialiseSalle(grilleInit);
         Salle salle = (Salle) grilleInit.getListOfSalle().get(0);
         grilleInit.addEntite(new Player(salle.getPos()));
-        grilleInit.initialiseMonstre(grilleInit, 3);
+        grilleInit.initialiseMonstre(grilleInit);
         assertFalse(grilleInit.getListMonster().isEmpty());
         grilleInit.initialiseArtefact(grilleInit);
         assertFalse(grilleInit.getListArtefact().isEmpty());
