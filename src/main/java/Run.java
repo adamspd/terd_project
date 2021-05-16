@@ -40,7 +40,6 @@ public class Run {
                 else if (touche.matches("q.*")){Move.moveLeft(grille, grille.getPlayer());}
                 else if (touche.matches("s.*")){Move.moveDown(grille, grille.getPlayer());}
                 else if (touche.matches("d.*")){Move.moveRight(grille, grille.getPlayer());}
-                else if (touche.matches("k")){grille.getListMonster().remove(0);}
 
                 grille.attack(grille, player);
                 draw.draw(grille);

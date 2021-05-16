@@ -6,7 +6,7 @@ import rogue2.entite.player.Player;
 import rogue3.artefact.Event;
 import rogue3.artefact.Key;
 
-public class Stairs_Test {
+public class StairsTest {
     static Draw draw = new Draw();
     static Map map = new Map();
     static int lengthSalle = 4;

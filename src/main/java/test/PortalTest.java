@@ -12,7 +12,7 @@ import rogue3.artefact.Portal;
 
 import java.util.ArrayList;
 
-public class Portal_Test {
+public class PortalTest {
     static Draw draw = new Draw();
     static Grille grille;
     static int salleLenght = 4;
