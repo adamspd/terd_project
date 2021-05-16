@@ -3,6 +3,7 @@ package rogue3.artefact;
 import rogue0.utils.Position;
 import rogue0.utils.Utils;
 import rogue1.map.map.Grille;
+import rogue1.map.map.Information;
 import rogue2.entite.player.Player;
 import rogue2.entite.player.PlayerInterface;
 
@@ -18,7 +19,7 @@ public class Coffre extends abstractArtefact{
         int nbresRandom = Utils.randInt(1, nbresCoffre);
         //int nbreRestant = nbresCoffre - nbresRandom;
         if (nbresRandom <= nbresCoffre/2){
-            System.out.println("C'ETAIT UN PIEGE, VOUS ETES TOMBER DEDANT");
+            Information.liste_infos.add("C'ETAIT UN PIEGE, VOUS ETES TOMBER DEDANT");
             grille.getPlayer().setHitPoints(0); }
 
         else{
