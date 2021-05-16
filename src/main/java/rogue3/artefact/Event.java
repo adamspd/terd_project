@@ -109,6 +109,7 @@ public class Event  {
     public static void ifPlayerHasGoneThroughTheUpperLevelEntry_ThenGenerateNewMap(Grille grille, Player player, Map map, Draw draw){
         if(grille.getSymbolAtCoord(new Position(posX_stairs,posY_stairs))==player.getSymbol()){
             Key.setGotKey(false);
+            grille.getListKey().remove(0);
             noSpaceFound = false;
             stairs_length = 3;
             isCalled_ifMonstersAreAllDead_ThenUpperLevelEntryOpen= false;
