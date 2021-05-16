@@ -2,6 +2,7 @@ package rogue3.artefact;
 
 import rogue0.utils.Position;
 import rogue0.utils.Utils;
+import rogue1.map.map.Draw;
 import rogue1.map.map.Grille;
 import rogue1.map.map.Salle;
 
@@ -14,7 +15,7 @@ public class Key extends abstractArtefact {
         super(position, "K ");
     }
 
-    public static void showKey(Grille grille){
+    public static void showKey(Grille grille, Draw draw){
         if(grille.getListMonster().isEmpty() && grille.getListKey().size() < 1){
             ArrayList<Salle> listSalle = grille.getListOfSalle();
             int choixSalle = Utils.randInt(listSalle.size() - 1);
@@ -23,6 +24,7 @@ public class Key extends abstractArtefact {
             Position position = new Position(coord[0], coord[1]);
             Key key = new Key(position);
             grille.addKey(key);
+            draw.draw(grille);
         }
     }
 
