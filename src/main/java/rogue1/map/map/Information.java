@@ -116,10 +116,10 @@ public class Information {
         }
         System.out.println();
         if (joueur.getPotionReserve() > 1){
-            System.out.println("Monstres : " + nbreMonstres + "\t \t XP: "+ lifePoints +
+            System.out.println("Monstres : " + nbreMonstres + "\t \t HP: "+ lifePoints +
                     "\t \t Potions : " + joueur.getPotionReserve());
         } else {
-            System.out.println("Monstres : " + nbreMonstres + "\t \t XP : "+ lifePoints +
+            System.out.println("Monstres : " + nbreMonstres + "\t \t HP : "+ lifePoints +
                     "\t \t Potion : " + joueur.getPotionReserve());
         }
     }
