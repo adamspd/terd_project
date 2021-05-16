@@ -33,6 +33,7 @@ public class Grille {
     private ArrayList <Potion> listPotion = new ArrayList<>();
 
 
+
     public Grille(){
         for (int i = 0 ; i < getLength(); i++) {
             for (int j = 0; j < getWidth(); j++) {
@@ -74,6 +75,11 @@ public class Grille {
         listArtefact.add(artefact);
     }
 
+    public void addKey(Key key) {
+        grille[key.getPosition().getY()][key.getPosition().getX()] = key.getSymbol();
+        listKey.add(key);
+    }
+
     public void initialiseSalle(Grille grille) {
         int salleGenere = 0;
         while (salleGenere<nombreSalle){
@@ -85,60 +91,56 @@ public class Grille {
         }
     }
 
-    public void initialiseMonstre(Grille grille){
-        Player player = getPlayer();
-        ArrayList<Salle> listeSalle = grille.getListOfSalle();
-        if (player != null) {
-            for (Salle salle : listeSalle) {
-                final int maxMonster = 3;
-                final int distancePlayerMonster = 2;
-                int choixNombreDeMonstre = (int) (Math.random() * (maxMonster + 1));
-                ArrayList<Position> coord = initialiseEntite(grille, choixNombreDeMonstre, salle, player, distancePlayerMonster);
-
-                if (coord.size() != 0) {
-                    MonsterFactory factory = MonsterFactory.getInstance();
-                    while (coord.size() != 0) {
-                        int choix = Utils.randInt(3);
-                        if (choix == 0) {
-                            Monster monster = factory.generate(coord.remove(0), "goblin_archer");
-                            grille.addEntite(monster);
-                        } else if (choix == 1) {
-                            Monster monster = factory.generate(coord.remove(0), "orc_warrior");
-                            grille.addEntite(monster);
-                        } else {
-                            Monster monster = factory.generate(coord.remove(0), "rogue");
-                            grille.addEntite(monster);
-                        }
-
-                    }
-                }
-            }
-        }
-    }
-    public void initialiseArtefact(Grille grille){
+    public void initialiseMonstre(Grille grille, int NIVEAU){
         Player player = getPlayer();
         ArrayList<Salle> listeSalle = grille.getListOfSalle();
 
         for (Salle salle : listeSalle) {
-            final int maxMonster = 4;
+            int maxMonster = NIVEAU;
             final int distancePlayerMonster = 2;
             int choixNombreDeMonstre = (int) (Math.random() * (maxMonster + 1));
             ArrayList<Position> coord = initialiseEntite(grille, choixNombreDeMonstre, salle, player, distancePlayerMonster);
 
             if (coord.size() != 0) {
-                ArtefactFactory factory = ArtefactFactory.getInstance();
+                MonsterFactory factory = MonsterFactory.getInstance();
                 while (coord.size() != 0) {
                     int choix = Utils.randInt(3);
+                    if (choix == 0){
+                        Monster monster = factory.generate(coord.remove(0), "goblin_archer");
+                        grille.addEntite(monster);
+                    } else if (choix == 1){
+                        Monster monster = factory.generate(coord.remove(0), "orc_warrior");
+                        grille.addEntite(monster);
+                    } else {
+                        Monster monster = factory.generate(coord.remove(0), "rogue");
+                        grille.addEntite(monster);
+                    }
+
+                }
+            }
+        }
+    }
+
+    public void initialiseArtefact(Grille grille){
+        Player player = getPlayer();
+        ArrayList<Salle> listeSalle = grille.getListOfSalle();
+
+        for (Salle salle : listeSalle) {
+            final int maxArtefact = 2;
+            final int distancePlayerMonster = 2;
+            int choixNombreDeMonstre = (int) (Math.random() * (maxArtefact + 1));
+            ArrayList<Position> coord = initialiseEntite(grille, choixNombreDeMonstre, salle, player, distancePlayerMonster);
+
+            if (coord.size() != 0) {
+                ArtefactFactory factory = ArtefactFactory.getInstance();
+                while (coord.size() != 0) {
+                    int choix = Utils.randInt(2);
                     if (choix == 0){
                         Artefact artefact = factory.generate(coord.remove(0), "¤ ");
                         grille.addEntite(artefact);
                         listCoffre.add((Coffre) artefact);
-                    } else if (choix == 1){
-                        Artefact artefact = factory.generate(coord.remove(0), "K ");
-                        grille.addEntite(artefact);
-                        listKey.add((Key) artefact);
                     }
-                    else if (choix == 2) {
+                    else if (choix == 1) {
                         Artefact artefact = factory.generate(coord.remove(0), "! ");
                         grille.addEntite(artefact);
                         listPotion.add((Potion) artefact);
@@ -198,13 +200,17 @@ public class Grille {
 
 
     public boolean isInSalle(Position position)
-        { return grille[position.getY()][position.getX()].equals(getSymbolSalle()); }
+        { return grille[position.getY()][position.getX()] == getSymbolSalle(); }
 
     public boolean isInCouloir(Position position)
-    { return grille[position.getY()][position.getX()].equals(getSymbolCouloir()); }
+    { return grille[position.getY()][position.getX()] == getSymbolCouloir(); }
 
     public boolean isPotionThere(Position position) {
         return grille[position.getY()][position.getX()].equals("! ");
+    }
+
+    public boolean isKeyThere(Position position) {
+        return grille[position.getY()][position.getX()].equals("K ");
     }
 
     public boolean isSafeThere(Position position) {
@@ -279,10 +285,8 @@ public class Grille {
         }
 
         joueur.setPosition(nouvelle_grille.getPlayer().getPosition());
-
+        //listKey = nouvelle_grille.getListKey();
         listOfSalle = nouvelle_grille.getListOfSalle();
-        //listeEntite = nouvelle_grille.getListeEntite();
-        //entiteAbstraitArrayList = nouvelle_grille.getListeEntiteAbstrait();
         listMonster = nouvelle_grille.getListMonster();
         listPotion = nouvelle_grille.getListPotion();
         listCoffre = nouvelle_grille.getListCoffre();
@@ -443,14 +447,10 @@ public class Grille {
         }
     }
 
-    public void addCorridor(Grille grille){
-        ArrayList<Salle> visited = new ArrayList<Salle>();
-
-    }
-
     public void addPortailList(Portal portail) {
         getListPortail().add(portail);
     }
+
 
     public boolean isInsCouloirGauche(Position position) {return isInCouloir(new Position(position.getX()-1,position.getY()));}
     public boolean isInsCouloirDroite(Position position) {return isInCouloir(new Position(position.getX()+1,position.getY()));}
@@ -475,68 +475,35 @@ public class Grille {
     public void addSymbolMonster(Position position,Monster monster){
         grille[position.getY()][position.getX()] = monster.getSymbol();
     }
-    public void SearchPlayer1(Grille grille,Monster monster){
+    public void SearchPlayer(Grille grille,Monster monster){
         List<Position> path = new ArrayList<>();
         DFS dfs = new DFS(grille);
         int [][] matrix = dfs.createMatrix();
         DFS.searchPath(matrix, monster.getPosition().getX(),  monster.getPosition().getY(), path);
         int size = path.size();
-        //dfs.printPosition(monster.getPosition());
         Player player = grille.getPlayer();
         Position positionPlayer = new Position(player.getPosition().getX(),player.getPosition().getY());
 
         if (positionPlayer.getDistance(monster.getPosition()) > 1) {
-
-            grille.addPoint(monster.getPosition());
-
-            for (int i = 0; i < size - 1; i++) {
-                monster.setPosition(path.get(i));
-            }
-            grille.addSymbolMonster(monster.getPosition(), monster);
-        }
-        //dfs.printPosition(monster.getPosition());
-    }
-
-    public void SearchPlayer(Grille grille,Monster monster){
-        List<Position> path = new ArrayList<>();
-        DFS dfs = new DFS(grille);
-        int [][] matrix = dfs.createMatrix();
-        DFS.searchPath(matrix,(int) monster.getPosition().getX(), (int) monster.getPosition().getY(), path);
-        int size = path.size();
-        dfs.printPosition(monster.getPosition());
-        Player player = grille.getPlayer();
-        Position positionPlayer = new Position(player.getPosition().getX(),player.getPosition().getY());
-
-        if (positionPlayer.getDistance(monster.getPosition()) > 1) {
-            //grille.addPoint(monster.getPosition());
-            //Position positionInitial = monster.getPosition();
-            boolean isINSALLE = true;
+            boolean isINSALLE = false;
             ArrayList<Salle> listeSalle = grille.getListOfSalle();
             for (Salle salle : listeSalle){
                 if ((salle.getPos().getX() <= monster.getPosition().getX() &&
-                        monster.getPosition().getX() <= (salle.getPos().getX() + salle.getSalleWidth())) &&
+                    monster.getPosition().getX() < (salle.getPos().getX() + salle.getSalleWidth())) &&
                         (salle.getPos().getY() <= monster.getPosition().getY() &&
-                                monster.getPosition().getY() <= (salle.getPos().getY() + salle.getSalleLenght()))){
-                    isINSALLE = false;
+                        monster.getPosition().getY() < (salle.getPos().getY() + salle.getSalleLenght()))){
+                    isINSALLE = true;
                 }
                 if (isINSALLE) {
-                    grille.addElement(monster.getPosition(), "# ");
+                    grille.addElement(monster.getPosition(), "* ");
                 }
-                else {grille.addElement(monster.getPosition(), "* ");}
-            }
+                else {grille.addElement(monster.getPosition(), "# ");}
+                }
             for (int i = 0; i < size - 1; i++) {
 
-                monster.setPosition(path.get(i));
-
-            }
-            isINSALLE = true;
-
-            //positionInitial = monster.getPosition();
-
-
+            monster.setPosition(path.get(i));
+        }
             grille.addSymbolMonster(monster.getPosition(), monster);
         }
-        System.out.println();
-        dfs.printPosition(monster.getPosition());
     }
 }

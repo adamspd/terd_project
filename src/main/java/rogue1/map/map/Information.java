@@ -1,6 +1,5 @@
 package rogue1.map.map;
 
-import rogue0.utils.Position;
 import rogue0.utils.Utils;
 import rogue2.entite.monstre.Monster;
 import rogue2.entite.player.Player;
@@ -12,8 +11,15 @@ import java.util.ArrayList;
 
 public class Information {
     public static int NOMBRE_MONSTRES_CONNU;
-    private static int MonsterXP;
     public static ArrayList<String> liste_infos;  //Ajouté à un stade de développement déjà assez avancé.
+    private static  int cpt_messages_escalier;
+
+
+    public static void set(Grille grille) {
+        NOMBRE_MONSTRES_CONNU= grille.getListMonster().size(); //On sauvegarde le nombre de monstres initial.
+        liste_infos= new ArrayList<String>();
+        cpt_messages_escalier= 0;
+    }
 
     public static void afficher_liste_info(){
         if(liste_infos!=null) {
@@ -26,24 +32,19 @@ public class Information {
         }
     }
 
-    public static void Game_Over(Grille grille){
+    public static void Game_Over(Grille grille, Map map){
         if(grille.getPlayer().getHitPoints() <= 0) {
-            System.out.println("\nGAME OVER\n");
+            for (int i = 0; i < 3; i++) { System.out.print("\n"); }
+            for (int i = 0; i < 5; i++) { System.out.print("\t"); }
+            for (int i = 0; i < 12; i++) { System.out.print("#"); }
+            System.out.print("    GAME OVER    ");
+            for (int i = 0; i < 12; i++) { System.out.print("#"); }
+            for (int i = 0; i < 4; i++) { System.out.print("\n"); }
+            System.out.println("Niveau:  " + map.NIVEAU);
             System.exit(0);
         }
     }
 
-    public static void You_Win(){
-        if(Event.gagne) {
-            for (int i = 0; i < 4; i++) { System.out.print("\n"); }
-            for (int i = 0; i < 5; i++) { System.out.print("\t"); }
-            for (int i = 0; i < 12; i++) { System.out.print("#"); }
-            System.out.print("    VOUS AVEZ GAGNE !!!    ");
-            for (int i = 0; i < 12; i++) { System.out.print("#"); }
-            for (int i = 0; i < 4; i++) { System.out.print("\n"); }
-            System.exit(0);
-        }
-    }
 
 
     public static void isMonsterDead(Grille grille){
@@ -56,44 +57,42 @@ public class Information {
         }
     }
 
-    private static boolean isEnoughfar(Grille grille, ArrayList<Monster> monstres, Player player, int distance){
+    private static void isEnoughfar(
+            Grille grille, ArrayList<Monster> monstres, Player player, int distance){
+
+        /*if (Niveau.checkIfJoueurPresent(grille)) {
+            System.out.println("#### DANGER #### LE COMBAT EST ENGAGE ##########");
+        }*/
         for (Monster monstre : monstres) {
             boolean estEnCombat = !Utils.estAssezLoinDuJoueur(
                     monstre.getPosition(),
                     distance,grille,player);
             if (estEnCombat) {
-                //System.out.print("LE COMBAT EST ENGAGE !");
-                return true;
+                //System.out.println("#### DANGER #### LE COMBAT EST ENGAGE ##########");
             }
         }
-        return false;
     }
-    private static boolean SeePotion(Grille grille, ArrayList<Potion> potions, Player player) {
+    private static void SeePotion(Grille grille, ArrayList<Potion> potions, Player player) {
         for (Potion potion : potions) {
             boolean seeIt = !Utils.estAssezLoinDuJoueur(
                     potion.getPosition(),
                     1, grille, player);
             if (seeIt) {
-                System.out.print("Potion there !");
-                return true;
+                System.out.println("Potion there !");
             }
         }
-        return false;
     }
 
-    private static boolean SeePortal(Grille grille, ArrayList<Portal> portals, Player player){
+    private static void SeePortal(Grille grille, ArrayList<Portal> portals, Player player){
         for(Portal portal : portals){
             boolean SeeIt = !Utils.estAssezLoinDuJoueur(
                     portal.getPosition(),
                     1, grille, player);
             if(SeeIt){
-                System.out.print("Portal there !");
-                return true;
+                System.out.println("Portal there !");
             }
         }
-        return false;
     }
-
 
     public static void Affichage(Grille grille){
         ArrayList<Monster> lesMonstres = grille.getListMonster();
@@ -104,30 +103,24 @@ public class Information {
         int lifePoints = joueur.getHitPoints();
         int nbreMonstres = lesMonstres.size();
 
-        Game_Over(grille);
-        You_Win();
-        if(Event.isCalled_ifMonstersAreAllDead_ThenUpperLevelEntryOpen){
-            System.out.println("UN ESCALIER A ETE OUVERT !!");
-            return;
+        if(Event.isCalled_ifMonstersAreAllDead_ThenUpperLevelEntryOpen && cpt_messages_escalier<1){
+            System.out.println("UN ESCALIER A ETE OUVERT !! ");
+            cpt_messages_escalier++;
         }
-        isEnoughfar(grille,lesMonstres,joueur, 1);
-        afficher_liste_info(); //Le joueur attaque le monstre !
-        isMonsterDead(grille);
-        SeePotion(grille,lesPotions,joueur);
-        SeePortal(grille,lesPortails,joueur);
+        else {
+            isEnoughfar(grille, lesMonstres, joueur, 1);
+            afficher_liste_info(); //Le joueur attaque le monstre !
+            isMonsterDead(grille);
+            SeePotion(grille, lesPotions, joueur);
+            SeePortal(grille, lesPortails, joueur);
+        }
         System.out.println();
         if (joueur.getPotionReserve() > 1){
             System.out.println("Monstres : " + nbreMonstres + "\t \t XP: "+ lifePoints +
                     "\t \t Potions : " + joueur.getPotionReserve());
         } else {
-            System.out.println("Monstres : " + nbreMonstres + "\t \t XP: "+ lifePoints +
+            System.out.println("Monstres : " + nbreMonstres + "\t \t XP : "+ lifePoints +
                     "\t \t Potion : " + joueur.getPotionReserve());
         }
-    }
-
-    public static void setPositionMonstre(Grille grille, Position position) {
-        Monster monster = grille.getMonster(position);
-        int xp = monster.getHitPoints();
-        MonsterXP = xp;
     }
 }

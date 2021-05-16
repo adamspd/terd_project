@@ -17,15 +17,18 @@ public class Potion extends abstractArtefact{
         Player player = grille.getPlayer();
         if (!checkPvPlayer(player)){
             player.setHitPoints(player.getHitPoints() + 5);
+            if (checkPvPlayer(player)){
+                player.setHitPoints(100);
+            }
         } else {
             player.setPotionReserve(player.getPotionReserve() + 1);
         }
         grille.addPoint(position);
-        removePotionFromList(grille, (int) position.getX(), (int) position.getY());
+        removePotionFromList(grille, position.getX(), position.getY());
     }
 
     private static boolean checkPvPlayer(PlayerInterface player){
-        return player.getHitPoints() == player.getMaxHitPoints();
+        return player.getHitPoints() >= player.getMaxHitPoints();
 
     }
 
@@ -35,6 +38,33 @@ public class Potion extends abstractArtefact{
             if (potion.getPosition().getX() == posX && potion.getPosition().getY() == posY){
                 listePotion.remove(potion);
             }
+        }
+    }
+
+    public static void drinkPotion(Player player){
+        int potionReserve = player.getPotionReserve();
+        if (potionReserve > 0){
+            player.setHitPoints(player.getHitPoints() + 5);
+            potionReserve--;
+            player.setPotionReserve(potionReserve);
+            if (checkPvPlayer(player)){
+                player.setHitPoints(100);
+            }
+        }
+    }
+
+    public static void drinkPotion2(Player player){
+        int potionReserve = player.getPotionReserve();
+        if (potionReserve > 0){
+            if (player.getHitPoints() > 95){
+                System.out.println("Vous avez assez de points de vie !");
+            } else {
+                player.setHitPoints(player.getHitPoints() + 5);
+                potionReserve--;
+                player.setPotionReserve(potionReserve);
+            }
+        } else {
+            System.out.println("Vous n'avez rien en reserve, putain de merde !");
         }
     }
 }

@@ -2,6 +2,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import rogue0.utils.Position;
 import rogue1.map.map.Grille;
+import rogue1.map.map.Map;
 import rogue1.map.map.Salle;
 import rogue2.entite.monstre.GoblinArcher;
 import rogue2.entite.monstre.Monster;
@@ -93,7 +94,7 @@ class GrilleTest {
         grilleInit.initialiseSalle(grilleInit);
         Salle salle = (Salle) grilleInit.getListOfSalle().get(0);
         grilleInit.addEntite(new Player(salle.getPos()));
-        grilleInit.initialiseMonstre(grilleInit);
+        grilleInit.initialiseMonstre(grilleInit, 3);
         assertFalse(grilleInit.getListMonster().isEmpty());
         grilleInit.initialiseArtefact(grilleInit);
         assertFalse(grilleInit.getListArtefact().isEmpty());

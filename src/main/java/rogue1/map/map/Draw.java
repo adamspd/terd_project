@@ -18,17 +18,15 @@ public class Draw {
         String symbol_grille = grille.getSymbolGrille();
         String symbol_salle = grille.getSymbolSalle();
         String[][] ArrayGrille = grille.getGrille();
-        //ArrayList<Artefact> listeArtefact = grille.getListArtefact();
-        //for (Artefact artefact : listeArtefact) {
 
         for (String[] tab : ArrayGrille) {
             for (String s : tab) {
                 if (s == symbol_grille) {
                     System.out.print(Couleur.ROUGE + s + Couleur.RESET);
                 }
-                else if (s.equals(symbol_salle)) {
+                else if (s.equals("K ") || s.equals(symbol_salle)) {
                     System.out.print(Couleur.BLANC + s + Couleur.RESET);
-                }else if (s.equals("K ") || (s.equals("£ ")) || (s.equals("! ")) || (s.equals("¤ "))){
+                }else if ( (s.equals("£ ")) || (s.equals("! ")) || (s.equals("¤ "))){
                     System.out.print(Couleur.VERT + s + Couleur.RESET);
                 }
                 else if (s.equals("P ")){

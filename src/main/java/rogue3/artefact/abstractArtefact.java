@@ -1,12 +1,10 @@
 package rogue3.artefact;
 
 import rogue0.utils.Position;
-import rogue1.map.map.Grille;
-import rogue2.entite.abstrait.AbstractEntity;
 
 public abstract class abstractArtefact implements Artefact {
-    private Position position;
-    private String symbol;
+    private final Position position;
+    private final String symbol;
 
     public Position getPosition() {
         return position;

@@ -10,14 +10,13 @@ import java.util.ArrayList;
 public class Map {
     public Map(){}
     public int NIVEAU;
-    public int NOMBRE_DE_NIVEAUX;
 
     public Grille generateSalle(){
         Grille grille = new Grille();
         grille.initialiseSalle(grille);
         grille.relierSalle(grille);
         addPlayer(grille);
-        grille.initialiseMonstre(grille);
+        grille.initialiseMonstre(grille, NIVEAU);
         grille.initialiseArtefact(grille);
         Portal.initialisePortail(grille);
         Event.genererateStairs(grille);
@@ -27,15 +26,15 @@ public class Map {
     private void addPlayer(Grille grille)
     {
         Salle sallePlayer = getSalleDepart(grille.getListOfSalle());
-        int sallePlayerX = sallePlayer.getPos().getX();
-        int sallePlayerY = sallePlayer.getPos().getY();
+        int sallePlayerX = (int) sallePlayer.getPos().getX();
+        int sallePlayerY = (int) sallePlayer.getPos().getY();
         grille.addEntite(new Player(new Position(sallePlayerX,sallePlayerY)));
     }
 
     private Salle getSalleDepart(ArrayList<Salle>listSalle)
     {
-        int x = listSalle.get(0).getPos().getX();
-        int y = listSalle.get(0).getPos().getY();
+        int x = (int) listSalle.get(0).getPos().getX();
+        int y = (int) listSalle.get(0).getPos().getY();
         Salle salleDepart;
         salleDepart = listSalle.get(0);
         for (Salle salle : listSalle)
@@ -47,15 +46,15 @@ public class Map {
                     if(salle.getPos().getX() < x)
                     {
                         salleDepart = salle;
-                        x = salleDepart.getPos().getX();
-                        y = salleDepart.getPos().getY();
+                        x = (int) salleDepart.getPos().getX();
+                        y = (int) salleDepart.getPos().getY();
                     }
                 }
                 else
                 {
                     salleDepart = salle;
-                    x = salleDepart.getPos().getX();
-                    y = salleDepart.getPos().getY();
+                    x = (int) salleDepart.getPos().getX();
+                    y = (int) salleDepart.getPos().getY();
 
                 }
             }
