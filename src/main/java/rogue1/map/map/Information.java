@@ -115,7 +115,7 @@ public class Information {
             SeePortal(grille, lesPortails, joueur);
         }
         System.out.println();
-        if(joueur.getHitPoints()<0){joueur.setHitPoints(0);}
+        if(lifePoints<0){lifePoints=0;}
         if (joueur.getPotionReserve() > 1){
             System.out.println("Monstres : " + nbreMonstres + "\t \t PV: "+ lifePoints +
                     "\t \t Potions : " + joueur.getPotionReserve());
