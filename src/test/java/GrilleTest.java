@@ -100,9 +100,4 @@ class GrilleTest {
         assertFalse(grilleInit.getListArtefact().isEmpty());
     }
 
-    /*@Test
-    public void isSomethingThere() {
-        grilleInit.addSalle(new Salle(10, 10, new Position(0, 0)));
-        grilleInit.
-    }*/
 }
