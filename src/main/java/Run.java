@@ -1,4 +1,3 @@
-
 import rogue1.map.map.Draw;
 import rogue1.map.map.Grille;
 import rogue1.map.map.Information;
@@ -8,15 +7,18 @@ import rogue2.entite.player.Player;
 import rogue3.artefact.Event;
 import rogue3.artefact.Key;
 import rogue3.artefact.Potion;
-
 import java.util.Scanner;
-
-/*import test.Portal_Test;
+import test.Portal_Test;
 import test.Stairs_Test;
-*/
+
 
 public class Run {
     public static void main(String[] args) {
+        //Mettre le code en commentaire pour lancer ces tests.
+        //Sinon cela peut provoquer des bugs.
+        //Portal_Test.Start();
+        //Stairs_Test.Start();
+
         Draw draw = new Draw();
         Map map = new Map();
         Grille grille = map.generateSalle();
@@ -24,9 +26,6 @@ public class Run {
         map.NIVEAU = 1;
         Information.liste_infos.add("NIVEAU " + map.NIVEAU);
         draw.draw(grille);
-
-        //Portal_Test.Start();
-        //Stairs_Test.Start();
 
 
 /*
@@ -43,7 +42,6 @@ public class Run {
         System.out.println(chemin.size());
         for (Position position : chemin) {
           union.printPosition(position);
-
         }
 */
 
@@ -61,7 +59,6 @@ public class Run {
                 else if (touche.matches("q.*")){Move.moveLeft(grille, grille.getPlayer());}
                 else if (touche.matches("s.*")){Move.moveDown(grille, grille.getPlayer());}
                 else if (touche.matches("d.*")){Move.moveRight(grille, grille.getPlayer());}
-
 
                 grille.attack(grille, player);
                 draw.draw(grille);
