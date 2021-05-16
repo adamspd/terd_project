@@ -32,6 +32,6 @@ Portail :
 
 
 BUG ACTUEL :
-  * Les threads posent jusque là un problème au bon fonctionnement du code. 
+  * Les threads posaient un problème au bon fonctionnement du code. 
     C'est pourquoi on a opté pour du tour par tour à la place.
   * On peut commencer à jouer et des fois ça ne prend pas en compte les inputs du joueur.
