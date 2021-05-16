@@ -35,7 +35,7 @@ public class Player extends AbstractEntity implements PlayerInterface {
         if (monster != null){
             //Information.liste_infos.add("Monstre trouvé: " + position.getX()+":"+position.getY()+"\tPV initial: "+monster.getMaxHitPoints());
             monster.setHitPoints(monster.getHitPoints() - 2);
-            if(monster.isAlive()) { Information.liste_infos.add("PV Monster : " + monster.getHitPoints());}
+            if(monster.isAlive()) { Information.liste_infos.add("PV Monstre : " + monster.getHitPoints());}
             if (!monster.isAlive()){
                 boolean isINSALLE = false;
                 ArrayList<Salle> listeSalle = grille.getListOfSalle();
