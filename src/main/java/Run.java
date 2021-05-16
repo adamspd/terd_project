@@ -7,8 +7,8 @@ import rogue2.entite.player.Player;
 import rogue3.artefact.Event;
 import rogue3.artefact.Key;
 import rogue3.artefact.Potion;
-import test.PortalTest;
-import test.StairsTest;
+//import test.PortalTest;
+//import test.StairsTest;
 
 import java.util.Scanner;
 
